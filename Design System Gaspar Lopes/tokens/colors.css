@@ -1,0 +1,32 @@
+:root {
+  /* Base — amostrada dos assets da marca */
+  --bg-0: #0C0F14;
+  --bg-1: #11151C;
+  --navy-300: #33436E;
+  --navy-500: #16305F;
+  --navy-700: #0A2453;
+  --navy-900: #071736;
+  --white: #FFFFFF;
+  --fg-0: #FFFFFF;
+  --fg-1: #F2F4F8;
+  --fg-2: rgba(242,244,248,0.72);
+  --fg-3: rgba(242,244,248,0.45);
+  --border-subtle: rgba(255,255,255,0.10);
+  --border-strong: rgba(255,255,255,0.24);
+
+  /* Semanticos */
+  --surface-page: var(--bg-0);
+  --surface-card: #121826;
+  --surface-raised: #16203A;
+  --surface-highlight: var(--navy-700);
+  --text-heading: var(--fg-0);
+  --text-body: var(--fg-2);
+  --text-muted: var(--fg-3);
+  --accent: var(--navy-500);
+  --on-accent: #FFFFFF;
+  --cta-bg: #F2F4F8;
+  --cta-fg: #0C0F14;
+  --danger: #C0452F;
+  --link: var(--fg-1);
+  --link-hover: var(--fg-2);
+}

@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ============================================================
+       LP GASPAR LOPES — Alfaiataria Sob Medida | M|P Assessoria
+       ⚠️ ANTES DE PUBLICAR (ver PRD §7):
+       1. WhatsApp: buscar e substituir "55PREENCHERNUMERO" pelo número real
+          com DDD (ex.: 5562999999999). Aparece em TODOS os CTAs.
+       2. Seções comentadas com [PREENCHER]: "Como funciona" (processo do
+          atelier), "Depoimentos", 2 itens do FAQ, endereço e Instagram no
+          footer. Ativar SOMENTE com os dados reais — NUNCA preencher com
+          suposição.
+       3. Nomes das peças na "Coleção" vêm dos nomes dos arquivos enviados
+          pelo cliente (pasta Fotos - Produtos). Validar nomenclatura.
+       ============================================================ -->
+
+  <title>Alfaiataria Sob Medida em Goiânia | Gaspar Lopes</title>
+  <meta name="description" content="Camisas, ternos e costumes sob medida em Goiânia. Trabalho artesanal, caimento perfeito. Agende seu atendimento.">
+
+  <!-- Open Graph (compartilhamento WhatsApp) -->
+  <meta property="og:title" content="Alfaiataria Sob Medida em Goiânia | Gaspar Lopes">
+  <meta property="og:description" content="Camisas, ternos e costumes sob medida em Goiânia. Trabalho artesanal, caimento perfeito. Agende seu atendimento.">
+  <meta property="og:image" content="assets/img/og-image.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- [PREENCHER: Pixel/GA4/Google Tag — Marcos confirma qual tracking usar]
+  <script> ... </script>
+  -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap">
+
+  <!-- CSS crítico da primeira dobra — PALETA do Design System Gaspar Lopes (tokens/colors.css) -->
+  <style>
+    :root{
+      --bg-0:#0C0F14;--bg-1:#11151C;
+      --navy-300:#33436E;--navy-500:#16305F;--navy-700:#0A2453;--navy-900:#071736;
+      --white:#FFFFFF;--fg-0:#FFFFFF;--fg-1:#F2F4F8;
+      --fg-2:rgba(242,244,248,0.72);--fg-3:rgba(242,244,248,0.45);
+      --border-subtle:rgba(255,255,255,0.10);--border-strong:rgba(255,255,255,0.24);
+      --surface-card:#121826;--surface-raised:#16203A;
+      --text-heading:var(--fg-0);--text-body:var(--fg-2);--text-muted:var(--fg-3);
+      --cta-bg:#F2F4F8;--cta-fg:#0C0F14;
+      --font-body:'Jost',sans-serif;
+      --font-accent:'Cormorant Garamond',Georgia,serif;
+      --fs-body:17px;--fs-small:14px;
+      --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;
+      --sp-6:32px;--sp-7:48px;--sp-8:64px;--sp-9:96px;--sp-10:128px;
+      --container:1200px;
+      --ease:cubic-bezier(0.4,0,0.2,1);
+      --ease-out:cubic-bezier(0.16,1,0.3,1);
+      --shadow-card:0 20px 50px rgba(0,0,0,0.45);
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;background:var(--bg-0);color:var(--text-body);
+      font-family:var(--font-body);font-size:var(--fs-body);line-height:1.65;
+      font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+    }
+    img{max-width:100%}
+    a{color:var(--fg-1)}a:hover{color:var(--fg-2)}
+    .container{width:100%;max-width:var(--container);margin:0 auto;padding:0 var(--sp-5)}
+    @media(min-width:768px){.container{padding:0 var(--sp-6)}}
+
+    /* Botões — pílula "liquid glass": translúcido, blur, brilho interno e reflexo no hover */
+    .btn{
+      position:relative;display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-3);
+      min-height:54px;padding:var(--sp-4) var(--sp-7);
+      background:rgba(255,255,255,0.10);
+      -webkit-backdrop-filter:blur(14px) saturate(1.5);backdrop-filter:blur(14px) saturate(1.5);
+      color:var(--fg-0);
+      font-family:var(--font-body);font-size:13px;font-weight:500;
+      letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;
+      border:1px solid rgba(255,255,255,0.28);border-radius:999px;cursor:pointer;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,0.35),inset 0 -1px 0 rgba(255,255,255,0.06),0 8px 24px rgba(0,0,0,0.35);
+      overflow:hidden;
+      transition:transform 300ms var(--ease-out),box-shadow 300ms var(--ease),background 300ms var(--ease),border-color 300ms var(--ease);
+    }
+    .btn::before{
+      content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;
+      background:linear-gradient(105deg,transparent,rgba(255,255,255,0.35),transparent);
+      transform:skewX(-20deg);pointer-events:none;
+      transition:left 650ms var(--ease);
+    }
+    .btn:hover{
+      background:rgba(255,255,255,0.17);color:var(--fg-0);
+      border-color:rgba(255,255,255,0.5);transform:translateY(-2px);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,0.45),inset 0 -1px 0 rgba(255,255,255,0.08),0 14px 34px rgba(0,0,0,0.45);
+    }
+    .btn:hover::before{left:125%}
+    .btn:active{transform:translateY(0)}
+    .btn svg{width:17px;height:17px;flex:0 0 auto;transition:transform 300ms var(--ease-out)}
+    .btn:hover svg{transform:translateX(3px)}
+    .btn--wa:hover svg{transform:scale(1.12)}
+    .btn--outline{background:rgba(255,255,255,0.05);border-color:var(--border-strong)}
+    .btn--outline:hover{background:rgba(255,255,255,0.12)}
+
+    /* Header fixo */
+    .header{
+      position:fixed;top:0;left:0;right:0;z-index:50;
+      background:transparent;border-bottom:1px solid transparent;
+      transition:background 300ms var(--ease),border-color 300ms var(--ease);
+    }
+    .header.scrolled{background:rgba(12,15,20,0.92);border-bottom-color:var(--border-subtle);backdrop-filter:blur(8px)}
+    .header-in{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-4);min-height:88px}
+    .logo-link{display:inline-flex;align-items:center}
+    .logo-img{display:block;height:68px;width:auto}
+    @media(min-width:1024px){
+      .header-in{min-height:104px}
+      .logo-img{height:84px}
+    }
+    .nav{display:none}
+    .nav a{
+      position:relative;font-size:12px;font-weight:400;
+      letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;
+      color:var(--fg-2);padding:var(--sp-2) 0;transition:color 200ms var(--ease);
+    }
+    .nav a::after{
+      content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;
+      background:var(--fg-1);transition:right 300ms var(--ease-out);
+    }
+    .nav a:hover{color:var(--fg-0)}
+    .nav a:hover::after{right:0}
+    .header .btn{min-height:42px;padding:var(--sp-2) var(--sp-5);font-size:11px;white-space:nowrap}
+    .menu-btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:44px;height:44px;background:none;border:0;color:var(--fg-1);cursor:pointer;
+    }
+    .menu-btn svg{width:24px;height:24px}
+    @media(min-width:1024px){
+      .nav{display:flex;gap:var(--sp-6);align-items:center}
+      .menu-btn{display:none}
+    }
+    .mobile-nav{
+      display:none;flex-direction:column;gap:var(--sp-5);
+      padding:var(--sp-6) var(--sp-5) var(--sp-7);
+      background:rgba(12,15,20,0.97);border-bottom:1px solid var(--border-subtle);
+    }
+    .mobile-nav.open{display:flex}
+    .mobile-nav a{
+      font-size:var(--fs-small);font-weight:400;
+      letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;color:var(--fg-1);
+    }
+    @media(min-width:1024px){.mobile-nav{display:none!important}}
+
+    /* Hero full-bleed */
+    .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden}
+    .hero-media{position:absolute;inset:0;z-index:0}
+    .hero-media img{width:100%;height:100%;object-fit:cover;object-position:70% 0%}
+    .hero-media::after{
+      content:"";position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(12,15,20,0.42) 0%,rgba(12,15,20,0.12) 20%,rgba(12,15,20,0.55) 42%,rgba(12,15,20,0.94) 64%,var(--bg-0) 100%);
+    }
+    .hero-content{position:relative;z-index:1;padding-top:220px;padding-bottom:var(--sp-8)}
+    .hero-badge{
+      display:inline-flex;align-items:center;gap:var(--sp-4);
+      font-size:11px;font-weight:400;
+      letter-spacing:0.4em;text-transform:uppercase;color:var(--fg-2);
+      margin-bottom:var(--sp-6);
+    }
+    .hero-badge::before{content:"";width:40px;height:1px;background:var(--border-strong)}
+    .hero h1{
+      font-family:var(--font-accent);
+      font-size:clamp(42px,9.6vw,84px);
+      font-weight:500;letter-spacing:0.005em;line-height:1.06;
+      color:var(--text-heading);margin:0 0 var(--sp-6);max-width:720px;
+    }
+    .hero h1 .accent{display:block;font-style:italic;font-weight:400;margin-top:var(--sp-2)}
+    .hero-sub{margin:0 0 var(--sp-7);max-width:540px;color:var(--fg-2)}
+    .hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:var(--sp-4)}
+    .microcopy{display:block;margin-top:var(--sp-4);font-size:var(--fs-small);color:var(--text-muted)}
+    @media(min-width:1024px){
+      .hero{align-items:center}
+      .hero-media img{object-position:82% 15%}
+      .hero-media::after{
+        background:linear-gradient(90deg,var(--bg-0) 12%,rgba(12,15,20,0.88) 40%,rgba(12,15,20,0.4) 64%,rgba(12,15,20,0.12) 100%),
+                   linear-gradient(180deg,rgba(12,15,20,0.4) 0%,rgba(12,15,20,0) 30%,rgba(12,15,20,0) 70%,var(--bg-0) 100%);
+      }
+      .hero-content{padding-top:120px;padding-bottom:var(--sp-9)}
+    }
+
+    /* Reveal on scroll (JS adiciona .in) */
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity 700ms var(--ease-out),transform 700ms var(--ease-out)}
+    .reveal.in{opacity:1;transform:none}
+    .reveal-group>*{opacity:0;transform:translateY(28px);transition:opacity 700ms var(--ease-out),transform 700ms var(--ease-out)}
+    .reveal-group.in>*{opacity:1;transform:none}
+    .reveal-group.in>*:nth-child(2){transition-delay:90ms}
+    .reveal-group.in>*:nth-child(3){transition-delay:180ms}
+    .reveal-group.in>*:nth-child(4){transition-delay:270ms}
+    .reveal-group.in>*:nth-child(5){transition-delay:360ms}
+    .reveal-group.in>*:nth-child(6){transition-delay:450ms}
+    @media(prefers-reduced-motion:reduce){
+      .reveal,.reveal-group>*{opacity:1;transform:none;transition:none}
+    }
+  </style>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ================= HEADER (PRD 4.1) ================= -->
+  <header class="header">
+    <div class="container header-in">
+      <a class="logo-link" href="#inicio" aria-label="Gaspar Lopes Alfaiataria — início">
+        <img class="logo-img" src="assets/logo/gaspar-lopes-logo.png" alt="Gaspar Lopes Alfaiataria" width="360" height="360">
+      </a>
+      <nav class="nav" aria-label="Navegação principal">
+        <a href="#pecas">Peças</a>
+        <a href="#colecao">Coleção</a>
+        <a href="#sob-medida">Sob medida</a>
+        <a href="#investimento">Investimento</a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:var(--sp-2)">
+        <a class="btn" href="https://wa.me/55PREENCHERNUMERO?text=Ol%C3%A1!%20Vim%20pela%20landing%20page%20e%20quero%20fazer%20uma%20pe%C3%A7a%20sob%20medida." target="_blank" rel="noopener">Falar no WhatsApp</a>
+        <button class="menu-btn" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-nav">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Navegação móvel">
+      <a href="#pecas">Peças</a>
+      <a href="#colecao">Coleção</a>
+      <a href="#sob-medida">Sob medida</a>
+      <a href="#investimento">Investimento</a>
+    </nav>
+  </header>
+
+  <main id="inicio">
+
+    <!-- ================= HERO (PRD 4.2) ================= -->
+    <section class="hero">
+      <div class="hero-media" aria-hidden="true">
+        <picture>
+          <source type="image/webp" srcset="assets/img/hero-480.webp 480w, assets/img/hero-800.webp 800w, assets/img/hero-1200.webp 1200w, assets/img/hero-1600.webp 1600w" sizes="100vw">
+          <img src="assets/img/hero-1200.jpg" srcset="assets/img/hero-480.jpg 480w, assets/img/hero-800.jpg 800w, assets/img/hero-1200.jpg 1200w, assets/img/hero-1600.jpg 1600w" sizes="100vw" alt="" width="1600" height="2000" fetchpriority="high">
+        </picture>
+      </div>
+      <div class="container hero-content">
+        <span class="hero-badge">Sob medida · Setor Sul, Goiânia</span>
+        <h1>Alfaiataria sob medida em Goiânia <span class="accent">— feita para vestir exatamente você.</span></h1>
+        <p class="hero-sub">Camisas, ternos e costumes cortados à mão, no seu corpo e no seu estilo. Caimento perfeito, acabamento artesanal, presença em cada detalhe.</p>
+        <div class="hero-actions">
+          <a class="btn btn--wa" href="https://wa.me/55PREENCHERNUMERO?text=Ol%C3%A1!%20Vim%20pela%20landing%20page%20e%20quero%20fazer%20uma%20pe%C3%A7a%20sob%20medida." target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            Agendar meu atendimento
+          </a>
+        </div>
+        <span class="microcopy">Atendimento pelo WhatsApp com o time Gaspar Lopes.</span>
+      </div>
+    </section>
+
+    <!-- ================= MARQUEE EDITORIAL (frases do briefing) ================= -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Sob medida</span><i></i><span>Trabalho artesanal</span><i></i><span>Caimento perfeito</span><i></i><span>Exclusividade</span><i></i><span>Feito à mão</span><i></i><span>Goiânia — GO</span><i></i>
+        <span>Sob medida</span><i></i><span>Trabalho artesanal</span><i></i><span>Caimento perfeito</span><i></i><span>Exclusividade</span><i></i><span>Feito à mão</span><i></i><span>Goiânia — GO</span><i></i>
+      </div>
+    </div>
+
+    <!-- ================= POR QUE SOB MEDIDA (PRD 4.3) ================= -->
+    <section class="section" id="sob-medida">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="overline">Por que sob medida</span>
+          <h2 class="section-title">Roupa pronta veste &ldquo;mais ou menos&rdquo;.<br>Sob medida veste <span class="accent">você.</span></h2>
+          <p class="section-lead">Cada peça Gaspar Lopes nasce das suas medidas, do seu tecido e do seu estilo. É o corte artesanal que faz a diferença entre uma roupa que serve e uma roupa que valoriza quem a usa.</p>
+        </div>
+        <div class="pillars reveal-group">
+          <div class="pillar">
+            <span class="pillar-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/></svg>
+            </span>
+            <span class="pillar-num" aria-hidden="true">01</span>
+            <h3>Feito sob medida</h3>
+            <p>Nada de padrão. Cada camisa, paletó, calça, colete ou terno é construído a partir das suas medidas.</p>
+          </div>
+          <div class="pillar">
+            <span class="pillar-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><path d="M8.12 8.12 12 12"/><path d="M20 4 8.12 15.88"/><circle cx="6" cy="18" r="3"/><path d="M14.8 14.8 20 20"/></svg>
+            </span>
+            <span class="pillar-num" aria-hidden="true">02</span>
+            <h3>Trabalho artesanal</h3>
+            <p>Acabamento feito à mão, com o cuidado que peça industrial nenhuma entrega.</p>
+          </div>
+          <div class="pillar">
+            <span class="pillar-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg>
+            </span>
+            <span class="pillar-num" aria-hidden="true">03</span>
+            <h3>Exclusividade</h3>
+            <p>Sua roupa, do seu jeito — tecido, corte e detalhes escolhidos por você.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Faixa editorial: detalhe do trabalho artesanal (punho bordado à mão) -->
+    <div class="band" aria-hidden="true">
+      <picture>
+        <source type="image/webp" srcset="assets/img/banda-detalhe-800.webp 800w, assets/img/banda-detalhe-1600.webp 1600w" sizes="100vw">
+        <img src="assets/img/banda-detalhe-1600.jpg" srcset="assets/img/banda-detalhe-800.jpg 800w, assets/img/banda-detalhe-1600.jpg 1600w" sizes="100vw" alt="" width="1600" height="686" loading="lazy">
+      </picture>
+    </div>
+
+    <!-- ================= VITRINE DE PEÇAS (PRD 4.4) ================= -->
+    <section class="section" id="pecas">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="overline">Peças</span>
+          <h2 class="section-title">O que criamos para <span class="accent">você</span></h2>
+        </div>
+        <div class="showcase reveal-group">
+          <article class="piece">
+            <a class="piece-link" href="https://wa.me/55PREENCHERNUMERO?text=Ol%C3%A1!%20Vim%20pela%20landing%20page%20e%20quero%20fazer%20uma%20pe%C3%A7a%20sob%20medida." target="_blank" rel="noopener" aria-label="Camisas sob medida — falar no WhatsApp">
+              <div class="piece-media">
+                <picture>
+                  <source type="image/webp" srcset="assets/img/produto-camisas-480.webp 480w, assets/img/produto-camisas-800.webp 800w" sizes="(min-width:1024px) 380px, 50vw">
+                  <img src="assets/img/produto-camisas-480.jpg" srcset="assets/img/produto-camisas-480.jpg 480w, assets/img/produto-camisas-800.jpg 800w" sizes="(min-width:1024px) 380px, 50vw" alt="Camisa branca sob medida em manequim no ateliê" width="480" height="600" loading="lazy">
+                </picture>
+                <span class="piece-cta" aria-hidden="true">Pedir sob medida
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </span>
+              </div>
+              <div class="piece-caption">
+                <span class="piece-num" aria-hidden="true">01</span>
+                <div>
+                  <h3>Camisas</h3>
+                  <p>O básico que deixa de ser básico quando é feito no seu corpo.</p>
+                </div>
+              </div>
+            </a>
+          </article>
+          <article class="piece">
+            <a class="piece-link" href="https://wa.me/55PREENCHERNUMERO?text=Ol%C3%A1!%20Vim%20pela%20landing%20page%20e%20quero%20fazer%20uma%20pe%C3%A7a%20sob%20medida." target="_blank" rel="noopener" aria-label="Ternos sob medida — falar no WhatsApp">
+              <div class="piece-media">
+                <picture>
+                  <source type="image/webp" srcset="assets/img/produto-ternos-480.webp 480w, assets/img/produto-ternos-800.webp 800w" sizes="(min-width:1024px) 380px, 50vw">
+                  <img src="assets/img/produto-ternos-480.jpg" srcset="assets/img/produto-ternos-480.jpg 480w, assets/img/produto-ternos-800.jpg 800w" sizes="(min-width:1024px) 380px, 50vw" alt="Terno cinza príncipe de Gales sob medida vestido no ateliê" width="480" height="600" loading="lazy">
+                </picture>
+                <span class="piece-cta" aria-hidden="true">Pedir sob medida
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </span>
+              </div>
+              <div class="piece-caption">
+                <span class="piece-num" aria-hidden="true">02</span>
+                <div>
+                  <h3>Ternos</h3>
+                  <p>Presença e caimento impecável para os seus momentos mais importantes.</p>
+                </div>
+              </div>
+            </a>
+          </article>
+          <article class="piece">
+            <a class="piece-link" href="https://wa.me/55PREENCHERNUMERO?text=Ol%C3%A1!%20Vim%20pela%20landing%20page%20e%20quero%20fazer%20uma%20pe%C3%A7a%20sob%20medida." target="_blank" rel="noopener" aria-label="Costumes sob medida — falar no WhatsApp">
+              <div class="piece-media">
+                <picture>
+                  <source type="image/webp" srcset="assets/img/produto-costumes-480.webp 480w, assets/img/produto-costumes-800.webp 800w" sizes="(min-width:1024px) 380px, 50vw">
+                  <img src="assets/img/produto-costumes-480.jpg" srcset="assets/img/produto-costumes-480.jpg 480w, assets/img/produto-costumes-800.jpg 800w" sizes="(min-width:1024px) 380px, 50vw" alt="Costume de linho sob medida de dois botões" width="480" height="600" loading="lazy">
+                </picture>
+                <span class="piece-cta" aria-hidden="true">Pedir sob medida
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </span>
+              </div>
+              <div class="piece-caption">
+                <span class="piece-num" aria-hidden="true">03</span>
+                <div>
+                  <h3>Costumes</h3>
+                  <p>Composição completa, pensada nos mínimos detalhes.</p>
+                </div>
+              </div>
+            </a>
+          </article>
+          <article class="piece">
+            <a class="piece-link" href="https://wa.me/55PREENCHERNUMERO?text=Ol%C3%A1!%20Vim%20pela%20landing%20page%20e%20quero%20fazer%20uma%20pe%C3%A7a%20sob%20medida." target="_blank" rel="noopener" aria-label="Paletós sob medida — falar no WhatsApp">
+              <div class="piece-media">
+                <picture>
+                  <source type="image/webp" srcset="assets/img/produto-paletos-480.webp 480w, assets/img/produto-paletos-800.webp 800w" sizes="(min-width:1024px) 380px, 50vw">
+                  <img src="assets/img/produto-paletos-480.jpg" srcset="assets/img/produto-paletos-480.jpg 480w, assets/img/produto-paletos-800.jpg 800w" sizes="(min-width:1024px) 380px, 50vw" alt="Paletó de dois botões sob medida em manequim" width="480" height="600" loading="lazy">
+                </picture>
+                <span class="piece-cta" aria-hidden="true">Pedir sob medida
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </span>
+              </div>
+              <div class="piece-caption">
+                <span class="piece-num" aria-hidden="true">04</span>
+                <div>
+                  <h3>Paletós</h3>
+                  <p>A peça que estrutura o look e transforma qualquer ocasião.</p>
+                </div>
+              </div>
+            </a>
+          </article>
+          <article class="piece">
+            <a class="piece-link" href="https://wa.me/55PREENCHERNUMERO?text=Ol%C3%A1!%20Vim%20pela%20landing%20page%20e%20quero%20fazer%20uma%20pe%C3%A7a%20sob%20medida." target="_blank" rel="noopener" aria-label="Calças sob medida — falar no WhatsApp">
+              <div class="piece-media">
+                <picture>
+                  <source type="image/webp" srcset="assets/img/produto-calcas-480.webp 480w, assets/img/produto-calcas-800.webp 800w" sizes="(min-width:1024px) 380px, 50vw">
+                  <img src="assets/img/produto-calcas-480.jpg" srcset="assets/img/produto-calcas-480.jpg 480w, assets/img/produto-calcas-800.jpg 800w" sizes="(min-width:1024px) 380px, 50vw" alt="Calça sob medida de cós duplo com detalhe de fivela" width="480" height="600" loading="lazy">
+                </picture>
+                <span class="piece-cta" aria-hidden="true">Pedir sob medida
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </span>
+              </div>
+              <div class="piece-caption">
+                <span class="piece-num" aria-hidden="true">05</span>
+                <div>
+                  <h3>Calças</h3>
+                  <p>Corte e caimento sob medida, do casual ao formal.</p>
+                </div>
+              </div>
+            </a>
+          </article>
+          <article class="piece">
+            <a class="piece-link" href="https://wa.me/55PREENCHERNUMERO?text=Ol%C3%A1!%20Vim%20pela%20landing%20page%20e%20quero%20fazer%20uma%20pe%C3%A7a%20sob%20medida." target="_blank" rel="noopener" aria-label="Coletes sob medida — falar no WhatsApp">
+              <div class="piece-media">
+                <picture>
+                  <source type="image/webp" srcset="assets/img/produto-coletes-480.webp 480w, assets/img/produto-coletes-800.webp 800w" sizes="(min-width:1024px) 380px, 50vw">
+                  <img src="assets/img/produto-coletes-480.jpg" srcset="assets/img/produto-coletes-480.jpg 480w, assets/img/produto-coletes-800.jpg 800w" sizes="(min-width:1024px) 380px, 50vw" alt="Colete de linho sob medida vestido sobre camisa branca" width="480" height="600" loading="lazy">
+                </picture>
+                <span class="piece-cta" aria-hidden="true">Pedir sob medida
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </span>
+              </div>
+              <div class="piece-caption">
+                <span class="piece-num" aria-hidden="true">06</span>
+                <div>
+                  <h3>Coletes</h3>
+                  <p>O detalhe que eleva o conjunto.</p>
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+        <div class="section-cta reveal">
+          <a class="btn" href="https://wa.me/55PREENCHERNUMERO?text=Ol%C3%A1!%20Vim%20pela%20landing%20page%20e%20quero%20fazer%20uma%20pe%C3%A7a%20sob%20medida." target="_blank" rel="noopener">Quero minha peça sob medida
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= COLEÇÃO (galeria com filtros por categoria) =================
+         Nomes das peças = nomes dos arquivos enviados pelo cliente (validar). -->
+    <section class="section section--raised" id="colecao">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="overline">Coleção</span>
+          <h2 class="section-title">Peças que já saíram do <span class="accent">atelier</span></h2>
+        </div>
+        <div class="filters reveal" role="tablist" aria-label="Filtrar coleção por categoria">
+          <button class="filter is-active" type="button" data-filter="todas" aria-pressed="true">Todas</button>
+          <button class="filter" type="button" data-filter="ternos" aria-pressed="false">Ternos &amp; Costumes</button>
+          <button class="filter" type="button" data-filter="paletos" aria-pressed="false">Paletós &amp; Jaquetões</button>
+          <button class="filter" type="button" data-filter="camisas" aria-pressed="false">Camisas</button>
+          <button class="filter" type="button" data-filter="calcas" aria-pressed="false">Calças &amp; Coletes</button>
+          <button class="filter" type="button" data-filter="especiais" aria-pressed="false">Peças especiais</button>
+        </div>
+        <div class="gallery" id="gallery">
+          <figure class="g-item" data-cat="ternos">
+            <picture>
+              <source type="image/webp" srcset="assets/img/colecao-costume-6botoes-480.webp 480w, assets/img/colecao-costume-6botoes-800.webp 800w" sizes="(min-width:1024px) 280px, 50vw">
+              <img src="assets/img/colecao-costume-6botoes-480.jpg" srcset="assets/img/colecao-costume-6botoes-480.jpg 480w, assets/img/colecao-costume-6botoes-800.jpg 800w" sizes="(min-width:1024px) 280px, 50vw" alt="Costume de seis botões sob medida" width="480" height="600" loading="lazy">
+            </picture>
+            <figcaption>Costume 6 botões</figcaption>
+          </figure>
+          <figure class="g-item" data-cat="paletos">
+            <picture>
+              <source type="image/webp" srcset="assets/img/colecao-jaquetao-6botoes-480.webp 480w, assets/img/colecao-jaquetao-6botoes-800.webp 800w" sizes="(min-width:1024px) 280px, 50vw">
+              <img src="assets/img/colecao-jaquetao-6botoes-480.jpg" srcset="assets/img/colecao-jaquetao-6botoes-480.jpg 480w, assets/img/colecao-jaquetao-6botoes-800.jpg 800w" sizes="(min-width:1024px) 280px, 50vw" alt="Jaquetão de seis botões sob medida" width="480" height="600" loading="lazy">
+            </picture>
+            <figcaption>Jaquetão 6 botões</figcaption>
+          </figure>
+          <figure class="g-item" data-cat="paletos">
+            <picture>
+              <source type="image/webp" srcset="assets/img/colecao-paleto-linho-480.webp 480w, assets/img/colecao-paleto-linho-800.webp 800w" sizes="(min-width:1024px) 280px, 50vw">
+              <img src="assets/img/colecao-paleto-linho-480.jpg" srcset="assets/img/colecao-paleto-linho-480.jpg 480w, assets/img/colecao-paleto-linho-800.jpg 800w" sizes="(min-width:1024px) 280px, 50vw" alt="Paletó tradicional de linho azul sob medida" width="480" height="600" loading="lazy">
+            </picture>
+            <figcaption>Paletó de linho azul</figcaption>
+          </figure>
+          <figure class="g-item" data-cat="paletos">
+            <picture>
+              <source type="image/webp" srcset="assets/img/colecao-blazer-transpassado-480.webp 480w, assets/img/colecao-blazer-transpassado-800.webp 800w" sizes="(min-width:1024px) 280px, 50vw">
+              <img src="assets/img/colecao-blazer-transpassado-480.jpg" srcset="assets/img/colecao-blazer-transpassado-480.jpg 480w, assets/img/colecao-blazer-transpassado-800.jpg 800w" sizes="(min-width:1024px) 280px, 50vw" alt="Blazer transpassado de um botão sob medida" width="480" height="600" loading="lazy">
+            </picture>
+            <figcaption>Blazer transpassado 1 botão</figcaption>
+          </figure>
+          <figure class="g-item" data-cat="paletos">
+            <picture>
+              <source type="image/webp" srcset="assets/img/colecao-forro-paleto-480.webp 480w, assets/img/colecao-forro-paleto-800.webp 800w" sizes="(min-width:1024px) 280px, 50vw">
+              <img src="assets/img/colecao-forro-paleto-480.jpg" srcset="assets/img/colecao-forro-paleto-480.jpg 480w, assets/img/colecao-forro-paleto-800.jpg 800w" sizes="(min-width:1024px) 280px, 50vw" alt="Forro interno de paletó de linho azul" width="480" height="600" loading="lazy">
+            </picture>
+            <figcaption>Forro de paletó — linho azul</figcaption>
+          </figure>
+          <figure class="g-item" data-cat="camisas">
+            <picture>
+              <source type="image/webp" srcset="assets/img/colecao-camisa-encorpada-480.webp 480w, assets/img/colecao-camisa-encorpada-800.webp 800w" sizes="(min-width:1024px) 280px, 50vw">
+              <img src="assets/img/colecao-camisa-encorpada-480.jpg" srcset="assets/img/colecao-camisa-encorpada-480.jpg 480w, assets/img/colecao-camisa-encorpada-800.jpg 800w" sizes="(min-width:1024px) 280px, 50vw" alt="Camisa encorpada sob medida" width="480" height="600" loading="lazy">
+            </picture>
+            <figcaption>Camisa encorpada</figcaption>
+          </figure>
+          <figure class="g-item" data-cat="camisas">
+            <picture>
+              <source type="image/webp" srcset="assets/img/colecao-punho-bordado-480.webp 480w, assets/img/colecao-punho-bordado-800.webp 800w" sizes="(min-width:1024px) 280px, 50vw">
+              <img src="assets/img/colecao-punho-bordado-480.jpg" srcset="assets/img/colecao-punho-bordado-480.jpg 480w, assets/img/colecao-punho-bordado-800.jpg 800w" sizes="(min-width:1024px) 280px, 50vw" alt="Punho duplo de camisa com bordado" width="480" height="600" loading="lazy">
+            </picture>
+            <figcaption>Punho duplo bordado</figcaption>
+          </figure>
+          <figure class="g-item" data-cat="calcas">
+            <picture>
+              <source type="image/webp" srcset="assets/img/colecao-calca-ghurka-480.webp 480w, assets/img/colecao-calca-ghurka-800.webp 800w" sizes="(min-width:1024px) 280px, 50vw">
+              <img src="assets/img/colecao-calca-ghurka-480.jpg" srcset="assets/img/colecao-calca-ghurka-480.jpg 480w, assets/img/colecao-calca-ghurka-800.jpg 800w" sizes="(min-width:1024px) 280px, 50vw" alt="Calça Ghurka sob medida com fivela lateral" width="480" height="600" loading="lazy">
+            </picture>
+            <figcaption>Calça Ghurka</figcaption>
+          </figure>
+          <figure class="g-item" data-cat="calcas">
+            <picture>
+              <source type="image/webp" srcset="assets/img/colecao-calca-tradicional-480.webp 480w, assets/img/colecao-calca-tradicional-800.webp 800w" sizes="(min-width:1024px) 280px, 50vw">
+              <img src="assets/img/colecao-calca-tradicional-480.jpg" srcset="assets/img/colecao-calca-tradicional-480.jpg 480w, assets/img/colecao-calca-tradicional-800.jpg 800w" sizes="(min-width:1024px) 280px, 50vw" alt="Calça tradicional sob medida" width="480" height="600" loading="lazy">
+            </picture>
+            <figcaption>Calça tradicional</figcaption>
+          </figure>
+          <figure class="g-item" data-cat="calcas">
+            <picture>
+              <source type="image/webp" srcset="assets/img/colecao-colete-sarja-480.webp 480w, assets/img/colecao-colete-sarja-800.webp 800w" sizes="(min-width:1024px) 280px, 50vw">
+              <img src="assets/img/colecao-colete-sarja-480.jpg" srcset="assets/img/colecao-colete-sarja-480.jpg 480w, assets/img/colecao-colete-sarja-800.jpg 800w" sizes="(min-width:1024px) 280px, 50vw" alt="Colete de sarja sob medida" width="480" height="600" loading="lazy">
+            </picture>
+            <figcaption>Colete de sarja</figcaption>
+          </figure>
+          <figure class="g-item" data-cat="especiais">
+            <picture>
+              <source type="image/webp" srcset="assets/img/colecao-fraque-480.webp 480w, assets/img/colecao-fraque-800.webp 800w" sizes="(min-width:1024px) 280px, 50vw">
+              <img src="assets/img/colecao-fraque-480.jpg" srcset="assets/img/colecao-fraque-480.jpg 480w, assets/img/colecao-fraque-800.jpg 800w" sizes="(min-width:1024px) 280px, 50vw" alt="Fraque completo sob medida" width="480" height="600" loading="lazy">
+            </picture>
+            <figcaption>Fraque completo</figcaption>
+          </figure>
+          <figure class="g-item" data-cat="especiais">
+            <picture>
+              <source type="image/webp" srcset="assets/img/colecao-kaban-480.webp 480w, assets/img/colecao-kaban-800.webp 800w" sizes="(min-width:1024px) 280px, 50vw">
+              <img src="assets/img/colecao-kaban-480.jpg" srcset="assets/img/colecao-kaban-480.jpg 480w, assets/img/colecao-kaban-800.jpg 800w" sizes="(min-width:1024px) 280px, 50vw" alt="Kaban sob medida" width="480" height="600" loading="lazy">
+            </picture>
+            <figcaption>Kaban</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= COMO COMEÇAR (fluxo de contato — usa somente copy existente do PRD;
+         NÃO é o processo do atelier, que segue oculto abaixo aguardando validação) ================= -->
+    <section class="section" id="comecar">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="overline">Atendimento</span>
+          <h2 class="section-title">Comece pelo <span class="accent">WhatsApp</span></h2>
+        </div>
+        <div class="steps reveal-group">
+          <div class="step">
+            <span class="step-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>
+            </span>
+            <h3>Chame no WhatsApp</h3>
+            <p>É só chamar no WhatsApp para começar a sua peça sob medida.</p>
+          </div>
+          <div class="step">
+            <span class="step-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </span>
+            <h3>Fale com o time</h3>
+            <p>Atendimento com Gaspar, Angélica e Giovana.</p>
+          </div>
+          <div class="step">
+            <span class="step-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            </span>
+            <h3>Deixe o resto com a gente</h3>
+            <p>O time Gaspar Lopes cuida do resto.</p>
+          </div>
+        </div>
+        <div class="section-cta reveal">
+          <a class="btn btn--wa" href="https://wa.me/55PREENCHERNUMERO?text=Ol%C3%A1!%20Vim%20pela%20landing%20page%20e%20quero%20fazer%20uma%20pe%C3%A7a%20sob%20medida." target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            Agendar meu atendimento
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= COMO FUNCIONA (PRD 4.5) — SEÇÃO OCULTA =================
+         ⚠️ Processo do ATELIER — NÃO ATIVAR sem validar as etapas reais com o
+         Gaspar (PRD §4.5). Se não confirmar, manter suprimida.
+
+    <section class="section" id="como-funciona">
+      <div class="container">
+        <div class="section-head">
+          <span class="overline">Processo</span>
+          <h2 class="section-title">Do primeiro contato à peça <span class="accent">pronta</span></h2>
+        </div>
+        <ol>
+          <li>[PREENCHER: etapa 1 real — ex.: atendimento e agendamento]</li>
+          <li>[PREENCHER: etapa 2 real — ex.: tomada de medidas]</li>
+          <li>[PREENCHER: etapa 3 real — ex.: escolha de tecidos e detalhes]</li>
+          <li>[PREENCHER: etapa 4 real — ex.: prova]</li>
+          <li>[PREENCHER: etapa 5 real — ex.: entrega]</li>
+        </ol>
+        <p>[PREENCHER: prazo médio de entrega real] — cada etapa é acompanhada de perto pelo time.</p>
+      </div>
+    </section>
+    ================= FIM COMO FUNCIONA ================= -->
+
+    <!-- ================= INVESTIMENTO (PRD 4.6 — versão sem preços, decisão do Marcos) ================= -->
+    <section class="section" id="investimento">
+      <div class="container">
+        <div class="invest reveal">
+          <span class="overline">Investimento</span>
+          <h2 class="section-title">Um investimento que veste por <span class="accent">muito tempo</span></h2>
+          <p class="invest-lead">Cada peça tem um orçamento próprio, feito a partir das suas escolhas. Fale com a gente e monte o seu.</p>
+          <!-- Versão COM preços (PRD 4.6) — reativar se o Marcos decidir mostrar valores:
+          <p>Peças sob medida duram, caem melhor e acompanham você. Veja por onde começa:</p>
+          <ul>
+            <li><strong>Camisas</strong> — a partir de <strong>R$ 589</strong></li>
+            <li><strong>Costumes</strong> — a partir de <strong>R$ 4.500</strong></li>
+            <li><strong>Ternos</strong> — a partir de <strong>R$ 5.500</strong></li>
+          </ul>
+          <p class="microcopy">Valores iniciais. O orçamento final depende do tecido, do modelo e dos detalhes escolhidos.</p>
+          -->
+          <a class="btn" href="https://wa.me/55PREENCHERNUMERO?text=Ol%C3%A1!%20Vim%20pela%20landing%20page%20e%20quero%20fazer%20uma%20pe%C3%A7a%20sob%20medida." target="_blank" rel="noopener">Fazer meu orçamento no WhatsApp
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= AUTORIDADE (PRD 4.7) ================= -->
+    <section class="section" id="autoridade">
+      <div class="container author">
+        <div class="author-photo reveal">
+          <picture>
+            <source type="image/webp" srcset="assets/img/autoridade-480.webp 480w, assets/img/autoridade-800.webp 800w, assets/img/autoridade-1200.webp 1200w" sizes="(min-width:1024px) 460px, 100vw">
+            <img src="assets/img/autoridade-800.jpg" srcset="assets/img/autoridade-480.jpg 480w, assets/img/autoridade-800.jpg 800w, assets/img/autoridade-1200.jpg 1200w" sizes="(min-width:1024px) 460px, 100vw" alt="Gaspar Lopes em seu ateliê" width="800" height="1000" loading="lazy">
+          </picture>
+        </div>
+        <div class="author-body reveal">
+          <span class="overline">Quem faz</span>
+          <h2 class="section-title">Feito por quem vive a <span class="accent">alfaiataria</span></h2>
+          <!-- ⚠️ [PREENCHER: história/trajetória real do Gaspar Lopes — fonte: revista
+               citada no briefing]. NÃO INVENTAR HISTÓRIA (PRD §4.7). Ativar o parágrafo
+               abaixo somente com o texto real extraído da revista:
+          <p>[PREENCHER: história/trajetória real do Gaspar Lopes]</p>
+          -->
+          <blockquote class="author-quote">Um trabalho artesanal, feito à mão, para quem entende que roupa boa é aquela feita sob medida.</blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DEPOIMENTOS (PRD 4.8) — SEÇÃO OCULTA =================
+         ⚠️ NÃO INVENTAR DEPOIMENTOS. Ativar somente com depoimentos reais (mín. 3).
+
+    <section class="section" id="depoimentos">
+      <div class="container">
+        <div class="section-head">
+          <span class="overline">Depoimentos</span>
+          <h2 class="section-title">Quem já veste <span class="accent">Gaspar Lopes</span></h2>
+        </div>
+        <div class="pillars">
+          <div class="pillar"><p>[PREENCHER: depoimento real 1 + nome/inicial do cliente]</p></div>
+          <div class="pillar"><p>[PREENCHER: depoimento real 2 + nome/inicial do cliente]</p></div>
+          <div class="pillar"><p>[PREENCHER: depoimento real 3 + nome/inicial do cliente]</p></div>
+        </div>
+      </div>
+    </section>
+    ================= FIM DEPOIMENTOS ================= -->
+
+    <!-- ================= FAQ (PRD 4.9) ================= -->
+    <section class="section section--raised" id="faq">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="overline">Dúvidas</span>
+          <h2 class="section-title">Perguntas <span class="accent">frequentes</span></h2>
+        </div>
+        <div class="faq reveal">
+          <!-- ⚠️ Pergunta oculta até validar o prazo real (PRD §4.9):
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Quanto tempo leva para ficar pronto?
+              <svg class="chev" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>[PREENCHER: prazo real] — do atendimento à entrega, com acompanhamento em cada etapa.</p></div>
+          </div>
+          -->
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Por que sob medida vale mais a pena?
+              <svg class="chev" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>Porque a peça é feita no seu corpo e no seu estilo: cai melhor, dura mais e não tem igual. É trabalho artesanal, não produção em série.</p></div>
+          </div>
+          <!-- ⚠️ Pergunta oculta até confirmar atendimento presencial (PRD §4.9):
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Preciso ir até vocês?
+              <svg class="chev" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>[PREENCHER: confirmar se atende presencial no Setor Sul / se vai até o cliente / etc.]</p></div>
+          </div>
+          -->
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Como faço para começar?
+              <svg class="chev" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>É só chamar no WhatsApp. O time Gaspar Lopes cuida do resto.</p></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Quais peças posso encomendar?
+              <svg class="chev" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+            <div class="faq-a"><p>Camisas, paletós, calças, coletes, ternos e costumes completos — tudo sob medida.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CTA FINAL (PRD 4.10) ================= -->
+    <section class="final-cta">
+      <div class="final-cta-media" aria-hidden="true">
+        <picture>
+          <source type="image/webp" srcset="assets/img/cta-fundo-800.webp 800w, assets/img/cta-fundo-1600.webp 1600w" sizes="100vw">
+          <img src="assets/img/cta-fundo-1600.jpg" srcset="assets/img/cta-fundo-800.jpg 800w, assets/img/cta-fundo-1600.jpg 1600w" sizes="100vw" alt="" width="1600" height="900" loading="lazy">
+        </picture>
+      </div>
+      <div class="container final-cta-content reveal">
+        <span class="overline">Comece agora</span>
+        <h2 class="section-title">Sua próxima roupa pode ser feita <span class="accent">só para você.</span></h2>
+        <p>Camisas, ternos e costumes sob medida, com o caimento e o acabamento que só a alfaiataria artesanal entrega. Comece agora, pelo WhatsApp.</p>
+        <a class="btn btn--wa" href="https://wa.me/55PREENCHERNUMERO?text=Ol%C3%A1!%20Vim%20pela%20landing%20page%20e%20quero%20fazer%20uma%20pe%C3%A7a%20sob%20medida." target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+          Agendar meu atendimento
+        </a>
+        <span class="microcopy">Atendimento com Gaspar, Angélica e Giovana.</span>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER (PRD 4.11) ================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <img class="logo-img" src="assets/logo/gaspar-lopes-logo.png" alt="Gaspar Lopes Alfaiataria" width="360" height="360" loading="lazy">
+          <p>Goiânia — GO<!-- [PREENCHER: endereço/Setor Sul se for divulgar] --></p>
+        </div>
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <a href="#pecas">Peças</a>
+          <a href="#colecao">Coleção</a>
+          <a href="#sob-medida">Sob medida</a>
+          <a href="#investimento">Investimento</a>
+          <a href="#faq">Perguntas frequentes</a>
+        </div>
+        <div class="footer-col">
+          <h4>Atendimento</h4>
+          <p>Atendimento pelo WhatsApp com o time Gaspar Lopes.</p>
+          <!-- [PREENCHER: número real do WhatsApp → exibir aqui como contato]
+          <p><a href="https://wa.me/55PREENCHERNUMERO">WhatsApp: (62) 9XXXX-XXXX</a></p>
+          -->
+          <!-- [PREENCHER: @ real do Instagram]
+          <p><a href="https://instagram.com/PREENCHER" target="_blank" rel="noopener">@PREENCHER</a></p>
+          -->
+          <a class="btn btn--outline" href="https://wa.me/55PREENCHERNUMERO?text=Ol%C3%A1!%20Vim%20pela%20landing%20page%20e%20quero%20fazer%20uma%20pe%C3%A7a%20sob%20medida." target="_blank" rel="noopener">Falar no WhatsApp</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; Gaspar Lopes. Todos os direitos reservados.</p>
+        <p class="sig">Desenvolvido por M|P Assessoria</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= BOTÃO FLUTUANTE WHATSAPP (PRD 5.5) ================= -->
+  <a class="wa-float" href="https://wa.me/55PREENCHERNUMERO?text=Ol%C3%A1!%20Vim%20pela%20landing%20page%20e%20quero%20fazer%20uma%20pe%C3%A7a%20sob%20medida." target="_blank" rel="noopener" aria-label="Falar no WhatsApp com o time Gaspar Lopes">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+  </a>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>

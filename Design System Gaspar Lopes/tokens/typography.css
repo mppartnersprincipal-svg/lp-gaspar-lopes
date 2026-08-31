@@ -1,0 +1,27 @@
+:root {
+  --font-display: 'Jost', 'Futura', sans-serif;
+  --font-body: 'Jost', sans-serif;
+  --font-accent: 'Cormorant Garamond', Georgia, serif;
+
+  --fs-display: 64px;
+  --fs-h1: 44px;
+  --fs-h2: 32px;
+  --fs-h3: 22px;
+  --fs-body: 17px;
+  --fs-small: 14px;
+  --fs-overline: 12px;
+
+  --lh-tight: 1.1;
+  --lh-body: 1.65;
+
+  --ls-caps: 0.18em;
+  --ls-wide: 0.34em;
+  --ls-heading: 0.06em;
+
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+}
+body { font-family: var(--font-body); color: var(--text-body); background: var(--surface-page); }
+a { color: var(--link); }
+a:hover { color: var(--link-hover); }
