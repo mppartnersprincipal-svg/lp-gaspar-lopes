@@ -41,7 +41,7 @@ Head completo (canonical, robots, OG absoluto, Twitter, preload LCP, theme-color
 ## Pendências (donas do usuário/Marcos)
 | # | O quê | Onde |
 |---|---|---|
-| 1 | Número WhatsApp → substituir `55PREENCHERNUMERO` | todos os CTAs do index.html |
+| ~~1~~ | ~~Número WhatsApp~~ **FEITO 01/09/2026**: (62) 99998-1896 aplicado em todos os CTAs (`wa.me/5562999981896`), footer, JSON-LD (`telephone`) e llms.txt | — |
 | 2 | ID do GTM → substituir `GTM-PREENCHER` (2 lugares) | index.html head + noscript |
 | 3 | Domínio real → substituir `https://PREENCHER-DOMINIO.com.br` | index.html, robots, sitemap, llms, gtm/gen-container.mjs (SITE_HOST) |
 | 4 | Env na Vercel: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `DASHBOARD_PASSWORD`, `DASHBOARD_SECRET` | ver DASHBOARD.md / .env.example |
