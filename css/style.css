@@ -559,6 +559,13 @@
   margin: 0 0 var(--sp-5);
 }
 .footer-col p { margin: 0 0 var(--sp-3); font-size: var(--fs-small); color: var(--text-muted); }
+.footer-address { font-style: normal; font-size: var(--fs-small); line-height: 1.7; color: var(--text-muted); }
+.footer-social {
+  display: inline-flex !important; align-items: center; gap: var(--sp-2);
+  margin: var(--sp-2) 0 var(--sp-3) !important;
+  font-size: var(--fs-small); color: var(--fg-2); text-decoration: none;
+}
+.footer-social svg { width: 18px; height: 18px; }
 .footer-col a:not(.btn) {
   display: block;
   margin-bottom: var(--sp-3);
