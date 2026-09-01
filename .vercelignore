@@ -14,3 +14,6 @@ package-lock.json
 .gstack/
 .gitignore
 README.md
+CLAUDE.md
+DASHBOARD.md
+.env.example
