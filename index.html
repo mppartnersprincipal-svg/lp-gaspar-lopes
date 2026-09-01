@@ -15,7 +15,10 @@
           suposição.
        3. Nomes das peças na "Coleção" vêm dos nomes dos arquivos enviados
           pelo cliente (pasta Fotos - Produtos). Validar nomenclatura.
-       4. SEO: buscar e substituir "https://PREENCHER-DOMINIO.com.br" pelo
+       4. TRACKING: substituir "GTM-PREENCHER" pelo ID real do container (2 lugares:
+          <head> e <noscript> após <body>). GA4 e Google Ads são configurados no
+          GTM importando gtm/gtm-container-gaspar-lopes.json (guia: gtm/TRACKING.md).
+       5. SEO: buscar e substituir "https://PREENCHER-DOMINIO.com.br" pelo
           domínio real (canonical, Open Graph, JSON-LD, robots.txt, sitemap.xml,
           llms.txt). Preencher telefone e Instagram no JSON-LD quando existirem.
        ============================================================ -->
@@ -57,9 +60,31 @@
   <!-- LCP: pré-carrega a imagem do hero -->
   <link rel="preload" as="image" type="image/webp" imagesrcset="assets/img/hero-480.webp 480w, assets/img/hero-800.webp 800w, assets/img/hero-1200.webp 1200w, assets/img/hero-1600.webp 1600w" imagesizes="100vw" fetchpriority="high">
 
-  <!-- [PREENCHER: Pixel/GA4/Google Tag — Marcos confirma qual tracking usar]
-  <script> ... </script>
-  -->
+  <!-- ===== Tracking: Google Tag Manager + Consent Mode v2 =====
+       [PREENCHER: GTM-PREENCHER → ID real do container, aqui e no <noscript> após <body>.]
+       Enquanto o ID contiver "PREENCHER", o gtm.js não é carregado (evita 404 em dev).
+       GA4, Google Ads e eventuais pixels ficam DENTRO do container (gtm/TRACKING.md). -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    /* LGPD: padrão negado até o visitante decidir no banner; tags Google rodam sem cookies. */
+    gtag('consent', 'default', {
+      ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+      analytics_storage: 'denied', functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+    try {
+      if (localStorage.getItem('gl-consent') === 'accepted') {
+        gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' });
+      }
+    } catch (e) {}
+    window.GTM_ID = 'GTM-PREENCHER';
+    if (!/PREENCHER/.test(window.GTM_ID)) {
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;
+      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer',window.GTM_ID);
+    }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -424,6 +449,8 @@
   </script>
 </head>
 <body>
+  <!-- GTM (sem JavaScript). [PREENCHER: GTM-PREENCHER → ID real] -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PREENCHER" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
 
   <!-- ================= HEADER (PRD 4.1) ================= -->
   <header class="header">
@@ -1198,6 +1225,15 @@
       </div>
     </div>
   </footer>
+
+  <!-- ================= BANNER DE COOKIES (LGPD / Consent Mode v2) ================= -->
+  <div class="cookie-bar" id="cookie-bar" role="dialog" aria-live="polite" aria-label="Aviso de cookies" hidden>
+    <p>Usamos cookies para medir o desempenho desta página e das nossas campanhas. Você pode aceitar ou seguir só com o essencial.</p>
+    <div class="cookie-actions">
+      <button class="btn" type="button" data-consent="accepted">Aceitar</button>
+      <button class="cookie-essential" type="button" data-consent="essential">Só o essencial</button>
+    </div>
+  </div>
 
   <!-- ================= BOTÃO FLUTUANTE WHATSAPP (PRD 5.5) ================= -->
   <a class="wa-float" href="https://wa.me/55PREENCHERNUMERO?text=Ol%C3%A1!%20Vim%20pela%20landing%20page%20e%20quero%20fazer%20uma%20pe%C3%A7a%20sob%20medida." target="_blank" rel="noopener" aria-label="Falar no WhatsApp com o time Gaspar Lopes">

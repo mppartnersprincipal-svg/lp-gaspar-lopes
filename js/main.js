@@ -316,3 +316,111 @@
     setActive(0);
   });
 })();
+
+/* =============================== Tracking ===============================
+ * Tudo vai para o dataLayer; GA4 e Google Ads são configurados no GTM
+ * (importar gtm/gtm-container-gaspar-lopes.json, guia em gtm/TRACKING.md).
+ *
+ * Catálogo de eventos:
+ * - whatsapp_click   { source, label, page }   CONVERSÃO PRINCIPAL (qualquer link wa.me)
+ * - social_click     { network, source, page } Instagram
+ * - collection_filter{ filter }                filtros da Coleção
+ * - faq_open         { question }              pergunta aberta no FAQ
+ * - section_view     { section }               seção 40% visível, 1x por seção
+ * - cookie_consent   { consent_choice }        accepted | essential
+ * ======================================================================= */
+(function () {
+  'use strict';
+  var CONSENT_KEY = 'gl-consent';
+
+  function push(payload) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(payload);
+  }
+  function consentUpdate(granted) {
+    var s = granted ? 'granted' : 'denied';
+    if (typeof window.gtag === 'function') {
+      window.gtag('consent', 'update', { ad_storage: s, ad_user_data: s, ad_personalization: s, analytics_storage: s });
+    }
+  }
+  function sourceOf(el) {
+    if (el.closest('.wa-float')) return 'flutuante';
+    if (el.closest('.header')) return 'header';
+    if (el.closest('.footer')) return 'footer';
+    var sec = el.closest('section');
+    if (!sec) return 'outro';
+    if (sec.id) return sec.id;
+    if (sec.classList.contains('hero')) return 'hero';
+    if (sec.classList.contains('final-cta')) return 'cta-final';
+    return 'outro';
+  }
+  function labelOf(el) {
+    var piece = el.closest('.piece');
+    var h3 = piece && piece.querySelector('h3');
+    var txt = (h3 ? h3.textContent : el.textContent) || el.getAttribute('aria-label') || '';
+    return txt.replace(/\s+/g, ' ').trim().slice(0, 80);
+  }
+  var page = window.location.pathname;
+
+  // Cliques: WhatsApp (conversão) e Instagram
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    if (/wa\.me|api\.whatsapp\.com/.test(href)) {
+      push({ event: 'whatsapp_click', source: sourceOf(a), label: labelOf(a), page: page });
+    } else if (/instagram\.com/.test(href)) {
+      push({ event: 'social_click', network: 'instagram', source: sourceOf(a), page: page });
+    }
+  }, true);
+
+  // Filtros da Coleção
+  document.querySelectorAll('.filter').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      push({ event: 'collection_filter', filter: btn.getAttribute('data-filter') || '' });
+    });
+  });
+
+  // FAQ: só quando abre
+  document.querySelectorAll('.faq-q').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (btn.getAttribute('aria-expanded') === 'true') {
+        push({ event: 'faq_open', question: (btn.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 120) });
+      }
+    });
+  });
+
+  // Seções vistas (funil de leitura)
+  if ('IntersectionObserver' in window) {
+    var seen = {};
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        var el = en.target;
+        var name = el.id || (el.classList.contains('hero') ? 'hero' : el.classList.contains('final-cta') ? 'cta-final' : '');
+        if (!name || seen[name]) return;
+        seen[name] = true;
+        push({ event: 'section_view', section: name });
+        io.unobserve(el);
+      });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('main section').forEach(function (s) { io.observe(s); });
+  }
+
+  // Banner de cookies
+  var bar = document.getElementById('cookie-bar');
+  if (bar) {
+    var saved = null;
+    try { saved = localStorage.getItem(CONSENT_KEY); } catch (e) {}
+    if (!saved) bar.hidden = false;
+    bar.querySelectorAll('[data-consent]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var choice = b.getAttribute('data-consent');
+        try { localStorage.setItem(CONSENT_KEY, choice); } catch (e) {}
+        consentUpdate(choice === 'accepted');
+        push({ event: 'cookie_consent', consent_choice: choice });
+        bar.hidden = true;
+      });
+    });
+  }
+})();
