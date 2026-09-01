@@ -336,6 +336,11 @@
   function push(payload) {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push(payload);
+    // Espelha no coletor first-party do /dashboard (js/tracker.js), se carregado
+    if (typeof window.glCollect === 'function') {
+      var props = {}; for (var k in payload) if (k !== 'event') props[k] = payload[k];
+      window.glCollect(payload.event, props);
+    }
   }
   function consentUpdate(granted) {
     var s = granted ? 'granted' : 'denied';

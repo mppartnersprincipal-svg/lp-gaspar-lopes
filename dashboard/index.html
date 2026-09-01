@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Dashboard · Gaspar Lopes</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,500;1,400&display=swap">
+  <style>
+    :root{
+      --bg-0:#0C0F14;--bg-1:#11151C;--card:#121826;--raised:#16203A;
+      --navy-300:#33436E;--navy-500:#16305F;--navy-700:#0A2453;
+      --fg-0:#FFFFFF;--fg-1:#F2F4F8;--fg-2:rgba(242,244,248,.72);--fg-3:rgba(242,244,248,.45);
+      --line:rgba(255,255,255,.10);--line-2:rgba(255,255,255,.24);
+      --ok:#7FB77E;--warn:#C0452F;
+      --font:'Jost',sans-serif;--serif:'Cormorant Garamond',Georgia,serif;
+      --ease:cubic-bezier(.4,0,.2,1);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg-0);color:var(--fg-2);font:300 15px/1.6 var(--font);-webkit-font-smoothing:antialiased}
+    a{color:var(--fg-1)}
+    button{font-family:inherit}
+    .wrap{max-width:1280px;margin:0 auto;padding:0 20px}
+    h1,h2,h3{font-family:var(--serif);color:var(--fg-0);font-weight:500;margin:0;letter-spacing:.005em}
+    h2{font-size:28px}
+    h3{font-size:22px}
+    .muted{color:var(--fg-3)}
+    .hidden{display:none!important}
+
+    /* Glass */
+    .glass{background:rgba(17,21,28,.72);-webkit-backdrop-filter:blur(16px) saturate(1.4);backdrop-filter:blur(16px) saturate(1.4);border:1px solid var(--line-2);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 20px 50px rgba(0,0,0,.45)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:8px 22px;border-radius:999px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.10);color:var(--fg-0);font:500 12px var(--font);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;cursor:pointer;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:background .3s var(--ease),transform .3s var(--ease)}
+    .btn:hover{background:rgba(255,255,255,.18);transform:translateY(-1px)}
+    .btn--solid{background:#F2F4F8;color:#0C0F14;border-color:#F2F4F8}
+    .btn--solid:hover{background:#fff}
+    .btn--sm{min-height:36px;padding:6px 16px;font-size:11px}
+
+    /* Login */
+    #login{min-height:100svh;display:grid;place-items:center;padding:20px}
+    .login-card{width:100%;max-width:420px;padding:40px 32px;border-radius:20px;text-align:center}
+    .login-card img{height:80px;margin-bottom:16px}
+    .login-card p{margin:8px 0 24px;font-size:14px}
+    .field{width:100%;min-height:48px;padding:12px 16px;border-radius:12px;border:1px solid var(--line-2);background:rgba(255,255,255,.05);color:var(--fg-0);font:400 15px var(--font);outline:none}
+    .field:focus{border-color:rgba(255,255,255,.5)}
+    .error{color:#F0A29A;font-size:13px;min-height:20px;margin:10px 0 0}
+
+    /* App shell */
+    .top{position:sticky;top:0;z-index:20;background:rgba(12,15,20,.92);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+    .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:72px}
+    .brand{display:flex;align-items:center;gap:14px}
+    .brand img{height:48px}
+    .brand span{font-family:var(--serif);font-size:22px;color:var(--fg-0)}
+    .top-actions{display:flex;gap:10px;align-items:center}
+    .secnav{display:flex;gap:6px;overflow-x:auto;padding:10px 0;border-bottom:1px solid var(--line);scrollbar-width:none}
+    .secnav a{white-space:nowrap;font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--fg-3);padding:6px 12px;border-radius:999px;border:1px solid transparent}
+    .secnav a:hover{color:var(--fg-0);border-color:var(--line)}
+
+    /* Filtros */
+    .filters{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:20px 0}
+    .chip{min-height:36px;padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--fg-2);font:400 11px var(--font);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:all .25s var(--ease)}
+    .chip:hover{border-color:var(--line-2);color:var(--fg-0)}
+    .chip.is-active{background:#F2F4F8;border-color:#F2F4F8;color:#0C0F14}
+    .filters input[type=date],.filters select{min-height:36px;padding:6px 12px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--fg-1);font:400 13px var(--font);color-scheme:dark}
+    .filters .spacer{flex:1}
+    .updated{font-size:12px;color:var(--fg-3)}
+
+    /* Grid & cards */
+    .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin:8px 0 28px}
+    .kpi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 18px 16px;transition:border-color .3s}
+    .kpi:hover{border-color:var(--line-2)}
+    .kpi .lbl{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--fg-3)}
+    .kpi .val{font-family:var(--serif);font-size:38px;line-height:1.1;color:var(--fg-0);margin:8px 0 4px}
+    .kpi .delta{font-size:12px}
+    .delta.up{color:var(--ok)}.delta.down{color:#F0A29A}
+    .grid{display:grid;gap:16px;margin-bottom:28px}
+    @media(min-width:900px){.g-2{grid-template-columns:2fr 1fr}.g-3{grid-template-columns:repeat(3,1fr)}.g-11{grid-template-columns:1fr 1fr}}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+    .card header{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px}
+    .card header p{margin:2px 0 0;font-size:13px;color:var(--fg-3)}
+    .chart{position:relative;height:260px}
+    .chart--tall{height:320px}
+    section.block{padding-top:16px;scroll-margin-top:130px}
+    section.block>h2{margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+
+    /* Barras inline / tabelas */
+    .bars{display:flex;flex-direction:column;gap:10px}
+    .bar{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center;font-size:14px}
+    .bar .name{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--fg-1)}
+    .bar .track{grid-column:1/-1;height:6px;border-radius:999px;background:rgba(255,255,255,.06);overflow:hidden}
+    .bar .fill{height:100%;background:linear-gradient(90deg,var(--navy-500),#F2F4F8);border-radius:999px;transition:width .8s var(--ease)}
+    .bar .num{color:var(--fg-2);font-variant-numeric:tabular-nums}
+    table{width:100%;border-collapse:collapse;font-size:14px}
+    th{font:500 11px var(--font);letter-spacing:.14em;text-transform:uppercase;color:var(--fg-3);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line)}
+    td{padding:10px;border-bottom:1px solid var(--line);color:var(--fg-1);vertical-align:top}
+    td.n{text-align:right;font-variant-numeric:tabular-nums;color:var(--fg-2)}
+    .tbl-wrap{overflow-x:auto}
+    .empty{padding:28px;text-align:center;color:var(--fg-3);font-style:italic;font-family:var(--serif);font-size:18px}
+
+    /* Funil */
+    .funnel{display:flex;flex-direction:column;gap:8px}
+    .funnel .step{display:grid;grid-template-columns:170px 1fr 56px;gap:12px;align-items:center;font-size:14px}
+    .funnel .step .track{height:22px;border-radius:6px;background:rgba(255,255,255,.05);overflow:hidden}
+    .funnel .step .fill{height:100%;background:linear-gradient(90deg,var(--navy-700),var(--navy-300));display:flex;align-items:center;padding-left:8px;font-size:12px;color:var(--fg-1);transition:width .8s var(--ease)}
+    @media(max-width:600px){.funnel .step{grid-template-columns:110px 1fr 48px}}
+
+    /* Heatmap */
+    .heat{display:grid;grid-template-columns:44px repeat(24,1fr);gap:3px;font-size:10px;color:var(--fg-3)}
+    .heat .c{aspect-ratio:1;border-radius:3px;background:rgba(255,255,255,.04)}
+    .heat .h{text-align:center}
+    .heat .d{display:flex;align-items:center}
+
+    /* Jornadas */
+    .journey{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px;background:rgba(255,255,255,.02)}
+    .journey .meta{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px;color:var(--fg-3);margin-bottom:10px}
+    .journey .meta b{color:var(--fg-1);font-weight:400}
+    .trail{display:flex;flex-wrap:wrap;gap:6px}
+    .trail span{font-size:12px;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--fg-2)}
+    .trail span.wa{background:#F2F4F8;color:#0C0F14;border-color:#F2F4F8}
+    .trail span.section{border-color:var(--navy-300);color:var(--fg-1)}
+    .trail span.leave{opacity:.6}
+    .tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line-2);color:var(--fg-1)}
+    .tag.ads{background:var(--navy-700);border-color:var(--navy-300)}
+
+    /* Live */
+    .live{display:flex;flex-direction:column;gap:6px;max-height:420px;overflow:auto}
+    .live .ev{display:grid;grid-template-columns:70px 1fr auto;gap:12px;font-size:13px;padding:8px 10px;border-radius:8px;background:rgba(255,255,255,.03)}
+    .live .ev time{color:var(--fg-3);font-variant-numeric:tabular-nums}
+    .pulse{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ok);margin-right:8px;animation:pulse 1.6s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+    footer.foot{padding:40px 0;text-align:center;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--fg-3)}
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN -->
+  <div id="login">
+    <form class="login-card glass" id="login-form" autocomplete="off">
+      <img src="../assets/logo/gaspar-lopes-logo.png" alt="Gaspar Lopes Alfaiataria">
+      <h2>Dashboard</h2>
+      <p class="muted">Comportamento dos visitantes da landing page</p>
+      <input class="field" type="password" id="pwd" placeholder="Senha de acesso" required autofocus>
+      <p class="error" id="login-error"></p>
+      <button class="btn btn--solid" type="submit" style="width:100%">Entrar</button>
+    </form>
+  </div>
+
+  <!-- APP -->
+  <div id="app" class="hidden">
+    <div class="top">
+      <div class="wrap">
+        <div class="brand"><img src="../assets/logo/gaspar-lopes-logo.png" alt=""><span>Dashboard</span></div>
+        <div class="top-actions">
+          <a class="btn btn--sm" href="../" target="_blank" rel="noopener">Ver site</a>
+          <button class="btn btn--sm" type="button" id="logout">Sair</button>
+        </div>
+      </div>
+      <div class="wrap">
+        <nav class="secnav">
+          <a href="#visao">Visão geral</a><a href="#whatsapp">WhatsApp</a><a href="#leitura">Leitura</a><a href="#interesse">Interesse</a><a href="#campanhas">Campanhas</a><a href="#jornadas">Jornadas</a><a href="#quando">Quando</a><a href="#onde">Onde</a><a href="#cliques">Cliques</a><a href="#publico">Público</a><a href="#aovivo">Ao vivo</a>
+        </nav>
+      </div>
+    </div>
+
+    <main class="wrap">
+      <div class="filters" id="filters">
+        <button class="chip" data-periodo="hoje">Hoje</button>
+        <button class="chip" data-periodo="7d">7 dias</button>
+        <button class="chip is-active" data-periodo="30d">30 dias</button>
+        <button class="chip" data-periodo="90d">90 dias</button>
+        <input type="date" id="de" aria-label="De"> <input type="date" id="ate" aria-label="Até">
+        <select id="origem" aria-label="Origem">
+          <option value="todas">Todas as origens</option>
+          <option value="google_ads">Google Ads</option>
+          <option value="google_organic">Google (orgânico)</option>
+          <option value="instagram">Instagram</option>
+          <option value="meta_ads">Meta Ads</option>
+          <option value="facebook">Facebook</option>
+          <option value="direct">Direto</option>
+          <option value="referral">Indicação</option>
+          <option value="other">Outro</option>
+        </select>
+        <span class="spacer"></span>
+        <span class="updated" id="updated"></span>
+      </div>
+
+      <section class="block" id="visao">
+        <div class="kpis" id="kpis"></div>
+        <div class="grid g-2">
+          <div class="card"><header><div><h3>Visitas por dia</h3><p>Sessões e cliques no WhatsApp</p></div></header><div class="chart chart--tall"><canvas id="c-daily"></canvas></div></div>
+          <div class="card"><header><div><h3>Origem</h3><p>Todas as visitas do período (ignora o filtro de origem)</p></div></header><div class="chart chart--tall"><canvas id="c-channels"></canvas></div></div>
+        </div>
+        <div class="grid g-3">
+          <div class="card"><header><h3>Dispositivo</h3></header><div class="chart"><canvas id="c-devices"></canvas></div></div>
+          <div class="card"><header><h3>Novo × recorrente</h3></header><div class="chart"><canvas id="c-audience"></canvas></div></div>
+          <div class="card"><header><div><h3>Consentimento</h3><p>Aceitou = o que GA4/Ads enxergam com cookies</p></div></header><div class="chart"><canvas id="c-consent"></canvas></div></div>
+        </div>
+      </section>
+
+      <section class="block" id="whatsapp">
+        <h2>WhatsApp: qual botão converte</h2>
+        <div class="grid g-11">
+          <div class="card"><header><div><h3>Por onde clicaram</h3><p>Seção da página onde o clique aconteceu</p></div></header><div class="bars" id="wa-source"></div></div>
+          <div class="card"><header><div><h3>O que pediram</h3><p>Texto do botão ou categoria da peça</p></div></header><div class="bars" id="wa-label"></div></div>
+        </div>
+        <div class="card"><header><h3>Botão × origem do visitante</h3></header><div class="tbl-wrap" id="wa-pivot"></div></div>
+      </section>
+
+      <section class="block" id="leitura">
+        <h2>Funil de leitura</h2>
+        <div class="card"><header><div><h3>Até onde as pessoas chegam</h3><p>% das sessões que viram cada seção</p></div></header><div class="funnel" id="funnel"></div></div>
+      </section>
+
+      <section class="block" id="interesse">
+        <h2>Interesse</h2>
+        <div class="grid g-11">
+          <div class="card"><header><div><h3>Filtros da coleção</h3><p>Categorias mais exploradas</p></div></header><div class="bars" id="filters-bars"></div></div>
+          <div class="card"><header><div><h3>Perguntas abertas no FAQ</h3><p>Objeções que aparecem antes do contato</p></div></header><div class="bars" id="faq-bars"></div></div>
+        </div>
+      </section>
+
+      <section class="block" id="campanhas">
+        <h2>Campanhas</h2>
+        <div class="card"><header><div><h3>Google Ads e UTMs</h3><p>Sessões e cliques no WhatsApp por campanha, grupo/anúncio e termo</p></div></header><div class="tbl-wrap" id="campaigns"></div></div>
+      </section>
+
+      <section class="block" id="jornadas">
+        <h2>Jornadas</h2>
+        <div class="filters" style="padding:0 0 14px">
+          <button class="chip is-active" data-jornadas="conv">Só quem clicou no WhatsApp</button>
+          <button class="chip" data-jornadas="todas">Todas as sessões</button>
+        </div>
+        <div id="journeys"></div>
+      </section>
+
+      <section class="block" id="quando">
+        <h2>Quando visitam</h2>
+        <div class="card"><header><div><h3>Dia da semana × hora</h3><p id="heat-peak"></p></div></header><div class="heat" id="heat"></div></div>
+      </section>
+
+      <section class="block" id="onde">
+        <h2>Onde estão</h2>
+        <div class="grid g-11">
+          <div class="card"><header><h3>Cidades</h3></header><div class="bars" id="cities"></div></div>
+          <div class="card"><header><h3>Estados</h3></header><div class="bars" id="regions"></div></div>
+        </div>
+      </section>
+
+      <section class="block" id="cliques">
+        <h2>Tudo que foi clicado</h2>
+        <div class="card"><div class="tbl-wrap" id="clicks"></div></div>
+      </section>
+
+      <section class="block" id="publico">
+        <h2>Público</h2>
+        <div class="grid g-11">
+          <div class="card"><header><h3>Navegadores</h3></header><div class="bars" id="browsers"></div></div>
+          <div class="card"><header><h3>Sistemas</h3></header><div class="bars" id="os"></div></div>
+        </div>
+      </section>
+
+      <section class="block" id="aovivo">
+        <h2><span class="pulse"></span>Ao vivo</h2>
+        <div class="card"><header><div><h3>Últimos eventos</h3><p>Atualiza a cada 30 s</p></div></header><div class="live" id="live"></div></div>
+      </section>
+    </main>
+    <footer class="foot">Gaspar Lopes · Dashboard first-party · M|P Assessoria</footer>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script>
+  (function () {
+    'use strict';
+    var TOKEN_KEY = 'gl-dash-token';
+    var CH = { google_ads: 'Google Ads', google_organic: 'Google (orgânico)', instagram: 'Instagram', meta_ads: 'Meta Ads', facebook: 'Facebook', direct: 'Direto', referral: 'Indicação', search_other: 'Outros buscadores', other: 'Outro' };
+    var CONSENT = { accepted: 'Aceitou', essential: 'Só o essencial', nao_respondeu: 'Não respondeu' };
+    var COLORS = ['#F2F4F8', '#33436E', '#8A97B8', '#16305F', '#C9CED9', '#0A2453', '#6B7A9E', '#3E4B6E', '#A5ADC0'];
+    var charts = {};
+    var state = { periodo: '30d', de: null, ate: null, origem: 'todas', jornadas: 'conv' };
+    var $ = function (s) { return document.querySelector(s); };
+    var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); };
+    var fmt = function (n) { return Number(n || 0).toLocaleString('pt-BR'); };
+
+    Chart.defaults.color = 'rgba(242,244,248,.55)';
+    Chart.defaults.borderColor = 'rgba(255,255,255,.08)';
+    Chart.defaults.font.family = 'Jost, sans-serif';
+
+    // ---------- Auth ----------
+    var token = localStorage.getItem(TOKEN_KEY);
+    function showApp() { $('#login').classList.add('hidden'); $('#app').classList.remove('hidden'); readUrl(); load(); startLive(); }
+    function showLogin(msg) { localStorage.removeItem(TOKEN_KEY); token = null; $('#app').classList.add('hidden'); $('#login').classList.remove('hidden'); if (msg) $('#login-error').textContent = msg; }
+    $('#login-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      $('#login-error').textContent = '';
+      fetch('/api/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: $('#pwd').value }) })
+        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+        .then(function (x) { if (!x.ok) throw new Error(x.j.error || 'Falha no login'); token = x.j.token; localStorage.setItem(TOKEN_KEY, token); $('#pwd').value = ''; showApp(); })
+        .catch(function (err) { $('#login-error').textContent = err.message; });
+    });
+    $('#logout').addEventListener('click', function () { showLogin(); });
+
+    // ---------- Filtros ----------
+    function ymd(d) { return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10); }
+    function periodDates(p) {
+      var today = new Date(); var de = new Date();
+      if (p === 'hoje') de = today; else if (p === '7d') de.setDate(today.getDate() - 6); else if (p === '90d') de.setDate(today.getDate() - 89); else de.setDate(today.getDate() - 29);
+      return { de: ymd(de), ate: ymd(today) };
+    }
+    function readUrl() {
+      var u = new URLSearchParams(location.search);
+      state.periodo = u.get('periodo') || '30d'; state.de = u.get('de'); state.ate = u.get('ate'); state.origem = u.get('origem') || 'todas'; state.jornadas = u.get('jornadas') || 'conv';
+      if (!state.de || !state.ate) { var d = periodDates(state.periodo); state.de = d.de; state.ate = d.ate; }
+      syncFilters();
+    }
+    function writeUrl() { var u = new URLSearchParams({ periodo: state.periodo, de: state.de, ate: state.ate, origem: state.origem, jornadas: state.jornadas }); history.replaceState(null, '', '?' + u.toString()); }
+    function syncFilters() {
+      document.querySelectorAll('[data-periodo]').forEach(function (b) { b.classList.toggle('is-active', b.dataset.periodo === state.periodo); });
+      document.querySelectorAll('[data-jornadas]').forEach(function (b) { b.classList.toggle('is-active', b.dataset.jornadas === state.jornadas); });
+      $('#de').value = state.de; $('#ate').value = state.ate; $('#origem').value = state.origem;
+    }
+    document.querySelectorAll('[data-periodo]').forEach(function (b) { b.addEventListener('click', function () { state.periodo = b.dataset.periodo; var d = periodDates(state.periodo); state.de = d.de; state.ate = d.ate; syncFilters(); writeUrl(); load(); }); });
+    document.querySelectorAll('[data-jornadas]').forEach(function (b) { b.addEventListener('click', function () { state.jornadas = b.dataset.jornadas; syncFilters(); writeUrl(); load(); }); });
+    ['de', 'ate'].forEach(function (id) { $('#' + id).addEventListener('change', function () { if ($('#de').value && $('#ate').value) { state.periodo = 'custom'; state.de = $('#de').value; state.ate = $('#ate').value; syncFilters(); writeUrl(); load(); } }); });
+    $('#origem').addEventListener('change', function () { state.origem = $('#origem').value; writeUrl(); load(); });
+
+    // ---------- Data ----------
+    function api(qs) {
+      return fetch('/api/dashboard?' + qs, { headers: { Authorization: 'Bearer ' + token } }).then(function (r) {
+        if (r.status === 401) { showLogin('Sessão expirada. Entre novamente.'); throw new Error('401'); }
+        return r.json().then(function (j) { if (!r.ok) throw new Error(j.error || 'Erro'); return j; });
+      });
+    }
+    function load() {
+      $('#updated').textContent = 'Carregando…';
+      api(new URLSearchParams({ de: state.de, ate: state.ate, origem: state.origem, jornadas: state.jornadas }).toString())
+        .then(render)
+        .catch(function (e) { if (e.message !== '401') $('#updated').textContent = 'Erro: ' + e.message; });
+    }
+
+    // ---------- Render ----------
+    function render(d) {
+      $('#updated').textContent = 'Período ' + brDate(d.range.de) + ' a ' + brDate(d.range.ate) + ' · atualizado ' + new Date(d.generated_at).toLocaleTimeString('pt-BR');
+      var c = d.kpis.current, p = d.kpis.previous;
+      $('#kpis').innerHTML = [
+        kpi('Visitas', c.sessions, p.sessions), kpi('Visitantes', c.visitors, p.visitors),
+        kpi('Cliques WhatsApp', c.wa_clicks, p.wa_clicks), kpi('Taxa de conversão', c.conversion_rate + '%', null, c.conversion_rate - p.conversion_rate, 'pp'),
+        kpi('Tempo médio', c.avg_duration_s + ' s', c.avg_duration_s, p.avg_duration_s), kpi('Rolagem média', c.avg_scroll_pct + '%'),
+        kpi('Via Google Ads', c.google_ads_share + '%', null, c.google_ads_share - p.google_ads_share, 'pp'),
+      ].join('');
+
+      chart('c-daily', { type: 'bar', data: { labels: d.daily.map(function (x) { return brDate(x.date, true); }), datasets: [
+        { type: 'line', label: 'Cliques WhatsApp', data: d.daily.map(function (x) { return x.wa_clicks; }), borderColor: '#F2F4F8', backgroundColor: '#F2F4F8', tension: .35, pointRadius: 3, yAxisID: 'y1' },
+        { label: 'Visitas', data: d.daily.map(function (x) { return x.sessions; }), backgroundColor: 'rgba(51,67,110,.85)', borderRadius: 4 },
+      ] }, options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, ticks: { precision: 0 } }, y1: { position: 'right', beginAtZero: true, grid: { drawOnChartArea: false }, ticks: { precision: 0 } } }, plugins: { legend: { position: 'bottom' } } } });
+      donut('c-channels', d.channels.map(function (x) { return { key: CH[x.key] || x.key, value: x.value }; }));
+      donut('c-devices', d.devices.map(function (x) { return { key: ({ mobile: 'Celular', tablet: 'Tablet', desktop: 'Desktop' })[x.key] || x.key, value: x.value }; }));
+      donut('c-audience', d.audience.map(function (x) { return { key: x.key === 'novo' ? 'Novo' : 'Recorrente', value: x.value }; }));
+      donut('c-consent', d.consent.map(function (x) { return { key: CONSENT[x.key] || x.key, value: x.value }; }));
+
+      bars('#wa-source', d.wa_by_source, sectionName);
+      bars('#wa-label', d.wa_by_label);
+      pivotTable('#wa-pivot', d.wa_source_x_channel);
+      funnel(d.sections);
+      bars('#filters-bars', d.filters);
+      bars('#faq-bars', d.faq);
+      campaigns(d.campaigns);
+      journeys(d.journeys);
+      heatmap(d.heatmap);
+      bars('#cities', d.cities); bars('#regions', d.regions);
+      clicks(d.clicks);
+      bars('#browsers', d.browsers); bars('#os', d.os);
+    }
+    function kpi(label, value, prev, deltaOverride, unit) {
+      var delta = deltaOverride != null ? deltaOverride : (prev == null || typeof value !== 'number' ? null : (prev === 0 ? (value > 0 ? 100 : 0) : Math.round((value - prev) / prev * 100)));
+      var deltaHtml = delta == null ? '' : '<div class="delta ' + (delta > 0 ? 'up' : delta < 0 ? 'down' : '') + '">' + (delta > 0 ? '▲ ' : delta < 0 ? '▼ ' : '') + Math.abs(Math.round(delta * 10) / 10) + (unit || '%') + ' vs período anterior</div>';
+      return '<div class="kpi"><div class="lbl">' + label + '</div><div class="val">' + (typeof value === 'number' ? fmt(value) : esc(value)) + '</div>' + deltaHtml + '</div>';
+    }
+    function chart(id, cfg) { if (charts[id]) charts[id].destroy(); charts[id] = new Chart(document.getElementById(id), cfg); }
+    function donut(id, items) {
+      if (!items.length) { if (charts[id]) charts[id].destroy(); document.getElementById(id).parentElement.innerHTML = '<div class="empty">Sem dados no período</div>'; return; }
+      var host = document.getElementById(id); if (!host) return;
+      chart(id, { type: 'doughnut', data: { labels: items.map(function (x) { return x.key; }), datasets: [{ data: items.map(function (x) { return x.value; }), backgroundColor: COLORS, borderColor: '#121826', borderWidth: 2 }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '68%', plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, padding: 14 } } } } });
+    }
+    function bars(sel, items, labelFn) {
+      var el = $(sel); if (!items || !items.length) { el.innerHTML = '<div class="empty">Sem dados no período</div>'; return; }
+      var max = items[0].value;
+      el.innerHTML = items.slice(0, 12).map(function (x) { return '<div class="bar"><span class="name" title="' + esc(x.key) + '">' + esc(labelFn ? labelFn(x.key) : x.key) + '</span><span class="num">' + fmt(x.value) + '</span><div class="track"><div class="fill" style="width:' + Math.max(3, x.value / max * 100) + '%"></div></div></div>'; }).join('');
+    }
+    var SEC = { hero: 'Hero', 'sob-medida': 'Por que sob medida', pecas: 'Peças (vitrine)', colecao: 'Coleção', comecar: 'Comece pelo WhatsApp', investimento: 'Investimento', autoridade: 'Quem faz', destaques: 'Destaques', faq: 'FAQ', 'cta-final': 'CTA final', header: 'Header', footer: 'Footer', flutuante: 'Botão flutuante', outro: 'Outro' };
+    function sectionName(k) { return SEC[k] || k; }
+    function pivotTable(sel, rows) {
+      var el = $(sel); if (!rows.length) { el.innerHTML = '<div class="empty">Sem cliques no período</div>'; return; }
+      var cols = []; rows.forEach(function (r) { Object.keys(r.cols).forEach(function (c) { if (cols.indexOf(c) < 0) cols.push(c); }); });
+      el.innerHTML = '<table><thead><tr><th>Botão (seção)</th>' + cols.map(function (c) { return '<th style="text-align:right">' + esc(CH[c] || c) + '</th>'; }).join('') + '<th style="text-align:right">Total</th></tr></thead><tbody>' +
+        rows.map(function (r) { var t = 0; var tds = cols.map(function (c) { var v = r.cols[c] || 0; t += v; return '<td class="n">' + (v || '·') + '</td>'; }).join(''); return '<tr><td>' + esc(sectionName(r.row)) + '</td>' + tds + '<td class="n"><b>' + t + '</b></td></tr>'; }).join('') + '</tbody></table>';
+    }
+    function funnel(steps) {
+      var el = $('#funnel'); var max = Math.max.apply(null, steps.map(function (s) { return s.value; }).concat([1]));
+      el.innerHTML = steps.map(function (s) { return '<div class="step"><span>' + esc(s.label) + '</span><div class="track"><div class="fill" style="width:' + (s.value / max * 100) + '%">' + (s.value ? fmt(s.value) : '') + '</div></div><span class="num muted">' + s.pct + '%</span></div>'; }).join('');
+    }
+    function campaigns(rows) {
+      var el = $('#campaigns'); if (!rows.length) { el.innerHTML = '<div class="empty">Nenhuma sessão de campanha no período</div>'; return; }
+      el.innerHTML = '<table><thead><tr><th>Campanha</th><th>Grupo / anúncio</th><th>Termo</th><th>Canal</th><th style="text-align:right">Visitas</th><th style="text-align:right">WhatsApp</th><th style="text-align:right">Conv.</th></tr></thead><tbody>' +
+        rows.map(function (r) { return '<tr><td>' + esc(r.campaign) + '</td><td>' + esc(r.content || '·') + '</td><td>' + esc(r.term || '·') + '</td><td><span class="tag ' + (r.channel === 'google_ads' ? 'ads' : '') + '">' + esc(CH[r.channel] || r.channel) + '</span></td><td class="n">' + r.sessions + '</td><td class="n">' + r.wa_clicks + '</td><td class="n">' + (r.sessions ? Math.round(r.wa_clicks / r.sessions * 100) : 0) + '%</td></tr>'; }).join('') + '</tbody></table>';
+    }
+    function journeys(list) {
+      var el = $('#journeys'); if (!list.length) { el.innerHTML = '<div class="card"><div class="empty">Nenhuma jornada no período</div></div>'; return; }
+      el.innerHTML = list.map(function (j) {
+        var origem = (CH[j.channel] || j.channel || 'Outro') + (j.campaign ? ' · ' + j.campaign : '') + (j.content ? ' · ' + j.content : '') + (j.term ? ' · "' + j.term + '"' : '');
+        return '<div class="journey"><div class="meta"><span>' + brDateTime(j.started_at) + '</span><span><b>' + esc(origem) + '</b></span><span>' + esc([j.device, j.browser, j.os].filter(Boolean).join(' · ')) + '</span>' + (j.city ? '<span>' + esc(j.city + (j.region ? ' · ' + j.region : '')) + '</span>' : '') + '<span>' + j.duration_s + ' s no site' + (j.max_scroll_pct != null ? ' · ' + j.max_scroll_pct + '% da página' : '') + '</span>' + (j.returning ? '<span class="tag">já visitou antes</span>' : '') + '</div><div class="trail">' +
+          j.trail.map(function (s) { return '<span class="' + s.kind + '">' + esc(s.text) + '</span>'; }).join('') + '</div></div>';
+      }).join('');
+    }
+    function heatmap(m) {
+      var days = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb']; var max = 0, peak = null;
+      m.forEach(function (row, d) { row.forEach(function (v, h) { if (v > max) { max = v; peak = { d: d, h: h }; } }); });
+      var html = '<div></div>' + Array.from({ length: 24 }, function (_, h) { return '<div class="h">' + (h % 3 === 0 ? h + 'h' : '') + '</div>'; }).join('');
+      m.forEach(function (row, d) { html += '<div class="d">' + days[d] + '</div>' + row.map(function (v, h) { var a = max ? v / max : 0; return '<div class="c" title="' + days[d] + ' ' + h + 'h: ' + v + '" style="background:rgba(242,244,248,' + (0.04 + a * 0.9) + ')"></div>'; }).join(''); });
+      $('#heat').innerHTML = html;
+      $('#heat-peak').textContent = peak && max ? 'Pico: ' + days[peak.d] + ' às ' + peak.h + 'h (' + max + ' visitas)' : 'Sem dados no período';
+    }
+    function clicks(rows) {
+      var el = $('#clicks'); if (!rows.length) { el.innerHTML = '<div class="empty">Sem cliques no período</div>'; return; }
+      el.innerHTML = '<table><thead><tr><th>Elemento</th><th>Onde</th><th style="text-align:right">Cliques</th></tr></thead><tbody>' + rows.map(function (r) { return '<tr><td>' + esc(r.text) + '</td><td class="muted">' + esc(sectionName(r.section)) + '</td><td class="n">' + r.value + '</td></tr>'; }).join('') + '</tbody></table>';
+    }
+
+    // ---------- Ao vivo ----------
+    var liveTimer = null;
+    function startLive() { stopLive(); tickLive(); liveTimer = setInterval(function () { if (!document.hidden) tickLive(); }, 30000); }
+    function stopLive() { if (liveTimer) clearInterval(liveTimer); }
+    function tickLive() {
+      api('live=1').then(function (d) {
+        var el = $('#live'); if (!d.events.length) { el.innerHTML = '<div class="empty">Nenhum evento ainda</div>'; return; }
+        el.innerHTML = d.events.map(function (e) {
+          var s = e.session || {}; var what = e.name;
+          if (e.name === 'whatsapp_click') what = 'WhatsApp: ' + (e.props.label || '') + ' (' + sectionName(e.props.source) + ')';
+          else if (e.name === 'section_view') what = 'Viu: ' + sectionName(e.props.section);
+          else if (e.name === 'click') what = 'Clicou: ' + (e.props.text || '');
+          else if (e.name === 'page_view') what = 'Entrou na página';
+          else if (e.name === 'collection_filter') what = 'Filtro: ' + e.props.filter;
+          else if (e.name === 'faq_open') what = 'FAQ: ' + e.props.question;
+          else if (e.name === 'social_click') what = 'Instagram';
+          else if (e.name === 'cookie_consent') what = 'Cookies: ' + e.props.consent_choice;
+          return '<div class="ev"><time>' + new Date(e.ts).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) + '</time><span>' + esc(what) + '</span><span class="muted">' + esc([CH[s.channel] || s.channel, s.device, s.city].filter(Boolean).join(' · ')) + '</span></div>';
+        }).join('');
+      }).catch(function () {});
+    }
+    function brDate(ymd, short) { var p = ymd.split('-'); return short ? p[2] + '/' + p[1] : p[2] + '/' + p[1] + '/' + p[0]; }
+    function brDateTime(iso) { return new Date(iso).toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' }); }
+
+    if (token) showApp();
+  })();
+  </script>
+</body>
+</html>

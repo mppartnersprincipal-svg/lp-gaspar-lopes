@@ -4,3 +4,7 @@ node_modules/
 # As versões otimizadas para o site estão versionadas em assets/img/.
 Fotos Gaspar/
 .gstack/
+
+# Segredos locais
+.env
+.env.local
