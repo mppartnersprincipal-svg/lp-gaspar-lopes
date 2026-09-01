@@ -1,0 +1,14 @@
+# Só o site vai para a Vercel. Material interno fica fora do deploy.
+PRD-LP-Gaspar-Lopes.md
+Design System Gaspar Lopes/
+Fotos - Produtos/
+Fotos Gaspar/
+Referências/
+Logo/
+scripts/
+node_modules/
+package.json
+package-lock.json
+.gstack/
+.gitignore
+README.md
