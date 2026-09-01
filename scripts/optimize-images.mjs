@@ -1,7 +1,8 @@
 /**
  * Gera as imagens otimizadas da LP (WebP + fallback JPG) em assets/img/.
  * Fontes: pastas originais "Fotos Gaspar", "Fotos - Produtos" e "Logo" (não são modificadas).
- * Uso: npm run images
+ * Uso: npm run images            → gera tudo
+ *      npm run images destaque   → só os slugs que começam com "destaque" (pula OG/logo)
  */
 import sharp from 'sharp';
 import { mkdir } from 'node:fs/promises';
@@ -14,8 +15,11 @@ const OUT = path.join(ROOT, 'assets', 'img');
 const JOBS = [
   // Hero: Gaspar ajustando o punho (retrato real)
   { slug: 'hero', src: 'Fotos Gaspar/ROD02606.JPG', widths: [480, 800, 1200, 1600], aspect: 4 / 5 },
-  // Autoridade: Gaspar pensativo
-  { slug: 'autoridade', src: 'Fotos Gaspar/ROD02614.JPG', widths: [480, 800, 1200], aspect: 4 / 5, pos: 'top' },
+  // Autoridade (carrossel "Quem faz" — 4 retratos, crop uniforme 4:5)
+  { slug: 'autoridade-1', src: 'Fotos Gaspar/ROD02614.JPG', widths: [480, 800, 1200], aspect: 4 / 5, pos: 'top' },      // pensativo, sentado
+  { slug: 'autoridade-2', src: 'Fotos Gaspar/ROD02652.JPG', widths: [480, 800, 1200], aspect: 4 / 5 },                  // sorriso, mão no queixo
+  { slug: 'autoridade-3', src: 'Fotos Gaspar/ROD02640.JPG', widths: [480, 800, 1200], aspect: 4 / 5, pos: 'top' },      // em pé, mãos no bolso
+  { slug: 'autoridade-4', src: 'Fotos Gaspar/ROD02627.JPG', widths: [480, 800, 1200], aspect: 4 / 5 },                  // sentado, olhar direto
   // Vitrine (6 categorias do PRD) — crop uniforme 4:5
   { slug: 'produto-camisas', src: 'Fotos - Produtos/Camisa/Camisa smoking.jpg', widths: [480, 800], aspect: 4 / 5 },
   { slug: 'produto-ternos', src: 'Fotos - Produtos/Costumes/Costume prin. gales cinza.jpg', widths: [480, 800], aspect: 4 / 5 },
@@ -40,11 +44,26 @@ const JOBS = [
   // Faixa full-width de detalhe artesanal (punho bordado) e fundo do CTA final (paletó em fundo escuro)
   { slug: 'banda-detalhe', src: 'Fotos - Produtos/Punhos/Punho duplo camisa - bordado.jpg', widths: [800, 1600], aspect: 21 / 9 },
   { slug: 'cta-fundo', src: 'Fotos - Produtos/Paletó/Paletó 2 botões.jpg', widths: [800, 1600], aspect: 16 / 9 },
+  // Destaques (carrossel com autoplay) — fotos do cliente que NÃO aparecem nas outras seções
+  { slug: 'destaque-jaquetao-risca-giz', src: 'Fotos - Produtos/Jaquetão/Jaquetão Risca de giz.jpg', widths: [480, 800], aspect: 4 / 5 },
+  { slug: 'destaque-paleto-1botao', src: 'Fotos - Produtos/Paletó/Paletó 1 botão.jpg', widths: [480, 800], aspect: 4 / 5 },
+  { slug: 'destaque-colete-principe-gales', src: 'Fotos - Produtos/Colete/Colete feminino - principe de gales azul.jpg', widths: [480, 800], aspect: 4 / 5 },
+  { slug: 'destaque-jaquetao-6botoes-offwhite', src: 'Fotos - Produtos/Jaquetão/Jaquetão 6 botões(2).jpg', widths: [480, 800], aspect: 4 / 5 },
+  { slug: 'destaque-camisa-encorpada', src: 'Fotos - Produtos/Camisa/Camisa encorpada(1).jpg', widths: [480, 800], aspect: 4 / 5 },
+  { slug: 'destaque-kaban', src: 'Fotos - Produtos/Kaban/KABAN(1).jpg', widths: [480, 800], aspect: 4 / 5 },
+  { slug: 'destaque-paleto-2botoes', src: 'Fotos - Produtos/Costumes/Paletó 2 botões_.jpg', widths: [480, 800], aspect: 4 / 5 },
+  { slug: 'destaque-gola-polo', src: 'Fotos - Produtos/Camiseta/Gola Polo.jpg', widths: [480, 800], aspect: 4 / 5 },
+  { slug: 'destaque-jaquetao-6botoes-oliva', src: 'Fotos - Produtos/Jaquetão/Jaquetão 6 botões(1).jpg', widths: [480, 800], aspect: 4 / 5 },
+  { slug: 'destaque-camiseta-gola-o', src: 'Fotos - Produtos/Camiseta/Camiseta _O_ média.jpg', widths: [480, 800], aspect: 4 / 5 },
 ];
+
+// Filtro opcional por prefixo de slug (ex.: `npm run images destaque`)
+const ONLY = process.argv[2];
+const jobs = ONLY ? JOBS.filter((j) => j.slug.startsWith(ONLY)) : JOBS;
 
 await mkdir(OUT, { recursive: true });
 
-for (const job of JOBS) {
+for (const job of jobs) {
   const srcPath = path.join(ROOT, job.src);
   for (const w of job.widths) {
     const h = job.aspect ? Math.round(w / job.aspect) : null;
@@ -57,6 +76,8 @@ for (const job of JOBS) {
     console.log(`${job.slug}-${w}: webp + jpg ok`);
   }
 }
+
+if (ONLY) { console.log(`filtro "${ONLY}": ${jobs.length} job(s); OG e logo não regenerados`); process.exit(0); }
 
 // Open Graph 1200×630 (crop no topo do retrato do hero p/ pegar o rosto)
 await sharp(path.join(ROOT, 'Fotos Gaspar/ROD02606.JPG')).rotate()
