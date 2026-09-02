@@ -1,5 +1,4 @@
 # Gaspar Lopes Alfaiataria
-# Substituir PREENCHER-DOMINIO pelo domínio real antes de publicar.
 
 User-agent: *
 Allow: /
