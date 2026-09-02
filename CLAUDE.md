@@ -45,7 +45,7 @@ Head completo (canonical, robots, OG absoluto, Twitter, preload LCP, theme-color
 | ~~2~~ | ~~ID do GTM~~ **FEITO 02/09/2026**: `GTM-5H43TLN7` aplicado (head + noscript) | — |
 | ~~3~~ | ~~Domínio real~~ **FEITO 02/09/2026**: https://www.gasparlopesalfaiataria.com.br aplicado no código (SITE_HOST=gasparlopesalfaiataria.com.br); DNS no Registro.br apontado pelo usuário; reimportar container GTM se já tinha sido importado antes | — |
 | 4 | Env na Vercel: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `DASHBOARD_PASSWORD`, `DASHBOARD_SECRET` | ver DASHBOARD.md / .env.example |
-| 5 | Criar GA4 + conversão no Ads + importar container + preencher 3 CONST | gtm/TRACKING.md |
+| ~~5~~ | ~~GA4/Ads/container~~ **FEITO 02/09/2026**: GA4 `G-NSFXD61147` (dimensões criadas), conversão Ads `AW-17013001775` rótulo `jp8ZCLLI4ewcEK-ct7A_`, container importado, preenchido e PUBLICADO; verificado no site real (page_view/section_view no GA4, ping de conversão e remarketing no Ads). Falta só: marcar `whatsapp_click` como evento-chave no GA4 em 24-48h | — |
 | 6 | História do Gaspar (revista), processo do atelier, prazo, depoimentos, presencial? | seções comentadas |
 | 7 | **Campanhas Google Ads: quando o usuário trouxer os nomes, gerar URLs finais com UTM manual por grupo/anúncio** — padrão `utm_source=google&utm_medium=cpc&utm_campaign=<campanha>&utm_content=<grupo-ou-anuncio>&utm_term={keyword}`, slugs sem acento/espaço; gclid ligado; NUNCA propor sufixo de conta (mesmo combinado da Sólida) | — |
 
