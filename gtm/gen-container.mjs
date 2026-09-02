@@ -6,7 +6,7 @@ import { writeFileSync } from "node:fs";
 const OUT = process.argv[2] ?? "gtm/gtm-container-gaspar-lopes.json";
 const ACCOUNT = "0";
 const CONTAINER = "0";
-const SITE_HOST = "PREENCHER-DOMINIO.com.br"; // [PREENCHER] domínio real (exclui cliques internos do "outbound")
+const SITE_HOST = "gasparlopesalfaiataria.com.br"; // [PREENCHER] domínio real (exclui cliques internos do "outbound")
 
 let tagSeq = 0, trgSeq = 0, varSeq = 0;
 const tags = [], triggers = [], variables = [];

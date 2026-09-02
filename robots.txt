@@ -26,4 +26,4 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://PREENCHER-DOMINIO.com.br/sitemap.xml
+Sitemap: https://www.gasparlopesalfaiataria.com.br/sitemap.xml
