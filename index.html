@@ -14,7 +14,7 @@
           suposição.
        3. Nomes das peças na "Coleção" vêm dos nomes dos arquivos enviados
           pelo cliente (pasta Fotos - Produtos). Validar nomenclatura.
-       4. TRACKING: substituir "GTM-PREENCHER" pelo ID real do container (2 lugares:
+       4. TRACKING: substituir "GTM-5H43TLN7" pelo ID real do container (2 lugares:
           <head> e <noscript> após <body>). GA4 e Google Ads são configurados no
           GTM importando gtm/gtm-container-gaspar-lopes.json (guia: gtm/TRACKING.md).
        5. SEO: buscar e substituir "https://www.gasparlopesalfaiataria.com.br" pelo
@@ -60,8 +60,7 @@
   <link rel="preload" as="image" type="image/webp" imagesrcset="assets/img/hero-480.webp 480w, assets/img/hero-800.webp 800w, assets/img/hero-1200.webp 1200w, assets/img/hero-1600.webp 1600w" imagesizes="100vw" fetchpriority="high">
 
   <!-- ===== Tracking: Google Tag Manager + Consent Mode v2 =====
-       [PREENCHER: GTM-PREENCHER → ID real do container, aqui e no <noscript> após <body>.]
-       Enquanto o ID contiver "PREENCHER", o gtm.js não é carregado (evita 404 em dev).
+       Container GTM-5H43TLN7 (aplicado 02/09/2026).
        GA4, Google Ads e eventuais pixels ficam DENTRO do container (gtm/TRACKING.md). -->
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -77,7 +76,7 @@
         gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' });
       }
     } catch (e) {}
-    window.GTM_ID = 'GTM-PREENCHER';
+    window.GTM_ID = 'GTM-5H43TLN7';
     if (!/PREENCHER/.test(window.GTM_ID)) {
       (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
       var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;
@@ -449,8 +448,8 @@
   </script>
 </head>
 <body>
-  <!-- GTM (sem JavaScript). [PREENCHER: GTM-PREENCHER → ID real] -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PREENCHER" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+  <!-- GTM (sem JavaScript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5H43TLN7" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
 
   <!-- ================= HEADER (PRD 4.1) ================= -->
   <header class="header">

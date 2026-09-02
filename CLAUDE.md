@@ -42,7 +42,7 @@ Head completo (canonical, robots, OG absoluto, Twitter, preload LCP, theme-color
 | # | O quê | Onde |
 |---|---|---|
 | ~~1~~ | ~~Número WhatsApp~~ **FEITO 01/09/2026**: (62) 99998-1896 aplicado em todos os CTAs (`wa.me/5562999981896`), footer, JSON-LD (`telephone`) e llms.txt | — |
-| 2 | ID do GTM → substituir `GTM-PREENCHER` (2 lugares) | index.html head + noscript |
+| ~~2~~ | ~~ID do GTM~~ **FEITO 02/09/2026**: `GTM-5H43TLN7` aplicado (head + noscript) | — |
 | ~~3~~ | ~~Domínio real~~ **FEITO 02/09/2026**: https://www.gasparlopesalfaiataria.com.br aplicado no código (SITE_HOST=gasparlopesalfaiataria.com.br); DNS no Registro.br apontado pelo usuário; reimportar container GTM se já tinha sido importado antes | — |
 | 4 | Env na Vercel: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `DASHBOARD_PASSWORD`, `DASHBOARD_SECRET` | ver DASHBOARD.md / .env.example |
 | 5 | Criar GA4 + conversão no Ads + importar container + preencher 3 CONST | gtm/TRACKING.md |
