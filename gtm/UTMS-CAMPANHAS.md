@@ -12,7 +12,10 @@ utm_content=<grupo-ou-anuncio>
 utm_term={keyword}           ValueTrack: palavra-chave que acionou o anúncio
 ```
 
-## Campanha 1 — `alfaiataria-goiania` (Pesquisa)
+## Campanha 1 — `[MP] - [S] - Alfaiataria Goiania` (Pesquisa)
+
+Nome no Ads: **[MP] - [S] - Alfaiataria Goiania**. Slug na UTM:
+`mp-s-alfaiataria-goiania` (colchetes, espaços e acentos não vão na URL).
 
 | Grupo de anúncios | `utm_content` | Palavras-chave |
 |---|---|---|
@@ -25,27 +28,27 @@ utm_term={keyword}           ValueTrack: palavra-chave que acionou o anúncio
 ### URLs finais (colar em cada grupo/anúncio)
 
 ```
-https://www.gasparlopesalfaiataria.com.br/?utm_source=google&utm_medium=cpc&utm_campaign=alfaiataria-goiania&utm_content=alfaiate-goiania&utm_term={keyword}
+https://www.gasparlopesalfaiataria.com.br/?utm_source=google&utm_medium=cpc&utm_campaign=mp-s-alfaiataria-goiania&utm_content=alfaiate-goiania&utm_term={keyword}
 
-https://www.gasparlopesalfaiataria.com.br/?utm_source=google&utm_medium=cpc&utm_campaign=alfaiataria-goiania&utm_content=alfaiataria-geral&utm_term={keyword}
+https://www.gasparlopesalfaiataria.com.br/?utm_source=google&utm_medium=cpc&utm_campaign=mp-s-alfaiataria-goiania&utm_content=alfaiataria-geral&utm_term={keyword}
 
-https://www.gasparlopesalfaiataria.com.br/?utm_source=google&utm_medium=cpc&utm_campaign=alfaiataria-goiania&utm_content=alfaiataria-masculina&utm_term={keyword}
+https://www.gasparlopesalfaiataria.com.br/?utm_source=google&utm_medium=cpc&utm_campaign=mp-s-alfaiataria-goiania&utm_content=alfaiataria-masculina&utm_term={keyword}
 
-https://www.gasparlopesalfaiataria.com.br/?utm_source=google&utm_medium=cpc&utm_campaign=alfaiataria-goiania&utm_content=alfaiataria-antiga&utm_term={keyword}
+https://www.gasparlopesalfaiataria.com.br/?utm_source=google&utm_medium=cpc&utm_campaign=mp-s-alfaiataria-goiania&utm_content=alfaiataria-antiga&utm_term={keyword}
 
-https://www.gasparlopesalfaiataria.com.br/?utm_source=google&utm_medium=cpc&utm_campaign=alfaiataria-goiania&utm_content=alfaiate-preco&utm_term={keyword}
+https://www.gasparlopesalfaiataria.com.br/?utm_source=google&utm_medium=cpc&utm_campaign=mp-s-alfaiataria-goiania&utm_content=alfaiate-preco&utm_term={keyword}
 ```
 
 Variante opcional para o grupo Preço (cai direto na seção Investimento):
 
 ```
-https://www.gasparlopesalfaiataria.com.br/?utm_source=google&utm_medium=cpc&utm_campaign=alfaiataria-goiania&utm_content=alfaiate-preco&utm_term={keyword}#investimento
+https://www.gasparlopesalfaiataria.com.br/?utm_source=google&utm_medium=cpc&utm_campaign=mp-s-alfaiataria-goiania&utm_content=alfaiate-preco&utm_term={keyword}#investimento
 ```
 
 ## Observações
 
-- Se o nome da campanha no Ads for outro, troque só o valor de `utm_campaign`
-  (slug sem acento/espaço) — o resto continua igual.
+- Se criar outra campanha, troque só o valor de `utm_campaign` pelo slug dela
+  (sem colchete, acento ou espaço) — o resto continua igual.
 - Com marcação automática ligada, o GA4 usa o gclid e mostra a origem como
   Google Ads; as UTMs alimentam o dashboard first-party (`/dashboard`), que
   guarda `utm_campaign`, `utm_content` e `utm_term` por sessão.
