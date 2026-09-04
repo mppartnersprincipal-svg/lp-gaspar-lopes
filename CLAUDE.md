@@ -30,6 +30,7 @@ Header fixo (transparente→sólido) · Hero full-bleed (foto ROD02606) · Marqu
 
 ## SEO / GEO (feito)
 Head completo (canonical, robots, OG absoluto, Twitter, preload LCP, theme-color), favicons do monograma GL, `site.webmanifest`, JSON-LD (`LocalBusiness+ClothingStore` + `WebSite` + `WebPage` speakable + `FAQPage`), `robots.txt` (libera GPTBot/ClaudeBot/PerplexityBot etc.), `sitemap.xml`, `llms.txt`.
+**04/09/2026 — otimização para as palavras-chave da campanha** (alfaiate / alfaiate goiania / alfaiataria / alfaiataria masculina online / alfaiataria antiga / alfaiataria em goiania / alfaiate preço): title e description com "Alfaiate em Goiânia", badge do hero, hero-sub, pilar 02, lead da vitrine, parágrafo em "Quem faz", marquee e 3 FAQs novas (preço sem valores, endereço real, alfaiataria tradicional) espelhadas no FAQPage JSON-LD e no llms.txt. Nada de dado inventado.
 
 ## Trackeamento (feito no código; contas pendentes do usuário)
 - **GTM + Consent Mode v2** (modo avançado: gtm.js carrega sempre, consent default=denied, banner Aceitar/Só o essencial, escolha em `localStorage gl-consent`). O gtm.js só carrega quando o ID não contiver "PREENCHER".
@@ -47,7 +48,7 @@ Head completo (canonical, robots, OG absoluto, Twitter, preload LCP, theme-color
 | 4 | Env na Vercel: `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, `DASHBOARD_PASSWORD`, `DASHBOARD_SECRET` | ver DASHBOARD.md / .env.example |
 | ~~5~~ | ~~GA4/Ads/container~~ **FEITO 02/09/2026**: GA4 `G-NSFXD61147` (dimensões criadas), conversão Ads `AW-17013001775` rótulo `jp8ZCLLI4ewcEK-ct7A_`, container importado, preenchido e PUBLICADO; verificado no site real (page_view/section_view no GA4, ping de conversão e remarketing no Ads). Falta só: marcar `whatsapp_click` como evento-chave no GA4 em 24-48h | — |
 | 6 | História do Gaspar (revista), processo do atelier, prazo, depoimentos, presencial? | seções comentadas |
-| 7 | **Campanhas Google Ads: quando o usuário trouxer os nomes, gerar URLs finais com UTM manual por grupo/anúncio** — padrão `utm_source=google&utm_medium=cpc&utm_campaign=<campanha>&utm_content=<grupo-ou-anuncio>&utm_term={keyword}`, slugs sem acento/espaço; gclid ligado; NUNCA propor sufixo de conta (mesmo combinado da Sólida) | — |
+| 7 | **Campanhas Google Ads** — padrão `utm_source=google&utm_medium=cpc&utm_campaign=<campanha>&utm_content=<grupo-ou-anuncio>&utm_term={keyword}`, slugs sem acento/espaço; gclid ligado; NUNCA propor sufixo de conta (mesmo combinado da Sólida). **04/09/2026**: entregues as URLs da 1ª campanha (`alfaiataria-goiania`, 5 grupos: alfaiate-goiania, alfaiataria-geral, alfaiataria-masculina, alfaiataria-antiga, alfaiate-preco). Falta o usuário confirmar os nomes reais dos grupos no Ads | — |
 
 ## Convenções de trabalho com este usuário
 - Ele aprova por etapas; commits/push no repo são o fluxo normal (Vercel deploya do main). Mensagens de commit em PT.
