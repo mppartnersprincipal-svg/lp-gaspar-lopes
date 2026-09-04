@@ -124,6 +124,26 @@
     .tag{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line-2);color:var(--fg-1)}
     .tag.ads{background:var(--navy-700);border-color:var(--navy-300)}
 
+    /* Termos de pesquisa */
+    .st-controls{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+    .st-controls input,.st-controls select{min-height:38px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.04);color:var(--fg-1);font:300 14px var(--font);color-scheme:dark;outline:none}
+    .st-controls input{flex:1 1 260px;min-width:0;max-width:420px}
+    .st-controls input:focus,.st-controls select:focus{border-color:var(--line-2)}
+    .st-total{display:flex;flex-wrap:wrap;gap:6px 22px;font-size:13px;color:var(--fg-2);margin-bottom:14px}
+    .st-total b{color:var(--fg-0);font-weight:400;font-variant-numeric:tabular-nums}
+    th.sortable{cursor:pointer;user-select:none;white-space:nowrap}
+    th.sortable:hover{color:var(--fg-1)}
+    th.sortable .arw{font-size:9px;color:var(--fg-3)}
+    th.sortable.is-sorted{color:var(--fg-1)}
+    th.sortable.is-sorted .arw{color:var(--fg-1)}
+    .kw{display:block;font-size:11px;color:var(--fg-3);margin-top:2px;white-space:nowrap}
+    .tag.st-added{background:rgba(127,183,126,.16);border-color:rgba(127,183,126,.55);color:#B7DDB6}
+    .tag.st-excluded{background:rgba(240,162,154,.14);border-color:rgba(240,162,154,.5);color:#F0A29A}
+    .tag.st-none{border-color:var(--line-2);color:var(--fg-2)}
+    td .tag{white-space:nowrap}
+    .note{margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line);font-size:12px;line-height:1.75;color:var(--fg-3)}
+    .note b{color:var(--fg-2);font-weight:400}
+
     /* Live */
     .live{display:flex;flex-direction:column;gap:6px;max-height:420px;overflow:auto}
     .live .ev{display:grid;grid-template-columns:70px 1fr auto;gap:12px;font-size:13px;padding:8px 10px;border-radius:8px;background:rgba(255,255,255,.03)}
@@ -159,7 +179,7 @@
       </div>
       <div class="wrap">
         <nav class="secnav">
-          <a href="#visao">Visão geral</a><a href="#whatsapp">WhatsApp</a><a href="#leitura">Leitura</a><a href="#interesse">Interesse</a><a href="#campanhas">Campanhas</a><a href="#jornadas">Jornadas</a><a href="#quando">Quando</a><a href="#onde">Onde</a><a href="#cliques">Cliques</a><a href="#publico">Público</a><a href="#aovivo">Ao vivo</a>
+          <a href="#visao">Visão geral</a><a href="#whatsapp">WhatsApp</a><a href="#leitura">Leitura</a><a href="#interesse">Interesse</a><a href="#campanhas">Campanhas</a><a href="#termos">Termos de pesquisa</a><a href="#jornadas">Jornadas</a><a href="#quando">Quando</a><a href="#onde">Onde</a><a href="#cliques">Cliques</a><a href="#publico">Público</a><a href="#aovivo">Ao vivo</a>
         </nav>
       </div>
     </div>
@@ -224,6 +244,23 @@
       <section class="block" id="campanhas">
         <h2>Campanhas</h2>
         <div class="card"><header><div><h3>Google Ads e UTMs</h3><p>Sessões e cliques no WhatsApp por campanha, grupo/anúncio e termo</p></div></header><div class="tbl-wrap" id="campaigns"></div></div>
+      </section>
+
+      <section class="block" id="termos">
+        <h2>Termos de pesquisa</h2>
+        <div class="card">
+          <header><div><h3>O que digitaram no Google</h3><p>Sempre Google Ads. Este bloco vem do relatório da conta, então não segue o filtro de origem.</p></div></header>
+          <div class="st-total" id="st-total"></div>
+          <div class="st-controls" id="st-controls">
+            <input type="search" id="st-busca" placeholder="Buscar termo ou palavra-chave" aria-label="Buscar termo ou palavra-chave">
+            <select id="st-grupo" aria-label="Grupo de anúncios"><option value="todos">Todos os grupos</option></select>
+          </div>
+          <div class="tbl-wrap" id="st-tbl"></div>
+          <p class="note">
+            <b>Um termo não se liga a um lead específico.</b> O Google não entrega a busca por clique, só o total por dia e palavra-chave. Dá para saber que a palavra-chave X trouxe estes termos, não que foi este termo que virou aquela conversa.<br>
+            <b>O Google esconde termos de baixo volume</b> por privacidade. Em campanha pequena parte dos cliques nunca aparece, nem aqui nem no relatório do próprio Ads. Por isso a soma desta aba não é o total de cliques da campanha.
+          </p>
+        </div>
       </section>
 
       <section class="block" id="jornadas">
@@ -366,6 +403,7 @@
       bars('#filters-bars', d.filters);
       bars('#faq-bars', d.faq);
       campaigns(d.campaigns);
+      searchTerms(d.search_terms);
       journeys(d.journeys);
       heatmap(d.heatmap);
       bars('#cities', d.cities); bars('#regions', d.regions);
@@ -379,7 +417,7 @@
     }
     function chart(id, cfg) { if (charts[id]) charts[id].destroy(); charts[id] = new Chart(document.getElementById(id), cfg); }
     function donut(id, items) {
-      if (!items.length) { if (charts[id]) charts[id].destroy(); document.getElementById(id).parentElement.innerHTML = '<div class="empty">Sem dados no período</div>'; return; }
+      if (!items.length) { if (charts[id]) charts[id].destroy(); var vazio = document.getElementById(id); if (vazio) vazio.parentElement.innerHTML = '<div class="empty">Sem dados no período</div>'; return; }
       var host = document.getElementById(id); if (!host) return;
       chart(id, { type: 'doughnut', data: { labels: items.map(function (x) { return x.key; }), datasets: [{ data: items.map(function (x) { return x.value; }), backgroundColor: COLORS, borderColor: '#121826', borderWidth: 2 }] }, options: { responsive: true, maintainAspectRatio: false, cutout: '68%', plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, padding: 14 } } } } });
     }
@@ -405,6 +443,105 @@
       el.innerHTML = '<table><thead><tr><th>Campanha</th><th>Grupo / anúncio</th><th>Termo</th><th>Canal</th><th style="text-align:right">Visitas</th><th style="text-align:right">WhatsApp</th><th style="text-align:right">Conv.</th></tr></thead><tbody>' +
         rows.map(function (r) { return '<tr><td>' + esc(r.campaign) + '</td><td>' + esc(r.content || '·') + '</td><td>' + esc(r.term || '·') + '</td><td><span class="tag ' + (r.channel === 'google_ads' ? 'ads' : '') + '">' + esc(CH[r.channel] || r.channel) + '</span></td><td class="n">' + r.sessions + '</td><td class="n">' + r.wa_clicks + '</td><td class="n">' + (r.sessions ? Math.round(r.wa_clicks / r.sessions * 100) : 0) + '%</td></tr>'; }).join('') + '</tbody></table>';
     }
+    // ---------- Termos de pesquisa ----------
+    var ST_STATUS = {
+      ADDED: { cls: 'st-added', label: 'palavra-chave', title: 'Este termo já foi adicionado como palavra-chave da campanha.' },
+      EXCLUDED: { cls: 'st-excluded', label: 'negativada', title: 'Este termo já foi adicionado como palavra-chave negativa.' },
+      ADDED_EXCLUDED: { cls: 'st-excluded', label: 'kw + negativa', title: 'Adicionado como palavra-chave e também negativado em algum grupo.' },
+      NONE: { cls: 'st-none', label: 'a decidir', title: 'Nem palavra-chave nem negativa. É aqui que mora o garimpo: adicionar o que vale e negativar o resto.' },
+    };
+    var ST_MATCH = { EXACT: 'Exata', PHRASE: 'Frase', BROAD: 'Ampla', NEAR_EXACT: 'Exata (variação)', NEAR_PHRASE: 'Frase (variação)' };
+    var stData = { total: null, rows: [], ad_groups: [] };
+    var stSort = { key: 'clicks', dir: 'desc' };
+
+    function searchTerms(st) {
+      stData = st || { total: null, rows: [], ad_groups: [] };
+      var groups = stData.ad_groups || [];
+      var sel = $('#st-grupo');
+      var atual = sel.value && groups.indexOf(sel.value) >= 0 ? sel.value : 'todos';
+      sel.innerHTML = '<option value="todos">Todos os grupos</option>' + groups.map(function (g) { return '<option value="' + esc(g) + '">' + esc(g) + '</option>'; }).join('');
+      sel.value = atual;
+      $('#st-controls').classList.toggle('hidden', !stData.rows.length);
+      var t = stData.total;
+      $('#st-total').innerHTML = !t ? '' : [
+        ['Termos', fmt(t.terms)], ['Impressões', fmt(t.impressions)], ['Cliques', fmt(t.clicks)],
+        ['Custo', money(t.cost)], ['Conversões', fmt(t.conversions)],
+      ].map(function (x) { return '<span>' + x[0] + ' <b>' + x[1] + '</b></span>'; }).join('');
+      stRender();
+    }
+
+    function stRender() {
+      var el = $('#st-tbl');
+      if (!stData.rows.length) {
+        el.innerHTML = '<div class="empty">' + (stData.total === null
+          ? 'Não foi possível ler a tabela de termos. Confira se a migration 0002 já rodou no Supabase.'
+          : 'Sem termos no período. Os dados aparecem depois que a campanha começar a receber cliques.') + '</div>';
+        return;
+      }
+      var busca = ($('#st-busca').value || '').trim().toLowerCase();
+      var grupo = $('#st-grupo').value;
+      var rows = stData.rows.filter(function (r) {
+        if (grupo !== 'todos' && r.ad_groups.indexOf(grupo) < 0) return false;
+        if (!busca) return true;
+        return (r.term + ' ' + r.keywords.map(function (k) { return k.text; }).join(' ')).toLowerCase().indexOf(busca) >= 0;
+      });
+      if (!rows.length) { el.innerHTML = '<div class="empty">Nenhum termo com esse filtro</div>'; return; }
+
+      var k = stSort.key, dir = stSort.dir === 'asc' ? 1 : -1;
+      rows = rows.slice().sort(function (a, b) {
+        var va = stValue(a, k), vb = stValue(b, k);
+        if (typeof va === 'string') return dir * va.localeCompare(vb, 'pt-BR');
+        return va === vb ? 0 : dir * (va - vb);
+      });
+      var totalClicks = stData.rows.reduce(function (a, r) { return a + r.clicks; }, 0);
+
+      var cols = [
+        { k: 'term', t: 'Termo digitado' }, { k: 'keyword', t: 'Palavra-chave' }, { k: 'match', t: 'Correspondência' },
+        { k: 'group', t: 'Grupo' }, { k: 'status', t: 'Situação' },
+        { k: 'impressions', t: 'Impr.', n: 1 }, { k: 'clicks', t: 'Cliques', n: 1 }, { k: 'ctr', t: 'CTR', n: 1 },
+        { k: 'cost', t: 'Custo', n: 1 }, { k: 'conversions', t: 'Conv.', n: 1 },
+      ];
+      el.innerHTML = '<table><thead><tr>' + cols.map(function (c) {
+        var on = stSort.key === c.k;
+        return '<th class="sortable' + (on ? ' is-sorted' : '') + '" data-sort="' + c.k + '"' + (c.n ? ' style="text-align:right"' : '') + '>' + c.t + ' <span class="arw">' + (on ? (stSort.dir === 'asc' ? '▲' : '▼') : '⇅') + '</span></th>';
+      }).join('') + '</tr></thead><tbody>' + rows.map(function (r) {
+        var st = ST_STATUS[r.status] || ST_STATUS.NONE;
+        var kws = r.keywords.length ? r.keywords : [{ text: '·', match_type: null }];
+        var share = totalClicks ? Math.round(r.clicks / totalClicks * 100) : 0;
+        return '<tr>' +
+          '<td>' + esc(r.term) + '</td>' +
+          '<td>' + kws.map(function (x) { return esc(x.text); }).join('<br>') + '</td>' +
+          '<td class="muted">' + kws.map(function (x) { return esc(ST_MATCH[x.match_type] || x.match_type || '·'); }).join('<br>') + '</td>' +
+          '<td class="muted">' + (r.ad_groups.length ? esc(r.ad_groups.join(', ')) : '·') + '</td>' +
+          '<td><span class="tag ' + st.cls + '" title="' + esc(st.title) + '">' + esc(st.label) + '</span></td>' +
+          '<td class="n">' + fmt(r.impressions) + '</td>' +
+          '<td class="n">' + fmt(r.clicks) + (r.clicks ? '<span class="kw">' + share + '% dos cliques</span>' : '') + '</td>' +
+          '<td class="n">' + r.ctr.toFixed(1).replace('.', ',') + '%</td>' +
+          '<td class="n">' + money(r.cost) + '</td>' +
+          '<td class="n">' + fmt(r.conversions) + '</td>' +
+        '</tr>';
+      }).join('') + '</tbody></table>';
+    }
+
+    function stValue(r, k) {
+      if (k === 'term') return r.term || '';
+      if (k === 'keyword') return (r.keywords[0] && r.keywords[0].text) || '';
+      if (k === 'match') return (r.keywords[0] && r.keywords[0].match_type) || '';
+      if (k === 'group') return r.ad_groups.join(', ');
+      if (k === 'status') return r.status || '';
+      return r[k] || 0;
+    }
+    $('#st-busca').addEventListener('input', stRender);
+    $('#st-grupo').addEventListener('change', stRender);
+    $('#st-tbl').addEventListener('click', function (e) {
+      var th = e.target.closest('th[data-sort]'); if (!th) return;
+      var k = th.dataset.sort;
+      if (stSort.key === k) stSort.dir = stSort.dir === 'asc' ? 'desc' : 'asc';
+      else { stSort.key = k; stSort.dir = ['term', 'keyword', 'match', 'group', 'status'].indexOf(k) >= 0 ? 'asc' : 'desc'; }
+      stRender();
+    });
+    function money(v) { return 'R$ ' + Number(v || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+
     function journeys(list) {
       var el = $('#journeys'); if (!list.length) { el.innerHTML = '<div class="card"><div class="empty">Nenhuma jornada no período</div></div>'; return; }
       el.innerHTML = list.map(function (j) {

@@ -133,13 +133,62 @@ async function report(q) {
       trail: trail(evBySession[s.id] || []),
     }));
 
+  // ---- Termos de pesquisa (Google Ads) ----
+  const search_terms = await searchTerms(r);
+
   return {
     range: { de: r.de, ate: r.ate, days: r.days }, origem: origem || 'todas',
     kpis: { current: cur, previous: prev },
     daily: Object.values(daily), channels, devices, browsers, os, cities, regions, consent, audience,
-    wa_by_source, wa_by_label, wa_source_x_channel, sections, filters, faq, social, campaigns, clicks, heatmap, journeys,
+    wa_by_source, wa_by_label, wa_source_x_channel, sections, filters, faq, social, campaigns, clicks, heatmap, journeys, search_terms,
     generated_at: new Date().toISOString(),
   };
+}
+
+// Termos de pesquisa do Google Ads (tabela alimentada pelo puxador do projeto "Google Ads Automate").
+// O filtro de origem do dashboard NÃO se aplica aqui: estes dados vêm do Ads, não da coleta da LP.
+// Se a migration 0002 ainda não tiver rodado, o PostgREST devolve erro; o try/catch impede que
+// isso derrube o dashboard inteiro.
+const STATUS_RANK = { ADDED_EXCLUDED: 3, EXCLUDED: 2, ADDED: 1, NONE: 0 };
+async function searchTerms(r) {
+  let rows;
+  try {
+    rows = await selectAll('gaspar_search_terms', `select=*&date=gte.${r.de}&date=lte.${r.ate}&order=clicks.desc`);
+  } catch (err) {
+    console.error('[dashboard] search_terms indisponível:', err.message);
+    return { total: null, rows: [], ad_groups: [] };
+  }
+
+  const map = {};
+  rows.forEach((x) => {
+    const term = x.search_term || '';
+    const t = (map[term] ||= { term, impressions: 0, clicks: 0, cost: 0, conversions: 0, ctr: 0, keywords: [], ad_groups: [], status: 'NONE' });
+    t.impressions += x.impressions || 0;
+    t.clicks += x.clicks || 0;
+    t.cost += (x.cost_micros || 0) / 1e6;
+    t.conversions += Number(x.conversions || 0);
+    const kw = x.keyword_text || '';
+    if (kw && !t.keywords.some((k) => k.text === kw && k.match_type === x.match_type)) t.keywords.push({ text: kw, match_type: x.match_type || null });
+    if (x.ad_group_name && t.ad_groups.indexOf(x.ad_group_name) < 0) t.ad_groups.push(x.ad_group_name);
+    if ((STATUS_RANK[x.status] ?? 0) > (STATUS_RANK[t.status] ?? 0)) t.status = x.status;
+  });
+
+  const out = Object.values(map).map((t) => ({
+    ...t,
+    cost: +t.cost.toFixed(2),
+    conversions: +t.conversions.toFixed(2),
+    ctr: t.impressions ? +((t.clicks / t.impressions) * 100).toFixed(1) : 0,
+  })).sort((a, b) => b.clicks - a.clicks || b.impressions - a.impressions);
+
+  const total = {
+    terms: out.length,
+    impressions: out.reduce((a, t) => a + t.impressions, 0),
+    clicks: out.reduce((a, t) => a + t.clicks, 0),
+    cost: +out.reduce((a, t) => a + t.cost, 0).toFixed(2),
+    conversions: +out.reduce((a, t) => a + t.conversions, 0).toFixed(2),
+  };
+  const ad_groups = [...new Set(rows.map((x) => x.ad_group_name).filter(Boolean))].sort();
+  return { total, rows: out, ad_groups };
 }
 
 function trail(evs) {
