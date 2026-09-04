@@ -22,8 +22,8 @@ const JOBS = [
   { slug: 'autoridade-4', src: 'Fotos Gaspar/ROD02627.JPG', widths: [480, 800, 1200], aspect: 4 / 5 },                  // sentado, olhar direto
   // Vitrine (6 categorias do PRD) — crop uniforme 4:5
   { slug: 'produto-camisas', src: 'Fotos - Produtos/Camisa/Camisa smoking.jpg', widths: [480, 800], aspect: 4 / 5 },
-  { slug: 'produto-ternos', src: 'Fotos - Produtos/Costumes/Costume prin. gales cinza.jpg', widths: [480, 800], aspect: 4 / 5 },
-  { slug: 'produto-costumes', src: 'Fotos - Produtos/Costumes/Costume 2 botões.jpg', widths: [480, 800], aspect: 4 / 5 },
+  { slug: 'produto-ternos', src: 'Fotos - Produtos/Costumes/Costume 2 botões.jpg', widths: [480, 800], aspect: 4 / 5 },
+  { slug: 'produto-costumes', src: 'Fotos - Produtos/Costumes/Costume prin. gales cinza.jpg', widths: [480, 800], aspect: 4 / 5 },
   { slug: 'produto-paletos', src: 'Fotos - Produtos/Paletó/Paletó 2 botões.jpg', widths: [480, 800], aspect: 4 / 5 },
   { slug: 'produto-calcas', src: 'Fotos - Produtos/Calças/Calça cós duplo.jpg', widths: [480, 800], aspect: 4 / 5 },
   { slug: 'produto-coletes', src: 'Fotos - Produtos/Colete/Colete.jpg', widths: [480, 800], aspect: 4 / 5 },
