@@ -51,3 +51,44 @@ node scripts/dev-server.mjs  # http://localhost:4173 (site + /api + /dashboard)
   mostra a cobertura.
 - Base: legítimo interesse para medição anônima + respeito à recusa. Recomenda-se
   publicar uma Política de Privacidade/Cookies simples (pendência do projeto).
+
+## Mudar para um projeto Supabase próprio (quando houver plano pago)
+
+Hoje as tabelas vivem no projeto `khipnjfbxjgvmjvyxero`, **compartilhado com o
+site da Sólida** (o plano free permite só 2 projetos). A separação é por
+prefixo: tudo do Gaspar começa com `gaspar_` e nada toca em
+`analytics_sessions` / `analytics_events` / `posts` / `categories`, que são da
+Sólida. RLS ligado sem policies nas duas famílias de tabelas: só a service role
+lê e escreve, e cada site usa a sua própria API.
+
+A troca para um projeto exclusivo é um caminho fechado, sem mexer no código:
+
+1. Crie o projeto novo (região São Paulo) e abra o **SQL Editor**.
+2. Cole e rode `supabase/migrations/0001_gaspar_analytics.sql` inteiro. Ele é
+   idempotente (`create table if not exists`) e cria as duas tabelas, os
+   índices, o RLS e a RPC `gaspar_upsert_session`.
+3. **Mantenha o prefixo `gaspar_`.** Os nomes estão escritos em `api/collect.js`
+   e `api/dashboard.js`; renomear as tabelas obrigaria a alterar o código.
+4. Histórico (opcional). No projeto antigo, rode um `select * from
+   public.gaspar_sessions` e outro em `public.gaspar_events` e use **Download
+   CSV**; no projeto novo, importe pelo Table Editor. Importe **sessions antes
+   de events** (há chave estrangeira) e, no fim, acerte a sequência:
+   ```sql
+   select setval(pg_get_serial_sequence('public.gaspar_events','id'),
+                 coalesce(max(id), 1)) from public.gaspar_events;
+   ```
+5. Na Vercel, troque `SUPABASE_URL` e `SUPABASE_SERVICE_ROLE_KEY` pelos do
+   projeto novo e faça **Redeploy**. `DASHBOARD_PASSWORD` e `DASHBOARD_SECRET`
+   continuam iguais.
+6. Confira o /dashboard no período "Hoje" e veja se chegam sessões novas.
+7. **Só depois de confirmar**, limpe o projeto da Sólida:
+   ```sql
+   drop function if exists public.gaspar_upsert_session(jsonb);
+   drop table if exists public.gaspar_events;
+   drop table if exists public.gaspar_sessions;
+   ```
+   Nunca rode um `drop` sem o prefixo `gaspar_` nesse projeto.
+
+Enquanto a mudança não acontece, não há risco de mistura: os dois sites gravam
+em tabelas diferentes, com credenciais diferentes, e os painéis consultam
+tabelas diferentes.
