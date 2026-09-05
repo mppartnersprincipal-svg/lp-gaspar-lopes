@@ -24,6 +24,21 @@ Landing page de conversão da **Gaspar Lopes Alfaiataria** (alfaiataria sob medi
 Header fixo (transparente→sólido) · Hero full-bleed (foto ROD02606) · Marquee · Por que sob medida (3 pilares, ícones) · Faixa punho bordado · Vitrine 6 categorias do PRD (cards clicáveis→WhatsApp) · **Coleção** (12 peças, filtros por categoria, nomes = nomes dos arquivos do cliente) · Comece pelo WhatsApp (3 passos, só copy existente) · Investimento (**SEM preços** — decisão do usuário; versão com preços comentada) · Quem faz (carrossel 4 retratos) · Destaques (carrossel 10 peças) · FAQ (accordion) · CTA final · Footer 3 colunas · WA float · Banner de cookies.
 **Ocultas (comentadas) até dados reais**: Como funciona (processo do atelier), Depoimentos, 2 FAQs (prazo / presencial), história do Gaspar (fonte: revista).
 
+## Troca de fotos (05/09/2026, pedido do cliente via "MUDANÇAS DE FOTOS.pdf")
+Fontes novas: 4 vieram por link do Google Drive, 3 estavam embutidas no próprio PDF (resolução do PDF, 1170-1365px de largura, suficiente para os cards de 480/800px).
+| Slot | Foto nova | Origem |
+|---|---|---|
+| `hero` + `og-image` | Gaspar de costume cinza (retrato) | Drive → `Fotos Gaspar/Hero - Gaspar costume cinza.jpg` |
+| `banda-detalhe` | Lapela de costume azul com pesponto à mão | Drive → `Fotos Gaspar/Detalhe - lapela costume azul.jpg` |
+| `produto-camisas` | Camisa branca vestida | PDF → `Fotos - Produtos/Camisa/Camisa branca social.jpg` |
+| `produto-ternos` | Terno bege de cerimônia | PDF → `Fotos - Produtos/Ternos/Terno bege - cerimonia.jpg` |
+| `produto-coletes` | Colete marrom trespassado | PDF → `Fotos - Produtos/Colete/Colete marrom trespassado.jpg` |
+| `produto-costumes` | Costume azul ao ar livre ("aproximar a foto") | Drive → `Fotos - Produtos/Costumes/Costume azul - externo.jpg` |
+| `colecao-camiseta-polo` (novo) | Camiseta polo preta | Drive → `Fotos - Produtos/Camiseta/Camiseta polo preta.jpg` |
+
+Também: título da Coleção passou de "Peças que já saíram do atelier" para **"Outras criações exclusivas"**; novo filtro **Camisetas** na Coleção (o único item é a polo).
+`optimize-images.mjs` ganhou a opção `crop` (recorte prévio em frações 0-1, ciente da orientação EXIF), usada para aproximar `produto-costumes` e para reenquadrar o `hero` (o Gaspar fica no terço direito, liberando a esquerda para a headline). Com a foto nova o `object-position` do hero mudou para `60% 0%` (base) e `78% 32%` (≥1024px).
+
 ## Dados reais já aplicados
 - Endereço: Rua 104, 234, Setor Sul, Goiânia, GO, CEP 74083-300 (footer `<address>`, JSON-LD, llms.txt).
 - Instagram: https://www.instagram.com/gasparlopess/ (footer + `sameAs`).

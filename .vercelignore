@@ -17,3 +17,6 @@ package-lock.json
 /CLAUDE.md
 /DASHBOARD.md
 /.env.example
+
+# Briefings em PDF do cliente
+*.pdf
