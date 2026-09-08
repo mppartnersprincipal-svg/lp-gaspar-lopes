@@ -36,7 +36,9 @@ http.createServer(async (req, res) => {
   }
   let p = url.pathname === '/' ? '/index.html' : url.pathname;
   if (p === '/dashboard' || p === '/dashboard/') p = '/dashboard/index.html';
-  const file = path.join(ROOT, decodeURIComponent(p));
+  let file = path.join(ROOT, decodeURIComponent(p));
+  // espelha o cleanUrls:true da Vercel: /politica-de-privacidade serve o .html
+  if (!path.extname(file) && existsSync(file + '.html')) file += '.html';
   if (!file.startsWith(ROOT) || !existsSync(file) || statSync(file).isDirectory()) { res.writeHead(404); return res.end('404'); }
   res.setHeader('Content-Type', MIME[path.extname(file).toLowerCase()] || 'application/octet-stream');
   res.end(readFileSync(file));

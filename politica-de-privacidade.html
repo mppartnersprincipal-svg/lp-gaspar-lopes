@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ============================================================
+       POLÍTICA DE PRIVACIDADE — LP GASPAR LOPES
+       Descreve APENAS o que o site realmente faz (js/tracker.js,
+       api/collect.js, GTM + Consent Mode v2). Nada de dado inventado.
+       [PREENCHER quando o cliente informar]: razão social completa, CNPJ e
+       e-mail de contato para titulares. Enquanto não vierem, o canal
+       oficial é o WhatsApp, que é dado real e já publicado.
+       ============================================================ -->
+
+  <title>Política de Privacidade | Gaspar Lopes Alfaiataria</title>
+  <meta name="description" content="Como a Gaspar Lopes Alfaiataria trata os dados de quem visita este site: medição anônima, cookies de campanha e seus direitos pela LGPD.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.gasparlopesalfaiataria.com.br/politica-de-privacidade">
+  <meta name="theme-color" content="#0C0F14">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon/icon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name" content="Gaspar Lopes Alfaiataria">
+  <meta property="og:url" content="https://www.gasparlopesalfaiataria.com.br/politica-de-privacidade">
+  <meta property="og:title" content="Política de Privacidade | Gaspar Lopes Alfaiataria">
+  <meta property="og:description" content="Como a Gaspar Lopes Alfaiataria trata os dados de quem visita este site.">
+  <meta property="og:image" content="https://www.gasparlopesalfaiataria.com.br/assets/img/og-image.jpg">
+
+  <!-- Tracking: mesmo container e mesmo Consent Mode da home -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+      ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied',
+      analytics_storage: 'denied', functionality_storage: 'granted', security_storage: 'granted',
+      wait_for_update: 500
+    });
+    try {
+      if (localStorage.getItem('gl-consent') === 'accepted') {
+        gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' });
+      }
+    } catch (e) {}
+    window.GTM_ID = 'GTM-5H43TLN7';
+    if (!/PREENCHER/.test(window.GTM_ID)) {
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;
+      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer',window.GTM_ID);
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap">
+
+  <style>
+    :root{
+      --bg-0:#0C0F14;--bg-1:#11151C;
+      --navy-300:#33436E;--navy-500:#16305F;--navy-700:#0A2453;--navy-900:#071736;
+      --white:#FFFFFF;--fg-0:#FFFFFF;--fg-1:#F2F4F8;
+      --fg-2:rgba(242,244,248,0.72);--fg-3:rgba(242,244,248,0.45);
+      --border-subtle:rgba(255,255,255,0.10);--border-strong:rgba(255,255,255,0.24);
+      --surface-card:#121826;--surface-raised:#16203A;
+      --text-heading:var(--fg-0);--text-body:var(--fg-2);--text-muted:var(--fg-3);
+      --font-body:'Jost',sans-serif;
+      --font-accent:'Cormorant Garamond',Georgia,serif;
+      --fs-body:17px;--fs-small:14px;
+      --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:24px;
+      --sp-6:32px;--sp-7:48px;--sp-8:64px;--sp-9:96px;
+      --container:1200px;
+      --ease:cubic-bezier(0.4,0,0.2,1);
+      --ease-out:cubic-bezier(0.16,1,0.3,1);
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    body{
+      margin:0;background:var(--bg-0);color:var(--text-body);
+      font-family:var(--font-body);font-size:var(--fs-body);line-height:1.7;
+      font-weight:300;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+    }
+    img{max-width:100%}
+    a{color:var(--fg-1)}
+    a:hover{color:var(--fg-0)}
+    .container{width:100%;max-width:var(--container);margin:0 auto;padding:0 var(--sp-5)}
+    @media(min-width:768px){.container{padding:0 var(--sp-6)}}
+
+    .btn{
+      position:relative;display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-3);
+      min-height:54px;padding:var(--sp-4) var(--sp-7);
+      background:rgba(255,255,255,0.10);
+      -webkit-backdrop-filter:blur(14px) saturate(1.5);backdrop-filter:blur(14px) saturate(1.5);
+      color:var(--fg-0);
+      font-family:var(--font-body);font-size:13px;font-weight:500;
+      letter-spacing:0.14em;text-transform:uppercase;text-decoration:none;
+      border:1px solid rgba(255,255,255,0.28);border-radius:999px;cursor:pointer;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,0.35),inset 0 -1px 0 rgba(255,255,255,0.06),0 8px 24px rgba(0,0,0,0.35);
+      overflow:hidden;
+      transition:transform 300ms var(--ease-out),box-shadow 300ms var(--ease),background 300ms var(--ease),border-color 300ms var(--ease);
+    }
+    .btn::before{
+      content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;
+      background:linear-gradient(105deg,transparent,rgba(255,255,255,0.35),transparent);
+      transform:skewX(-20deg);pointer-events:none;transition:left 650ms var(--ease);
+    }
+    .btn:hover{
+      background:rgba(255,255,255,0.17);color:var(--fg-0);
+      border-color:rgba(255,255,255,0.5);transform:translateY(-2px);
+    }
+    .btn:hover::before{left:125%}
+    .btn--outline{background:rgba(255,255,255,0.05);border-color:var(--border-strong)}
+    .btn--outline:hover{background:rgba(255,255,255,0.12)}
+    .btn--sm{min-height:44px;padding:var(--sp-3) var(--sp-5);font-size:11px}
+    .btn[disabled]{opacity:.5;cursor:default;transform:none}
+
+    /* Cabeçalho simples */
+    .header{
+      position:sticky;top:0;z-index:50;
+      background:rgba(12,15,20,0.92);border-bottom:1px solid var(--border-subtle);
+      -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    }
+    .header-in{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-4);min-height:88px}
+    .logo-link{display:inline-flex;align-items:center}
+    .logo-img{display:block;height:60px;width:auto}
+    @media(min-width:1024px){.logo-img{height:72px}}
+
+    /* Documento */
+    .doc{padding:var(--sp-8) 0 var(--sp-9)}
+    .doc-inner{max-width:760px;margin:0 auto}
+    .eyebrow{
+      display:inline-block;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;
+      color:var(--fg-3);margin:0 0 var(--sp-4);
+    }
+    h1{
+      font-family:var(--font-accent);font-weight:500;line-height:1.12;
+      font-size:clamp(34px,6vw,54px);color:var(--text-heading);margin:0 0 var(--sp-4);
+    }
+    .lead{font-size:19px;color:var(--fg-1);margin:0 0 var(--sp-5)}
+    .updated{font-size:var(--fs-small);color:var(--text-muted);margin:0 0 var(--sp-7)}
+    h2{
+      font-family:var(--font-accent);font-weight:500;line-height:1.2;
+      font-size:clamp(24px,3.6vw,32px);color:var(--text-heading);
+      margin:var(--sp-8) 0 var(--sp-4);
+      padding-top:var(--sp-6);border-top:1px solid var(--border-subtle);
+    }
+    h3{
+      font-family:var(--font-body);font-weight:500;font-size:16px;
+      letter-spacing:0.04em;color:var(--fg-1);margin:var(--sp-6) 0 var(--sp-3);
+    }
+    p{margin:0 0 var(--sp-4)}
+    ul{margin:0 0 var(--sp-4);padding-left:var(--sp-5)}
+    li{margin-bottom:var(--sp-2)}
+    strong{color:var(--fg-1);font-weight:500}
+    address{font-style:normal;margin-bottom:var(--sp-4)}
+
+    .callout{
+      background:var(--surface-card);border:1px solid var(--border-subtle);
+      border-radius:16px;padding:var(--sp-5);margin:0 0 var(--sp-5);
+    }
+    .callout p:last-child{margin-bottom:0}
+
+    .table-wrap{overflow-x:auto;margin:0 0 var(--sp-5)}
+    table{border-collapse:collapse;width:100%;min-width:520px;font-size:var(--fs-small)}
+    th,td{text-align:left;padding:var(--sp-3);border-bottom:1px solid var(--border-subtle);vertical-align:top}
+    th{color:var(--fg-1);font-weight:500;letter-spacing:0.06em;text-transform:uppercase;font-size:11px}
+    code{
+      font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:0.9em;
+      background:rgba(255,255,255,0.07);padding:2px 6px;border-radius:5px;color:var(--fg-1);
+    }
+
+    .toc{margin:0 0 var(--sp-7)}
+    .toc ol{margin:0;padding-left:var(--sp-5);font-size:var(--fs-small)}
+    .toc a{text-decoration:none;color:var(--fg-2)}
+    .toc a:hover{color:var(--fg-0);text-decoration:underline}
+
+    .consent-box{margin-top:var(--sp-5)}
+    .consent-msg{font-size:var(--fs-small);color:var(--fg-1);margin-top:var(--sp-3)}
+
+    .footer{border-top:1px solid var(--border-subtle);padding:var(--sp-7) 0;background:var(--bg-1)}
+    .footer-in{display:flex;flex-wrap:wrap;gap:var(--sp-4);align-items:center;justify-content:space-between}
+    .footer p{margin:0;font-size:13px;color:var(--text-muted)}
+    .footer a{font-size:13px;color:var(--fg-2);text-decoration:none}
+    .footer a:hover{color:var(--fg-0)}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+  </style>
+</head>
+<body>
+
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5H43TLN7" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <header class="header">
+    <div class="container header-in">
+      <a class="logo-link" href="/" aria-label="Gaspar Lopes Alfaiataria, início">
+        <img class="logo-img" src="assets/logo/gaspar-lopes-logo.png" alt="Gaspar Lopes Alfaiataria" width="360" height="360">
+      </a>
+      <a class="btn btn--sm btn--outline" href="/">Voltar ao site</a>
+    </div>
+  </header>
+
+  <main class="doc">
+    <div class="container">
+      <div class="doc-inner">
+
+        <p class="eyebrow">Documento legal</p>
+        <h1>Política de Privacidade</h1>
+        <p class="lead">Esta página explica, sem rodeio, quais informações este site coleta de quem o visita, para que elas servem e o que você pode pedir a qualquer momento.</p>
+        <p class="updated">Vigente desde 8 de setembro de 2026.</p>
+
+        <nav class="toc" aria-label="Sumário">
+          <ol>
+            <li><a href="#responsavel">Quem é o responsável</a></li>
+            <li><a href="#resumo">Resumo em três linhas</a></li>
+            <li><a href="#coletamos">O que coletamos</a></li>
+            <li><a href="#nao-coletamos">O que não coletamos</a></li>
+            <li><a href="#bases">Por que podemos coletar</a></li>
+            <li><a href="#cookies">Cookies e armazenamento no seu navegador</a></li>
+            <li><a href="#compartilhamento">Com quem compartilhamos</a></li>
+            <li><a href="#prazo">Por quanto tempo guardamos</a></li>
+            <li><a href="#direitos">Seus direitos</a></li>
+            <li><a href="#seguranca">Segurança</a></li>
+            <li><a href="#criancas">Crianças e adolescentes</a></li>
+            <li><a href="#mudancas">Mudanças nesta política</a></li>
+          </ol>
+        </nav>
+
+        <h2 id="responsavel">1. Quem é o responsável</h2>
+        <p>A <strong>Gaspar Lopes Alfaiataria</strong> é a controladora dos dados tratados neste site, nos termos da Lei Geral de Proteção de Dados (Lei 13.709/2018).</p>
+        <address>
+          Rua 104, 234, Setor Sul<br>
+          Goiânia, GO, CEP 74083-300<br>
+          WhatsApp: <a href="https://wa.me/5562999981896">(62) 99998-1896</a>
+        </address>
+        <p>Para qualquer assunto relacionado a esta política, inclusive os pedidos descritos no item 9, fale conosco pelo WhatsApp acima. É o nosso canal oficial de atendimento e também o canal para exercer seus direitos.</p>
+        <!-- [PREENCHER quando o cliente informar]: razão social completa, CNPJ e,
+             se houver, e-mail do encarregado (DPO). Não inventar nenhum dos três. -->
+
+        <h2 id="resumo">2. Resumo em três linhas</h2>
+        <div class="callout">
+          <p>Não pedimos cadastro, não temos login e não vendemos dados de ninguém.</p>
+          <p>Medimos de forma anônima como as pessoas usam a página, para saber o que funciona e o que precisa melhorar.</p>
+          <p>Cookies de análise e de publicidade do Google só passam a funcionar depois que você clica em <strong>Aceitar</strong> no aviso que aparece na primeira visita.</p>
+        </div>
+
+        <h2 id="coletamos">3. O que coletamos</h2>
+
+        <h3>3.1. Medição própria e anônima</h3>
+        <p>Assim que a página abre, o nosso próprio sistema de medição registra a visita de forma anônima. Ele funciona mesmo antes de você responder ao aviso de cookies, porque não usa cookies e não identifica ninguém. São registrados:</p>
+        <ul>
+          <li>página aberta, momento da visita e tempo de leitura;</li>
+          <li>até onde a página foi rolada e quais seções foram vistas;</li>
+          <li>cliques em botões, filtros da coleção e perguntas frequentes abertas;</li>
+          <li>cliques nos botões de WhatsApp e de Instagram;</li>
+          <li>tipo de aparelho, navegador e sistema operacional, deduzidos das informações que o próprio navegador envia;</li>
+          <li>cidade, estado e país aproximados, informados pelo servidor que hospeda o site;</li>
+          <li>de onde você chegou: mecanismo de busca, rede social, link direto ou anúncio, incluindo os parâmetros de campanha presentes no endereço.</li>
+        </ul>
+
+        <h3>3.2. Ferramentas do Google</h3>
+        <p>Usamos o Google Tag Manager para carregar o Google Analytics e o Google Ads, que medem o desempenho da página e das nossas campanhas. Enquanto você não aceita o aviso de cookies, essas ferramentas operam em modo restrito, sem gravar cookies e sem construir perfil de publicidade. Se você aceitar, elas passam a usar cookies próprios do Google para medir visitas e conversões e para mostrar nossos anúncios a quem já visitou o site.</p>
+
+        <h3>3.3. Conversas no WhatsApp</h3>
+        <p>Todos os botões deste site levam a uma conversa no WhatsApp. Registramos apenas <strong>o clique</strong>, nunca o conteúdo da conversa. A partir do momento em que a conversa começa valem as regras do próprio WhatsApp, e as informações que você escolher enviar, como nome, medidas ou preferências, são usadas só para atender ao seu pedido e ficam guardadas no aparelho de quem atende.</p>
+
+        <h2 id="nao-coletamos">4. O que não coletamos</h2>
+        <ul>
+          <li>Não guardamos o seu endereço de IP.</li>
+          <li>Não usamos cookies na medição própria descrita no item 3.1.</li>
+          <li>Não coletamos nome, CPF, e-mail, telefone nem endereço por meio deste site, porque não existe formulário aqui.</li>
+          <li>Não tratamos dados sensíveis, como saúde, religião, opinião política ou biometria.</li>
+          <li>Não vendemos, alugamos nem cedemos dados para terceiros.</li>
+          <li>Não tomamos decisões automatizadas que afetem você.</li>
+        </ul>
+
+        <h2 id="bases">5. Por que podemos coletar</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Tratamento</th><th>Base legal (LGPD, art. 7)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Medição própria e anônima do uso da página</td><td>Legítimo interesse, com dados anonimizados e sem identificação de pessoas</td></tr>
+              <tr><td>Cookies de análise e de publicidade do Google</td><td>Consentimento, dado no aviso de cookies e revogável a qualquer tempo</td></tr>
+              <tr><td>Atendimento iniciado por você no WhatsApp</td><td>Procedimentos preliminares relacionados a um contrato, a seu pedido</td></tr>
+              <tr><td>Registros técnicos de funcionamento e segurança do site</td><td>Cumprimento de obrigação legal e legítimo interesse</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 id="cookies">6. Cookies e armazenamento no seu navegador</h2>
+        <p>Este site guarda três itens no armazenamento local do seu navegador. Eles não são cookies de rastreamento entre sites e não saem do seu aparelho por conta própria:</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Item</th><th>Para que serve</th><th>Validade</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>gl-consent</code></td><td>Lembra a sua escolha no aviso de cookies, para não perguntar de novo</td><td>Até você limpar os dados do site</td></tr>
+              <tr><td><code>gl-s</code></td><td>Número aleatório que agrupa os cliques de uma mesma visita</td><td>A visita atual, renovada após 30 minutos parado</td></tr>
+              <tr><td><code>gl-v</code></td><td>Número aleatório que permite saber se um visitante é novo ou recorrente, sem dizer quem é</td><td>13 meses</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Se você escolher <strong>Só o essencial</strong> no aviso, o item <code>gl-v</code> não é criado e a medição passa a enxergar cada visita como se fosse a primeira. Os cookies do Google Analytics e do Google Ads só são gravados se você escolher <strong>Aceitar</strong>.</p>
+
+        <h3>Mudar de ideia</h3>
+        <p>Você pode revogar a sua escolha quando quiser. O botão abaixo apaga a resposta guardada e o identificador de visitante deste navegador. Na próxima vez que abrir a página inicial, o aviso aparece de novo e você decide outra vez.</p>
+        <div class="consent-box">
+          <button class="btn btn--outline btn--sm" type="button" id="reset-consent">Rever minha escolha de cookies</button>
+          <p class="consent-msg" id="reset-msg" hidden>Pronto. Sua escolha foi apagada deste navegador e o aviso vai aparecer novamente na página inicial.</p>
+        </div>
+
+        <h2 id="compartilhamento">7. Com quem compartilhamos</h2>
+        <p>Compartilhamos apenas o necessário para o site funcionar e para medir os resultados:</p>
+        <ul>
+          <li><strong>Google</strong> (Tag Manager, Analytics e Ads), para medição e publicidade;</li>
+          <li><strong>Vercel</strong>, empresa que hospeda o site e o entrega ao seu navegador;</li>
+          <li><strong>Supabase</strong>, banco de dados onde a medição anônima fica guardada;</li>
+          <li><strong>WhatsApp</strong>, do grupo Meta, quando você inicia uma conversa conosco;</li>
+          <li><strong>autoridades públicas</strong>, se houver ordem judicial ou obrigação legal.</li>
+        </ul>
+        <p>Essas empresas têm servidores fora do Brasil, o que caracteriza transferência internacional de dados, permitida pelo artigo 33 da LGPD. Elas atuam como operadoras, seguindo as nossas instruções e as próprias políticas de privacidade delas.</p>
+
+        <h2 id="prazo">8. Por quanto tempo guardamos</h2>
+        <p>Os registros anônimos de navegação ficam guardados enquanto forem úteis para acompanhar o desempenho do site e das campanhas. O identificador de visitante expira sozinho em 13 meses. As conversas de WhatsApp permanecem no aparelho de quem atende pelo tempo necessário ao atendimento e ao histórico do pedido. Você pode pedir a exclusão a qualquer momento, conforme o item seguinte.</p>
+
+        <h2 id="direitos">9. Seus direitos</h2>
+        <p>A LGPD garante a você, a qualquer momento e sem custo, o direito de:</p>
+        <ul>
+          <li>confirmar se tratamos dados seus e acessar esses dados;</li>
+          <li>corrigir dados incompletos, inexatos ou desatualizados;</li>
+          <li>pedir anonimização, bloqueio ou eliminação de dados desnecessários ou tratados fora da lei;</li>
+          <li>pedir a portabilidade a outro fornecedor;</li>
+          <li>saber com quem compartilhamos seus dados;</li>
+          <li>revogar o consentimento, do jeito descrito no item 6;</li>
+          <li>se opor a um tratamento e reclamar à Autoridade Nacional de Proteção de Dados.</li>
+        </ul>
+        <p>Para exercer qualquer um deles, escreva para o nosso <a href="https://wa.me/5562999981896?text=Ol%C3%A1!%20Tenho%20uma%20solicita%C3%A7%C3%A3o%20sobre%20privacidade%20e%20prote%C3%A7%C3%A3o%20de%20dados.">WhatsApp (62) 99998-1896</a>. Respondemos no menor prazo possível. Como a medição deste site é anônima, em alguns casos não conseguimos ligar um registro a você especificamente, e nessa hipótese explicaremos o motivo.</p>
+
+        <h2 id="seguranca">10. Segurança</h2>
+        <p>O site é servido apenas por conexão criptografada (HTTPS). O banco de dados da medição fica fechado para o público: o navegador nunca o acessa direto e a leitura depende de credencial usada só no servidor. O painel interno de resultados é protegido por senha e não é indexado por buscadores. Nenhum sistema é imune a incidentes, e, se algum acontecer com risco relevante, comunicaremos os titulares e a autoridade, como manda a lei.</p>
+
+        <h2 id="criancas">11. Crianças e adolescentes</h2>
+        <p>Este site é dirigido a maiores de 18 anos interessados em alfaiataria sob medida. Não coletamos intencionalmente dados de crianças e adolescentes. Se souber de algum registro nessa situação, avise pelo WhatsApp que faremos a exclusão.</p>
+
+        <h2 id="mudancas">12. Mudanças nesta política</h2>
+        <p>Se mudarmos a forma de tratar dados, atualizamos este texto e a data de vigência no topo da página. Vale sempre a versão publicada aqui.</p>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-in">
+      <p>&copy; Gaspar Lopes. Todos os direitos reservados.</p>
+      <p><a href="/">Voltar ao site</a></p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var btn = document.getElementById('reset-consent');
+      var msg = document.getElementById('reset-msg');
+      if (!btn) return;
+      btn.addEventListener('click', function () {
+        try {
+          localStorage.removeItem('gl-consent');
+          localStorage.removeItem('gl-v');
+          sessionStorage.removeItem('gl-s');
+        } catch (e) {}
+        if (msg) msg.hidden = false;
+        btn.disabled = true;
+      });
+    })();
+  </script>
+</body>
+</html>
