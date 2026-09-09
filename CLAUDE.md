@@ -21,7 +21,7 @@ Landing page de conversão da **Gaspar Lopes Alfaiataria** (alfaiataria sob medi
 - Animações vanilla: scroll-reveal com stagger, marquee infinito, hover zoom, carrosséis com autoplay (respeitam `prefers-reduced-motion`).
 
 ## Seções (ordem)
-Header fixo (transparente→sólido) · Hero full-bleed (foto ROD02606) · Marquee · Por que sob medida (3 pilares, ícones) · Faixa punho bordado · Vitrine 6 categorias do PRD (cards clicáveis→WhatsApp) · **Coleção** (12 peças, filtros por categoria, nomes = nomes dos arquivos do cliente) · Comece pelo WhatsApp (3 passos, só copy existente) · Investimento (**SEM preços** — decisão do usuário; versão com preços comentada) · Quem faz (carrossel 4 retratos) · Destaques (carrossel 10 peças) · FAQ (accordion) · CTA final · Footer 3 colunas · WA float · Banner de cookies.
+Header fixo (transparente→sólido) · Hero full-bleed (foto ROD02606) · Marquee · Por que sob medida (3 pilares, ícones) · Faixa punho bordado · Vitrine 6 categorias do PRD (cards clicáveis→WhatsApp) · **Coleção** (12 peças, filtros por categoria, nomes = nomes dos arquivos do cliente) · Comece pelo WhatsApp (3 passos, só copy existente) · Investimento (**SEM preços** — decisão do usuário; versão com preços comentada) · Quem faz (carrossel 3 retratos) · Destaques (carrossel 10 peças) · FAQ (accordion) · CTA final · Footer 3 colunas · WA float · Banner de cookies.
 **Ocultas (comentadas) até dados reais**: Como funciona (processo do atelier), Depoimentos, 2 FAQs (prazo / presencial), história do Gaspar (fonte: revista).
 
 ## Troca de fotos (05/09/2026, pedido do cliente via "MUDANÇAS DE FOTOS.pdf")

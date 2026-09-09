@@ -15,8 +15,7 @@ const OUT = path.join(ROOT, 'assets', 'img');
 const JOBS = [
   // Hero: Gaspar ajustando o punho (retrato real)
   { slug: 'hero', src: 'Fotos Gaspar/Hero - Gaspar costume cinza.jpg', widths: [480, 800, 1200, 1600], aspect: 4 / 5, crop: { left: 0, top: 0.053, width: 0.694, height: 0.579 } },
-  // Autoridade (carrossel "Quem faz" — 4 retratos, crop uniforme 4:5)
-  { slug: 'autoridade-1', src: 'Fotos Gaspar/ROD02614.JPG', widths: [480, 800, 1200], aspect: 4 / 5, pos: 'top' },      // pensativo, sentado
+  // Autoridade (carrossel "Quem faz" — 3 retratos, crop uniforme 4:5)
   { slug: 'autoridade-2', src: 'Fotos Gaspar/ROD02652.JPG', widths: [480, 800, 1200], aspect: 4 / 5 },                  // sorriso, mão no queixo
   { slug: 'autoridade-3', src: 'Fotos Gaspar/ROD02640.JPG', widths: [480, 800, 1200], aspect: 4 / 5, pos: 'top' },      // em pé, mãos no bolso
   { slug: 'autoridade-4', src: 'Fotos Gaspar/ROD02627.JPG', widths: [480, 800, 1200], aspect: 4 / 5 },                  // sentado, olhar direto
