@@ -2,7 +2,7 @@
  * Gera as imagens otimizadas da LP (WebP + fallback JPG) em assets/img/.
  * Fontes: pastas originais "Fotos Gaspar", "Fotos - Produtos" e "Logo" (não são modificadas).
  * Uso: npm run images            → gera tudo
- *      npm run images destaque   → só os slugs que começam com "destaque" (pula OG/logo)
+ *      npm run images colecao    → só os slugs que começam com "colecao" (pula OG/logo)
  */
 import sharp from 'sharp';
 import { mkdir } from 'node:fs/promises';
@@ -13,51 +13,40 @@ const OUT = path.join(ROOT, 'assets', 'img');
 
 // slug → { src, widths, aspect (l/a opcional p/ crop cover), crop (recorte prévio em frações 0-1, p/ aproximar) }
 const JOBS = [
-  // Hero: Gaspar ajustando o punho (retrato real)
-  { slug: 'hero', src: 'Fotos Gaspar/Hero - Gaspar costume cinza.jpg', widths: [480, 800, 1200, 1600], aspect: 4 / 5, crop: { left: 0, top: 0.053, width: 0.694, height: 0.579 } },
+  // Hero: Gaspar de costume cinza (retrato). Pedido do cliente (11/09/2026): centralizar a PEÇA, não o rosto.
+  // Recorte 4:5 de largura total; o costume fica no centro e o object-position (CSS) puxa o quadro
+  // para o tronco no desktop, deixando o rosto fora da dobra.
+  { slug: 'hero', src: 'Fotos Gaspar/Hero - Gaspar costume cinza.jpg', widths: [480, 800, 1200, 1600], aspect: 4 / 5, crop: { left: 0, top: 0.12, width: 1, height: 0.8333 } },
   // Autoridade (carrossel "Quem faz" — 3 retratos, crop uniforme 4:5)
   { slug: 'autoridade-2', src: 'Fotos Gaspar/ROD02652.JPG', widths: [480, 800, 1200], aspect: 4 / 5 },                  // sorriso, mão no queixo
   { slug: 'autoridade-3', src: 'Fotos Gaspar/ROD02640.JPG', widths: [480, 800, 1200], aspect: 4 / 5, pos: 'top' },      // em pé, mãos no bolso
   { slug: 'autoridade-4', src: 'Fotos Gaspar/ROD02627.JPG', widths: [480, 800, 1200], aspect: 4 / 5 },                  // sentado, olhar direto
   // Vitrine (6 categorias do PRD) — crop uniforme 4:5
   { slug: 'produto-camisas', src: 'Fotos - Produtos/Camisa/Camisa branca social.jpg', widths: [480, 800], aspect: 4 / 5 },
-  { slug: 'produto-ternos', src: 'Fotos - Produtos/Ternos/Terno bege - cerimonia.jpg', widths: [480, 800], aspect: 4 / 5, pos: 'top' },
+  { slug: 'produto-ternos', src: 'Fotos - Produtos/Ternos/Terno azul claro - cerimonia.jpg', widths: [480, 800], aspect: 4 / 5, pos: 'centre' },
   { slug: 'produto-costumes', src: 'Fotos - Produtos/Costumes/Costume azul - externo.jpg', widths: [480, 800], aspect: 4 / 5, crop: { left: 0.334, top: 0.342, width: 0.512, height: 0.427 } },
   { slug: 'produto-paletos', src: 'Fotos - Produtos/Paletó/Paletó 2 botões.jpg', widths: [480, 800], aspect: 4 / 5 },
   { slug: 'produto-calcas', src: 'Fotos - Produtos/Calças/Calça cós duplo.jpg', widths: [480, 800], aspect: 4 / 5 },
   { slug: 'produto-coletes', src: 'Fotos - Produtos/Colete/Colete marrom trespassado.jpg', widths: [480, 800], aspect: 4 / 5 },
   // Coleção completa (galeria com filtro por categoria) — nomes reais dos arquivos do cliente
   { slug: 'colecao-costume-6botoes', src: 'Fotos - Produtos/Costumes/Costume 6 botões.jpg', widths: [480, 800], aspect: 4 / 5 },
-  { slug: 'colecao-jaquetao-6botoes', src: 'Fotos - Produtos/Jaquetão/Jaquetão 6 botões.jpg', widths: [480, 800], aspect: 4 / 5 },
+  { slug: 'colecao-jaquetao-6botoes', src: 'Fotos - Produtos/Jaquetão/Jaquetão 6 botões - verde.jpg', widths: [480, 800], aspect: 4 / 5, pos: 'centre' },
   { slug: 'colecao-jaquetao-6botoes-b', src: 'Fotos - Produtos/Jaquetão/Jaquetão 6 botões(3).jpg', widths: [480, 800], aspect: 4 / 5 },
   { slug: 'colecao-kaban', src: 'Fotos - Produtos/Kaban/KABAN.jpg', widths: [480, 800], aspect: 4 / 5 },
   { slug: 'colecao-fraque', src: 'Fotos - Produtos/Fraque/Fraque completo.jpg', widths: [480, 800], aspect: 4 / 5 },
   { slug: 'colecao-paleto-linho', src: 'Fotos - Produtos/Paletó/Paletó linho azul - tradicional (1).jpg', widths: [480, 800], aspect: 4 / 5 },
   { slug: 'colecao-blazer-transpassado', src: 'Fotos - Produtos/Paletó/Blazer 1 botão- transpassado.jpg', widths: [480, 800], aspect: 4 / 5 },
-  { slug: 'colecao-forro-paleto', src: 'Fotos - Produtos/Paletó/Forro paletó linho azul.jpg', widths: [480, 800], aspect: 4 / 5 },
   { slug: 'colecao-colete-sarja', src: 'Fotos - Produtos/Colete/Colete jaquetão sarja.jpg', widths: [480, 800], aspect: 4 / 5 },
-  { slug: 'colecao-calca-ghurka', src: 'Fotos - Produtos/Calças/Calça - Ghurka.jpg', widths: [480, 800], aspect: 4 / 5 },
-  { slug: 'colecao-calca-tradicional', src: 'Fotos - Produtos/Calças/Calça tradicional_.jpg', widths: [480, 800], aspect: 4 / 5 },
   { slug: 'colecao-camisa-encorpada', src: 'Fotos - Produtos/Camisa/Camisa encorpada.jpg', widths: [480, 800], aspect: 4 / 5 },
-  { slug: 'colecao-punho-bordado', src: 'Fotos - Produtos/Punhos/Punho duplo camisa - bordado.jpg', widths: [480, 800], aspect: 4 / 5 },
+  { slug: 'colecao-punho-duplo', src: 'Fotos - Produtos/Punhos/Punho duplo.jpg', widths: [480, 800], aspect: 4 / 5, pos: 'centre' },
   { slug: 'colecao-camiseta-polo', src: 'Fotos - Produtos/Camiseta/Camiseta polo preta.jpg', widths: [480, 800], aspect: 4 / 5 },
-  // Faixa full-width de detalhe artesanal (punho bordado) e fundo do CTA final (paletó em fundo escuro)
-  { slug: 'banda-detalhe', src: 'Fotos Gaspar/Detalhe - lapela costume azul.jpg', widths: [800, 1600], aspect: 21 / 9, pos: 'centre' },
+  // Faixa full-width de detalhe artesanal (lapela com pesponto à mão; 16:9, sem degradê por pedido do cliente)
+  // e fundo do CTA final (paletó em fundo escuro)
+  { slug: 'banda-detalhe', src: 'Fotos Gaspar/Detalhe - lapela costume azul.jpg', widths: [800, 1600], aspect: 16 / 9, pos: 'centre' },
   { slug: 'cta-fundo', src: 'Fotos - Produtos/Paletó/Paletó 2 botões.jpg', widths: [800, 1600], aspect: 16 / 9 },
-  // Destaques (carrossel com autoplay) — fotos do cliente que NÃO aparecem nas outras seções
-  { slug: 'destaque-jaquetao-risca-giz', src: 'Fotos - Produtos/Jaquetão/Jaquetão Risca de giz.jpg', widths: [480, 800], aspect: 4 / 5 },
-  { slug: 'destaque-paleto-1botao', src: 'Fotos - Produtos/Paletó/Paletó 1 botão.jpg', widths: [480, 800], aspect: 4 / 5 },
-  { slug: 'destaque-colete-principe-gales', src: 'Fotos - Produtos/Colete/Colete feminino - principe de gales azul.jpg', widths: [480, 800], aspect: 4 / 5 },
-  { slug: 'destaque-jaquetao-6botoes-offwhite', src: 'Fotos - Produtos/Jaquetão/Jaquetão 6 botões(2).jpg', widths: [480, 800], aspect: 4 / 5 },
-  { slug: 'destaque-camisa-encorpada', src: 'Fotos - Produtos/Camisa/Camisa encorpada(1).jpg', widths: [480, 800], aspect: 4 / 5 },
-  { slug: 'destaque-kaban', src: 'Fotos - Produtos/Kaban/KABAN(1).jpg', widths: [480, 800], aspect: 4 / 5 },
-  { slug: 'destaque-paleto-2botoes', src: 'Fotos - Produtos/Costumes/Paletó 2 botões_.jpg', widths: [480, 800], aspect: 4 / 5 },
-  { slug: 'destaque-gola-polo', src: 'Fotos - Produtos/Camiseta/Gola Polo.jpg', widths: [480, 800], aspect: 4 / 5 },
-  { slug: 'destaque-jaquetao-6botoes-oliva', src: 'Fotos - Produtos/Jaquetão/Jaquetão 6 botões(1).jpg', widths: [480, 800], aspect: 4 / 5 },
-  { slug: 'destaque-camiseta-gola-o', src: 'Fotos - Produtos/Camiseta/Camiseta _O_ média.jpg', widths: [480, 800], aspect: 4 / 5 },
 ];
 
-// Filtro opcional por prefixo de slug (ex.: `npm run images destaque`)
+// Filtro opcional por prefixo de slug (ex.: `npm run images colecao`)
 const ONLY = process.argv[2];
 const jobs = ONLY ? JOBS.filter((j) => j.slug.startsWith(ONLY)) : JOBS;
 

@@ -11,11 +11,11 @@ nas contas Google e o preenchimento de 2 placeholders no código.
 
 | Evento (`dataLayer`) | Quando dispara | Parâmetros | Uso |
 |---|---|---|---|
-| `whatsapp_click` | Clique em QUALQUER link `wa.me` | `source` (header, hero, pecas, colecao, comecar, investimento, autoridade, destaques, cta-final, footer, flutuante), `label` (texto do botão ou categoria da peça, ex.: "Camisas"), `page` | **Conversão principal** no Ads + evento-chave no GA4 |
+| `whatsapp_click` | Clique em QUALQUER link `wa.me` | `source` (header, hero, pecas, colecao, comecar, investimento, autoridade, cta-final, footer, flutuante), `label` (texto do botão ou categoria da peça, ex.: "Camisas"), `page` | **Conversão principal** no Ads + evento-chave no GA4 |
 | `social_click` | Clique no Instagram (footer) | `network` = instagram, `source`, `page` | GA4 |
 | `collection_filter` | Clique num filtro da Coleção | `filter` (todas, ternos, paletos, camisas, calcas, especiais) | GA4 (interesse por categoria) |
 | `faq_open` | Abriu uma pergunta do FAQ | `question` | GA4 (objeções) |
-| `section_view` | Seção ficou 40% visível (1x por seção) | `section` (hero, sob-medida, pecas, colecao, comecar, investimento, autoridade, destaques, faq, cta-final) | GA4 (funil de leitura) |
+| `section_view` | Seção ficou 40% visível (1x por seção) | `section` (hero, sob-medida, pecas, colecao, comecar, investimento, autoridade, faq, cta-final) | GA4 (funil de leitura) |
 | `cookie_consent` | Clique no banner de cookies | `consent_choice` = `accepted` \| `essential` | Taxa de aceite |
 
 Além desses, o container adiciona sem código: **page_view** (Google Tag),

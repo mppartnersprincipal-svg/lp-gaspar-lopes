@@ -112,13 +112,10 @@
 }
 .pillar p { margin: 0; font-size: var(--fs-body); }
 
-/* ---------- Faixa editorial full-bleed ---------- */
-.band { position: relative; height: clamp(180px, 32vw, 380px); overflow: hidden; }
-.band img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.band::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, var(--bg-0) 0%, rgba(12,15,20,0.1) 30%, rgba(12,15,20,0.1) 70%, var(--bg-0) 100%);
-}
+/* ---------- Faixa editorial full-bleed ----------
+   Maior e sem degradê nas bordas (pedido do cliente, 11/09/2026). */
+.band { position: relative; height: clamp(240px, 50vw, 640px); overflow: hidden; }
+.band img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block; }
 
 /* ---------- Vitrine (6 categorias do PRD) ---------- */
 .showcase { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--sp-7) var(--sp-4); }
@@ -228,143 +225,6 @@
   font-family: var(--font-accent);
   font-size: 18px; font-style: italic;
   color: var(--fg-2);
-}
-
-/* ---------- Destaques: carrossel com autoplay ----------
-   Trilho nativo com scroll-snap (swipe no mobile, sem lib). O JS só
-   avança o índice, sincroniza os dots e pausa em hover/foco/fora da tela. */
-.carousel {
-  --gap: var(--sp-4);
-  --edge: max(var(--sp-5), calc((100% - var(--container)) / 2 + var(--sp-5)));
-  position: relative;
-  width: 100%;
-}
-@media (min-width: 768px) {
-  .carousel {
-    --gap: var(--sp-5);
-    --edge: max(var(--sp-6), calc((100% - var(--container)) / 2 + var(--sp-6)));
-  }
-}
-.carousel-track {
-  position: relative;
-  display: flex; gap: var(--gap);
-  padding: var(--sp-2) var(--edge);
-  overflow-x: auto; overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  scroll-padding-inline: var(--edge);
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-x: contain;
-  scrollbar-width: none;
-}
-.carousel-track::-webkit-scrollbar { display: none; }
-.carousel-track:focus-visible { outline: none; box-shadow: inset 0 0 0 1px var(--border-strong); }
-
-.carousel-slide {
-  flex: 0 0 min(78%, 360px);
-  margin: 0;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
-@media (min-width: 640px)  { .carousel-slide { flex-basis: calc((100% - var(--gap)) / 2); } }
-@media (min-width: 1024px) { .carousel-slide { flex-basis: calc((100% - 2 * var(--gap)) / 3); } }
-
-.carousel-slide picture {
-  display: block; overflow: hidden;
-  border-radius: 3px;
-  background: var(--surface-card);
-  position: relative;
-}
-.carousel-slide picture::after {
-  content: ""; position: absolute; inset: var(--sp-4);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 2px;
-  pointer-events: none;
-  opacity: 0; transition: opacity 400ms var(--ease);
-}
-.carousel-slide img {
-  display: block; width: 100%; height: auto; aspect-ratio: 4 / 5;
-  object-fit: cover;
-  transition: transform 800ms var(--ease);
-}
-.carousel-slide:hover img { transform: scale(1.04); }
-.carousel-slide:hover picture::after { opacity: 1; }
-
-.carousel-slide figcaption {
-  display: flex; gap: var(--sp-4); align-items: baseline;
-  border-top: 1px solid var(--border-subtle);
-  margin-top: var(--sp-5); padding-top: var(--sp-4);
-  transition: border-color 300ms var(--ease);
-}
-.carousel-slide:hover figcaption { border-top-color: var(--border-strong); }
-.carousel-slide h3 {
-  font-family: var(--font-accent);
-  font-size: clamp(19px, 2vw, 22px);
-  font-weight: 500; letter-spacing: 0.01em;
-  color: var(--text-heading);
-  margin: 0 0 var(--sp-1);
-}
-.carousel-slide figcaption p { margin: 0; font-size: 13px; color: var(--text-muted); letter-spacing: 0.02em; }
-
-/* Barra: dots com progresso do autoplay + controles */
-.carousel-bar {
-  display: flex; align-items: center; justify-content: space-between; gap: var(--sp-5);
-  margin-top: var(--sp-6);
-}
-.carousel-dots { display: flex; align-items: center; gap: var(--sp-2); flex-wrap: wrap; }
-.carousel-dot {
-  position: relative;
-  width: 8px; height: 8px; padding: 0;
-  border: 0; border-radius: 999px;
-  background: var(--border-strong);
-  cursor: pointer; overflow: hidden;
-  transition: width 350ms var(--ease-out), background 250ms var(--ease);
-}
-.carousel-dot::before { content: ""; position: absolute; inset: -8px; } /* área de toque */
-.carousel-dot:hover { background: var(--fg-2); }
-.carousel-dot.is-active { width: 40px; background: rgba(255,255,255,0.18); }
-.carousel-dot.is-active::after {
-  content: ""; position: absolute; inset: 0;
-  background: var(--fg-1);
-  transform-origin: left center;
-  transform: scaleX(0);
-  animation: dot-progress var(--interval, 4500ms) linear forwards;
-  animation-play-state: paused;
-}
-.carousel.is-playing .carousel-dot.is-active::after { animation-play-state: running; }
-@keyframes dot-progress { to { transform: scaleX(1); } }
-
-@media (max-width: 639px) {
-  .carousel-bar { gap: var(--sp-4); }
-  .carousel-dots { gap: 6px; }
-  .carousel-dot { width: 6px; height: 6px; }
-  .carousel-dot.is-active { width: 26px; }
-}
-
-.carousel-controls { display: flex; align-items: center; gap: var(--sp-2); flex: 0 0 auto; }
-.carousel-btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 46px; height: 46px;
-  background: rgba(255,255,255,0.05);
-  -webkit-backdrop-filter: blur(10px) saturate(1.4);
-  backdrop-filter: blur(10px) saturate(1.4);
-  border: 1px solid var(--border-subtle);
-  border-radius: 999px;
-  color: var(--fg-1);
-  cursor: pointer;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.15);
-  transition: background 250ms var(--ease), border-color 250ms var(--ease), transform 250ms var(--ease-out);
-}
-.carousel-btn:hover { background: rgba(255,255,255,0.12); border-color: var(--border-strong); transform: translateY(-2px); }
-.carousel-btn:active { transform: none; }
-.carousel-btn svg { width: 18px; height: 18px; }
-.carousel-btn .ico-pause, .carousel-btn .ico-play { display: none; }
-.carousel.is-playing .carousel-btn .ico-pause { display: block; }
-.carousel:not(.is-playing) .carousel-btn .ico-play { display: block; }
-
-@media (prefers-reduced-motion: reduce) {
-  .carousel-track { scroll-behavior: auto; }
-  .carousel-slide img { transition: none; }
-  .carousel-dot.is-active::after { animation: none; transform: scaleX(1); }
 }
 
 /* ---------- Como começar (passos) ---------- */

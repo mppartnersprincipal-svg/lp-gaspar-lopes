@@ -21,7 +21,8 @@ Landing page de conversão da **Gaspar Lopes Alfaiataria** (alfaiataria sob medi
 - Animações vanilla: scroll-reveal com stagger, marquee infinito, hover zoom, carrosséis com autoplay (respeitam `prefers-reduced-motion`).
 
 ## Seções (ordem)
-Header fixo (transparente→sólido) · Hero full-bleed (foto ROD02606) · Marquee · Por que sob medida (3 pilares, ícones) · Faixa punho bordado · Vitrine 6 categorias do PRD (cards clicáveis→WhatsApp) · **Coleção** (12 peças, filtros por categoria, nomes = nomes dos arquivos do cliente) · Comece pelo WhatsApp (3 passos, só copy existente) · Investimento (**SEM preços** — decisão do usuário; versão com preços comentada) · Quem faz (carrossel 3 retratos) · Destaques (carrossel 10 peças) · FAQ (accordion) · CTA final · Footer 3 colunas · WA float · Banner de cookies.
+Header fixo (transparente→sólido; menu mobile = painel navy com hairlines e item de WhatsApp) · Hero full-bleed centralizado (foto do Gaspar de costume cinza, peça no centro) · Marquee · Por que sob medida (3 pilares, ícones) · Faixa lapela (16:9, sem degradê) · Vitrine 6 categorias do PRD (cards clicáveis→WhatsApp) · **Coleção** (10 peças, filtros por categoria, nomes = nomes dos arquivos do cliente) · Comece pelo WhatsApp (3 passos, só copy existente) · Investimento (**SEM preços** — decisão do usuário; versão com preços comentada) · Quem faz (carrossel 3 retratos) · FAQ (accordion) · CTA final · Footer 3 colunas · WA float · Banner de cookies.
+**Removida em 11/09/2026 a pedido do cliente**: seção Destaques (carrossel de 10 peças). CSS/JS do carrossel e os arquivos `destaque-*` foram apagados; `api/dashboard.js` e `dashboard/index.html` mantêm o rótulo `destaques` só para ler sessões antigas.
 **Ocultas (comentadas) até dados reais**: Como funciona (processo do atelier), Depoimentos, 2 FAQs (prazo / presencial), história do Gaspar (fonte: revista).
 
 ## Troca de fotos (05/09/2026, pedido do cliente via "MUDANÇAS DE FOTOS.pdf")
@@ -37,7 +38,16 @@ Fontes novas: 4 vieram por link do Google Drive, 3 estavam embutidas no próprio
 | `colecao-camiseta-polo` (novo) | Camiseta polo preta | Drive → `Fotos - Produtos/Camiseta/Camiseta polo preta.jpg` |
 
 Também: título da Coleção passou de "Peças que já saíram do atelier" para **"Outras criações exclusivas"**; novo filtro **Camisetas** na Coleção (o único item é a polo).
-`optimize-images.mjs` ganhou a opção `crop` (recorte prévio em frações 0-1, ciente da orientação EXIF), usada para aproximar `produto-costumes` e para reenquadrar o `hero` (o Gaspar fica no terço direito, liberando a esquerda para a headline). Com a foto nova o `object-position` do hero mudou para `60% 0%` (base) e `78% 32%` (≥1024px).
+`optimize-images.mjs` ganhou a opção `crop` (recorte prévio em frações 0-1, ciente da orientação EXIF), usada para aproximar `produto-costumes` e para reenquadrar o `hero`.
+
+## 2ª rodada de mudanças (11/09/2026, "MUDANÇAS DE FOTOS - 2.pdf")
+- **Hero "mais limpo"** (referência: site Vasco Vasconcellos): conteúdo centralizado sobre a foto (badge com linhas dos dois lados, h1, linha fina, subtítulo, 1 botão), sem microcopy. Copy nova do cliente: h1 **"Gaspar Lopes, a sua referência em alfaiataria"**, sub **"Camisas, ternos e costumes confeccionados à mão, com exclusividade. Alfaiataria artesanal em Goiânia: sob medida, tecidos nobres e caimento perfeito."** Foto: mesma (costume cinza), recorte 4:5 de largura total (`crop {left:0, top:0.12, width:1, height:0.8333}`) com a **peça centralizada, não o rosto**; `object-position 50% 45%` (base) e `50% 60%` (≥1024px, o rosto fica fora da dobra no desktop).
+- **Menu mobile** no modelo pedido: painel `--navy-700` sob o header (header fica navy enquanto aberto), itens em caixa alta com hairlines, + "Perguntas frequentes" e item "Agendar um atendimento" com ícone do WhatsApp; ícone do botão vira X; fecha com Esc.
+- **Por que sob medida**: título → **"O feito à mão transforma tecido em identidade."**; lead "do seu tecido" → "do tecido".
+- **Faixa** (lapela): agora 16:9, altura `clamp(240px, 50vw, 640px)`, **sem degradê** ("tirar o contorno").
+- **Fotos**: `produto-ternos` → terno azul claro de cerimônia (embutida no PDF → `Fotos - Produtos/Ternos/Terno azul claro - cerimonia.jpg`); `colecao-jaquetao-6botoes` → jaquetão verde no manequim (Drive → `Fotos - Produtos/Jaquetão/Jaquetão 6 botões - verde.jpg`); `colecao-punho-bordado` → **`colecao-punho-duplo`** "Punho duplo" (embutida no PDF → `Fotos - Produtos/Punhos/Punho duplo.jpg`).
+- **Excluídas da Coleção**: Calça tradicional, Calça Ghurka, Forro de paletó em linho azul. O filtro "Calças & Coletes" virou **"Coletes"** (`data-filter="coletes"`, só o colete de sarja).
+- "Outras criações exclusivas" já estava publicado (o print do cliente era antigo).
 
 ## Dados reais já aplicados
 - Endereço: Rua 104, 234, Setor Sul, Goiânia, GO, CEP 74083-300 (footer `<address>`, JSON-LD, llms.txt).
