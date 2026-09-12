@@ -48,6 +48,7 @@ Também: título da Coleção passou de "Peças que já saíram do atelier" para
 - **Fotos**: `produto-ternos` → terno azul claro de cerimônia (embutida no PDF → `Fotos - Produtos/Ternos/Terno azul claro - cerimonia.jpg`); `colecao-jaquetao-6botoes` → jaquetão verde no manequim (Drive → `Fotos - Produtos/Jaquetão/Jaquetão 6 botões - verde.jpg`); `colecao-punho-bordado` → **`colecao-punho-duplo`** "Punho duplo" (embutida no PDF → `Fotos - Produtos/Punhos/Punho duplo.jpg`).
 - **Excluídas da Coleção**: Calça tradicional, Calça Ghurka, Forro de paletó em linho azul. O filtro "Calças & Coletes" virou **"Coletes"** (`data-filter="coletes"`, só o colete de sarja).
 - "Outras criações exclusivas" já estava publicado (o print do cliente era antigo).
+- **Quem faz (12/09/2026)**: carrossel com 3 retratos: sentado (`autoridade-4`, ROD02627, mantido), camisa e gravata em atendimento (`autoridade-5`, "WhatsApp Image 2026-09-11 at 13.57.58.jpeg") e com o diploma da Câmara (`autoridade-6`, "WhatsApp Image 2026-09-11 at 14.00.00.jpeg"). Os dois novos têm só 480/800 (originais de 1066 e 854px, não ampliar); `autoridade-2/3` apagados.
 
 ## Dados reais já aplicados
 - Endereço: Rua 104, 234, Setor Sul, Goiânia, GO, CEP 74083-300 (footer `<address>`, JSON-LD, llms.txt).

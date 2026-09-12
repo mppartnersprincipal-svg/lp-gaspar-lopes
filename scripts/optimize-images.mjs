@@ -17,10 +17,11 @@ const JOBS = [
   // Recorte 4:5 de largura total; o costume fica no centro e o object-position (CSS) puxa o quadro
   // para o tronco no desktop, deixando o rosto fora da dobra.
   { slug: 'hero', src: 'Fotos Gaspar/Hero - Gaspar costume cinza.jpg', widths: [480, 800, 1200, 1600], aspect: 4 / 5, crop: { left: 0, top: 0.12, width: 1, height: 0.8333 } },
-  // Autoridade (carrossel "Quem faz" — 3 retratos, crop uniforme 4:5)
-  { slug: 'autoridade-2', src: 'Fotos Gaspar/ROD02652.JPG', widths: [480, 800, 1200], aspect: 4 / 5 },                  // sorriso, mão no queixo
-  { slug: 'autoridade-3', src: 'Fotos Gaspar/ROD02640.JPG', widths: [480, 800, 1200], aspect: 4 / 5, pos: 'top' },      // em pé, mãos no bolso
+  // Autoridade (carrossel "Quem faz" — 3 retratos, crop uniforme 4:5). Troca de 12/09/2026: só o retrato sentado ficou;
+  // as fotos do WhatsApp têm 1066 e 854px de largura, por isso não geram a versão 1200 (não ampliar).
   { slug: 'autoridade-4', src: 'Fotos Gaspar/ROD02627.JPG', widths: [480, 800, 1200], aspect: 4 / 5 },                  // sentado, olhar direto
+  { slug: 'autoridade-5', src: 'Fotos Gaspar/WhatsApp Image 2026-09-11 at 13.57.58.jpeg', widths: [480, 800], aspect: 4 / 5, pos: 'centre' }, // camisa e gravata, em atendimento
+  { slug: 'autoridade-6', src: 'Fotos Gaspar/WhatsApp Image 2026-09-11 at 14.00.00.jpeg', widths: [480, 800], aspect: 4 / 5, pos: 'centre' }, // com o diploma da Câmara
   // Vitrine (6 categorias do PRD) — crop uniforme 4:5
   { slug: 'produto-camisas', src: 'Fotos - Produtos/Camisa/Camisa branca social.jpg', widths: [480, 800], aspect: 4 / 5 },
   { slug: 'produto-ternos', src: 'Fotos - Produtos/Ternos/Terno azul claro - cerimonia.jpg', widths: [480, 800], aspect: 4 / 5, pos: 'centre' },
