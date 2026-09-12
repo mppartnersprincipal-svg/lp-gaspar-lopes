@@ -35,7 +35,6 @@ const JOBS = [
   { slug: 'colecao-jaquetao-6botoes-b', src: 'Fotos - Produtos/Jaquetão/Jaquetão 6 botões(3).jpg', widths: [480, 800], aspect: 4 / 5 },
   { slug: 'colecao-kaban', src: 'Fotos - Produtos/Kaban/KABAN.jpg', widths: [480, 800], aspect: 4 / 5 },
   { slug: 'colecao-fraque', src: 'Fotos - Produtos/Fraque/Fraque completo.jpg', widths: [480, 800], aspect: 4 / 5 },
-  { slug: 'colecao-paleto-linho', src: 'Fotos - Produtos/Paletó/Paletó linho azul - tradicional (1).jpg', widths: [480, 800], aspect: 4 / 5 },
   { slug: 'colecao-blazer-transpassado', src: 'Fotos - Produtos/Paletó/Blazer 1 botão- transpassado.jpg', widths: [480, 800], aspect: 4 / 5 },
   { slug: 'colecao-colete-sarja', src: 'Fotos - Produtos/Colete/Colete jaquetão sarja.jpg', widths: [480, 800], aspect: 4 / 5 },
   { slug: 'colecao-camisa-encorpada', src: 'Fotos - Produtos/Camisa/Camisa encorpada.jpg', widths: [480, 800], aspect: 4 / 5 },

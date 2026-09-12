@@ -21,7 +21,7 @@ Landing page de conversão da **Gaspar Lopes Alfaiataria** (alfaiataria sob medi
 - Animações vanilla: scroll-reveal com stagger, marquee infinito, hover zoom, carrosséis com autoplay (respeitam `prefers-reduced-motion`).
 
 ## Seções (ordem)
-Header fixo (transparente→sólido; menu mobile = painel navy com hairlines e item de WhatsApp) · Hero full-bleed centralizado (foto do Gaspar de costume cinza, peça no centro) · Marquee · Por que sob medida (3 pilares, ícones) · Faixa lapela (16:9, sem degradê) · Vitrine 6 categorias do PRD (cards clicáveis→WhatsApp) · **Coleção** (10 peças, filtros por categoria, nomes = nomes dos arquivos do cliente) · Comece pelo WhatsApp (3 passos, só copy existente) · Investimento (**SEM preços** — decisão do usuário; versão com preços comentada) · Quem faz (carrossel 3 retratos) · FAQ (accordion) · CTA final · Footer 3 colunas · WA float · Banner de cookies.
+Header fixo (transparente→sólido; menu mobile = painel navy com hairlines e item de WhatsApp) · Hero full-bleed centralizado (foto do Gaspar de costume cinza, peça no centro) · Marquee · Por que sob medida (3 pilares, ícones) · Faixa lapela (16:9, sem degradê) · Vitrine 6 categorias do PRD (cards clicáveis→WhatsApp) · **Coleção** (9 peças, filtros por categoria, nomes = nomes dos arquivos do cliente) · Comece pelo WhatsApp (3 passos, só copy existente) · Investimento (**SEM preços** — decisão do usuário; versão com preços comentada) · Quem faz (carrossel 3 retratos) · FAQ (accordion) · CTA final · Footer 3 colunas · WA float · Banner de cookies.
 **Removida em 11/09/2026 a pedido do cliente**: seção Destaques (carrossel de 10 peças). CSS/JS do carrossel e os arquivos `destaque-*` foram apagados; `api/dashboard.js` e `dashboard/index.html` mantêm o rótulo `destaques` só para ler sessões antigas.
 **Ocultas (comentadas) até dados reais**: Como funciona (processo do atelier), Depoimentos, 2 FAQs (prazo / presencial), história do Gaspar (fonte: revista).
 
@@ -46,7 +46,7 @@ Também: título da Coleção passou de "Peças que já saíram do atelier" para
 - **Por que sob medida**: título → **"O feito à mão transforma tecido em identidade."**; lead "do seu tecido" → "do tecido".
 - **Faixa** (lapela): agora 16:9, altura `clamp(240px, 50vw, 640px)`, **sem degradê** ("tirar o contorno").
 - **Fotos**: `produto-ternos` → terno azul claro de cerimônia (embutida no PDF → `Fotos - Produtos/Ternos/Terno azul claro - cerimonia.jpg`); `colecao-jaquetao-6botoes` → jaquetão verde no manequim (Drive → `Fotos - Produtos/Jaquetão/Jaquetão 6 botões - verde.jpg`); `colecao-punho-bordado` → **`colecao-punho-duplo`** "Punho duplo" (embutida no PDF → `Fotos - Produtos/Punhos/Punho duplo.jpg`).
-- **Excluídas da Coleção**: Calça tradicional, Calça Ghurka, Forro de paletó em linho azul. O filtro "Calças & Coletes" virou **"Coletes"** (`data-filter="coletes"`, só o colete de sarja).
+- **Excluídas da Coleção**: Calça tradicional, Calça Ghurka, Forro de paletó em linho azul e (12/09) Paletó de linho azul. O filtro "Calças & Coletes" virou **"Coletes"** (`data-filter="coletes"`, só o colete de sarja).
 - "Outras criações exclusivas" já estava publicado (o print do cliente era antigo).
 - **Quem faz (12/09/2026)**: carrossel com 3 retratos: sentado (`autoridade-4`, ROD02627, mantido), camisa e gravata em atendimento (`autoridade-5`, "WhatsApp Image 2026-09-11 at 13.57.58.jpeg") e com o diploma da Câmara (`autoridade-6`, "WhatsApp Image 2026-09-11 at 14.00.00.jpeg"). Os dois novos têm só 480/800 (originais de 1066 e 854px, não ampliar); `autoridade-2/3` apagados.
 
