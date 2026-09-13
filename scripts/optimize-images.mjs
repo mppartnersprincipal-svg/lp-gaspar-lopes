@@ -28,9 +28,8 @@ const JOBS = [
   { slug: 'produto-costumes', src: 'Fotos - Produtos/Costumes/Costume azul - externo.jpg', widths: [480, 800], aspect: 4 / 5, crop: { left: 0.334, top: 0.342, width: 0.512, height: 0.427 } },
   { slug: 'produto-paletos', src: 'Fotos - Produtos/Paletó/Paletó 2 botões.jpg', widths: [480, 800], aspect: 4 / 5 },
   { slug: 'produto-calcas', src: 'Fotos - Produtos/Calças/Calça cós duplo.jpg', widths: [480, 800], aspect: 4 / 5 },
-  { slug: 'produto-coletes', src: 'Fotos - Produtos/Colete/Colete marrom trespassado.jpg', widths: [480, 800], aspect: 4 / 5 },
   // Coleção completa (galeria com filtro por categoria) — nomes reais dos arquivos do cliente
-  { slug: 'colecao-costume-6botoes', src: 'Fotos - Produtos/Costumes/Costume 6 botões.jpg', widths: [480, 800], aspect: 4 / 5 },
+  { slug: 'colecao-colete', src: 'Fotos Gaspar/Foto Colete.webp', widths: [480, 800], aspect: 4 / 5, pos: 'centre' }, // colete preto (trocou o Costume 6 botões em 13/09/2026)
   { slug: 'colecao-jaquetao-6botoes', src: 'Fotos - Produtos/Jaquetão/Jaquetão 6 botões - verde.jpg', widths: [480, 800], aspect: 4 / 5, pos: 'centre' },
   { slug: 'colecao-jaquetao-6botoes-b', src: 'Fotos - Produtos/Jaquetão/Jaquetão 6 botões(3).jpg', widths: [480, 800], aspect: 4 / 5 },
   { slug: 'colecao-kaban', src: 'Fotos - Produtos/Kaban/KABAN.jpg', widths: [480, 800], aspect: 4 / 5 },
