@@ -21,7 +21,7 @@ Landing page de conversão da **Gaspar Lopes Alfaiataria** (alfaiataria sob medi
 - Animações vanilla: scroll-reveal com stagger, marquee infinito, hover zoom, carrosséis com autoplay (respeitam `prefers-reduced-motion`).
 
 ## Seções (ordem)
-Header fixo (transparente→sólido; menu mobile = painel navy com hairlines e item de WhatsApp) · Hero full-bleed centralizado (foto do Gaspar de costume cinza, peça no centro) · Marquee · Por que sob medida (3 pilares, ícones) · Faixa lapela (16:9, sem degradê) · Vitrine 5 categorias do PRD (cards clicáveis→WhatsApp; o card Coletes foi removido em 13/09/2026 a pedido do cliente) · **Coleção** (9 peças, filtros por categoria, nomes = nomes dos arquivos do cliente) · Comece pelo WhatsApp (3 passos, só copy existente) · Investimento (**SEM preços** — decisão do usuário; versão com preços comentada) · Quem faz (carrossel 2 retratos) · FAQ (accordion) · CTA final · Footer 3 colunas · WA float · Banner de cookies.
+Header fixo (transparente→sólido; menu mobile = painel navy com hairlines e item de WhatsApp) · Hero full-bleed centralizado (foto do Gaspar de costume cinza, peça no centro) · Marquee · Por que sob medida (3 pilares, ícones) · Faixa lapela (16:9, sem degradê) · Vitrine 4 categorias do PRD: Camisas, Ternos, Costumes, Paletós (cards clicáveis→WhatsApp; os cards Coletes e Calças foram removidos em 13/09/2026 a pedido do cliente; JSON-LD e llms.txt seguem listando os 6 serviços) · **Coleção** (9 peças, filtros por categoria, nomes = nomes dos arquivos do cliente) · Comece pelo WhatsApp (3 passos, só copy existente) · Investimento (**SEM preços** — decisão do usuário; versão com preços comentada) · Quem faz (carrossel 2 retratos) · FAQ (accordion) · CTA final · Footer 3 colunas · WA float · Banner de cookies.
 **Removida em 11/09/2026 a pedido do cliente**: seção Destaques (carrossel de 10 peças). CSS/JS do carrossel e os arquivos `destaque-*` foram apagados; `api/dashboard.js` e `dashboard/index.html` mantêm o rótulo `destaques` só para ler sessões antigas.
 **Ocultas (comentadas) até dados reais**: Como funciona (processo do atelier), Depoimentos, 2 FAQs (prazo / presencial), história do Gaspar (fonte: revista).
 
@@ -34,6 +34,7 @@ Fontes novas: 4 vieram por link do Google Drive, 3 estavam embutidas no próprio
 | `produto-camisas` | Camisa branca vestida | PDF → `Fotos - Produtos/Camisa/Camisa branca social.jpg` |
 | `produto-ternos` | Terno bege de cerimônia | PDF → `Fotos - Produtos/Ternos/Terno bege - cerimonia.jpg` |
 | ~~`produto-coletes`~~ | ~~Colete marrom trespassado~~ **Removida em 13/09/2026** (o cliente pediu para excluir a foto; o card 06 Coletes da vitrine saiu junto, sem foto substituta) | PDF → `Fotos - Produtos/Colete/Colete marrom trespassado.jpg` (original mantido na pasta) |
+| ~~`produto-calcas`~~ | ~~Calça cós duplo (verde)~~ **Removida em 13/09/2026** (cliente pediu para excluir a foto; o card 05 Calças da vitrine saiu junto, sem substituta) | `Fotos - Produtos/Calças/Calça cós duplo.jpg` (original mantido na pasta) |
 | `produto-costumes` | Costume azul ao ar livre ("aproximar a foto") | Drive → `Fotos - Produtos/Costumes/Costume azul - externo.jpg` |
 | `colecao-camiseta-polo` (novo) | Camiseta polo preta | Drive → `Fotos - Produtos/Camiseta/Camiseta polo preta.jpg` |
 

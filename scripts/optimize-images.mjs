@@ -26,7 +26,6 @@ const JOBS = [
   { slug: 'produto-ternos', src: 'Fotos - Produtos/Ternos/Terno azul claro - cerimonia.jpg', widths: [480, 800], aspect: 4 / 5, pos: 'centre' },
   { slug: 'produto-costumes', src: 'Fotos - Produtos/Costumes/Costume azul - externo.jpg', widths: [480, 800], aspect: 4 / 5, crop: { left: 0.334, top: 0.342, width: 0.512, height: 0.427 } },
   { slug: 'produto-paletos', src: 'Fotos - Produtos/Paletó/Paletó 2 botões.jpg', widths: [480, 800], aspect: 4 / 5 },
-  { slug: 'produto-calcas', src: 'Fotos - Produtos/Calças/Calça cós duplo.jpg', widths: [480, 800], aspect: 4 / 5 },
   // Coleção completa (galeria com filtro por categoria) — nomes reais dos arquivos do cliente
   { slug: 'colecao-colete', src: 'Fotos Gaspar/Foto Colete.webp', widths: [480, 800], aspect: 4 / 5, pos: 'centre' }, // colete preto (trocou o Costume 6 botões em 13/09/2026)
   { slug: 'colecao-jaquetao-6botoes', src: 'Fotos - Produtos/Jaquetão/Jaquetão 6 botões - verde.jpg', widths: [480, 800], aspect: 4 / 5, pos: 'centre' },
