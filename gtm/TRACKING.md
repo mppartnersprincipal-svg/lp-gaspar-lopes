@@ -1,4 +1,4 @@
-# Trackeamento da LP Gaspar Lopes: GTM + GA4 + Google Ads
+# Trackeamento da LP Gaspar Lopes: GTM + GA4 + Google Ads + Pixel da Meta
 
 Guia passo a passo para medir tudo que acontece na landing page usando o
 Google Tag Manager. O site já empurra os eventos para o `dataLayer`
@@ -142,6 +142,51 @@ do gtm.js ao aceite no bloco de tracking do `index.html`.
 - **Interesse por categoria**: `collection_filter` × `filter` e `whatsapp_click` × `label`.
 - **Objeções**: `faq_open` × `question`.
 - **Aquisição → Aquisição de tráfego** com o evento-chave `whatsapp_click`: qual campanha/termo gera contato.
+
+---
+
+## 8. Pixel da Meta (configurado na interface do GTM em 22/09/2026)
+
+As duas tags abaixo foram criadas **direto na interface do GTM**, com o template
+"Meta Pixel" (facebook) da Galeria de modelos. Elas **não estão** no JSON gerado por
+`gen-container.mjs`, porque templates da galeria não são reproduzíveis pelo gerador.
+Se o container for reimportado com "Sobrescrever", recriar as duas à mão com esta ficha.
+
+Pixel: `1136325035763218`.
+
+| Tag | Evento (Standard) | Acionadores | Object Properties | Disparo |
+|---|---|---|---|---|
+| `Pixel Meta - PageView` | `PageView` | `All Pages` **e** `Consentimento de Cookie` (ver abaixo) | nenhuma | **Uma vez por página** |
+| `Pixel Meta - Contact (WhatsApp)` | `Contact` | `CE - whatsapp_click` | `content_name` = `{{DLV - label}}`, `content_category` = `{{DLV - source}}` | Uma vez por evento |
+
+Configuração comum às duas tags:
+
+- **Consent Granted (GDPR)** = `True` (pode, porque o GTM só deixa a tag rodar depois do aceite, ver abaixo).
+- **Enable Advanced Matching** desmarcado (o site não tem formulário, não há dado do visitante para enviar).
+- **Meta-enabled Conversions API integration** marcado (a Meta cria a integração server-side por conta dela e respeita o disparo da tag; não precisa de Event ID).
+- **Limited Data Use** desmarcado (regra da Califórnia, não se aplica).
+- **Configurações avançadas → Configurações de permissão** = **"Exigir consentimento adicional para disparar a tag"** com `ad_storage` e `ad_user_data`. Sem isso o Pixel ignora o banner: ao contrário das tags do Google, o template da Meta **não lê o Consent Mode sozinho**.
+
+Acionador extra `Consentimento de Cookie` (só na PageView): Evento personalizado `cookie_consent`,
+condição `DLV - consent_choice` igual a `accepted`. Ele cobre a **primeira visita**: o
+`All Pages` roda com o consentimento ainda negado e a tag fica bloqueada; ao clicar em
+Aceitar o site libera o consentimento e depois empurra o evento, e aí a PageView dispara.
+Nas visitas seguintes o `index.html` já manda o `consent update` antes do gtm.js, então
+a PageView dispara direto no `All Pages`. "Uma vez por página" garante que nunca dispare
+duas vezes na mesma visita.
+
+Não usar o acionador `CE - cookie_consent` já existente com essa condição: ele alimenta a
+tag GA4 `cookie_consent`, que precisa registrar também o "Só o essencial".
+
+Teste (feito em 22/09/2026, tudo ok): janela anônima → nada da Meta antes do banner →
+Aceitar → `PageView` no evento `cookie_consent` → botão de WhatsApp → `Contact` no
+`whatsapp_click` → recarregar → `PageView` uma vez no `All Pages`. As mensagens
+"A variável retornou falso devido a um erro desconhecido" na aba Console do Tag Assistant
+são só o painel avaliando as `DLV - *` em eventos onde a chave ainda não existe; não
+afetam as tags.
+
+No Gerenciador de Eventos da Meta usar `Contact` como evento de otimização das campanhas.
+A política de privacidade cita o Pixel e o cookie `_fbp` desde 22/09/2026.
 
 ---
 

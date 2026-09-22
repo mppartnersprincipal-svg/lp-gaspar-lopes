@@ -1,6 +1,8 @@
 // Gera o export de container GTM (exportFormatVersion 2) da LP Gaspar Lopes.
 // Uso: node gtm/gen-container.mjs gtm/gtm-container-gaspar-lopes.json
 // Não editar o JSON à mão: alterar aqui e regenerar.
+// As 2 tags do Pixel da Meta (template da galeria) NÃO estão aqui: foram criadas na UI do GTM.
+// Ficha completa para recriá-las: gtm/TRACKING.md, seção 8.
 import { writeFileSync } from "node:fs";
 
 const OUT = process.argv[2] ?? "gtm/gtm-container-gaspar-lopes.json";
