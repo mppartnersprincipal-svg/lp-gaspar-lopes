@@ -22,3 +22,6 @@ package-lock.json
 
 # Briefings em PDF do cliente
 *.pdf
+
+# Pesquisa de palavras-chave (material interno)
+*palavras-chaves*.txt

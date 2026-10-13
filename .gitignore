@@ -10,3 +10,7 @@ Fotos - Loja/
 # Segredos locais
 .env
 .env.local
+
+# Briefings do cliente (PDF) e pesquisa de palavras-chave: material interno, o repo é público
+*.pdf
+*palavras-chaves*.txt
