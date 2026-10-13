@@ -79,7 +79,7 @@ constant("CONST - Ads Label - whatsapp_click", "PREENCHER rótulo da conversão 
 trigger("Initialization - All Pages", "INIT");
 trigger("All Pages", "PAGEVIEW");
 const CUSTOM_EVENTS = [
-  "whatsapp_click", "social_click", "collection_filter", "faq_open", "section_view", "cookie_consent",
+  "whatsapp_click", "social_click", "store_click", "collection_filter", "faq_open", "section_view", "cookie_consent",
 ];
 CUSTOM_EVENTS.forEach(ceTrigger);
 trigger("Scroll - 25/50/75/90", "SCROLL_DEPTH", {
@@ -115,6 +115,7 @@ ga4Event("whatsapp_click", "CE - whatsapp_click", [
 ga4Event("social_click", "CE - social_click", [
   ["network", "{{DLV - network}}"], ["source", "{{DLV - source}}"], ["page", "{{DLV - page}}"],
 ]);
+ga4Event("store_click", "CE - store_click", [["source", "{{DLV - source}}"], ["page", "{{DLV - page}}"]]);
 ga4Event("collection_filter", "CE - collection_filter", [["filter", "{{DLV - filter}}"]]);
 ga4Event("faq_open", "CE - faq_open", [["question", "{{DLV - question}}"]]);
 ga4Event("section_view", "CE - section_view", [["section", "{{DLV - section}}"]]);

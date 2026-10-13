@@ -13,6 +13,7 @@ nas contas Google e o preenchimento de 2 placeholders no código.
 |---|---|---|---|
 | `whatsapp_click` | Clique em QUALQUER link `wa.me` | `source` (header, hero, pecas, colecao, comecar, investimento, autoridade, cta-final, footer, flutuante), `label` (texto do botão ou categoria da peça, ex.: "Camisas"), `page` | **Conversão principal** no Ads + evento-chave no GA4 |
 | `social_click` | Clique no Instagram (footer) | `network` = instagram, `source`, `page` | GA4 |
+| `store_click` | Clique na loja online (ícone do header, menu mobile, footer) → loja.gasparlopesalfaiataria.com.br | `source`, `page` | GA4 |
 | `collection_filter` | Clique num filtro da Coleção | `filter` (todas, ternos, paletos, camisas, calcas, especiais) | GA4 (interesse por categoria) |
 | `faq_open` | Abriu uma pergunta do FAQ | `question` | GA4 (objeções) |
 | `section_view` | Seção ficou 40% visível (1x por seção) | `section` (hero, sob-medida, pecas, colecao, comecar, investimento, autoridade, faq, cta-final) | GA4 (funil de leitura) |
@@ -129,6 +130,7 @@ do gtm.js ao aceite no bloco de tracking do `index.html`.
    - abra uma pergunta do FAQ → `faq_open`
    - role a página → `section_view` por seção e `scroll_depth` 25/50/75/90
    - Instagram no footer → `social_click`
+   - ícone da sacola no header (ou "Loja online" no footer) → `store_click`
 3. GA4 → **Relatórios → Tempo real** (ou DebugView) mostrando os eventos.
 4. Tudo ok → **Enviar → Publicar**.
 5. Google Ads → Conversões: sai de "Inativo" para "Registrando conversões" depois dos primeiros cliques reais (até 24 h).

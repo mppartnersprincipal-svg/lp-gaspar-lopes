@@ -579,6 +579,7 @@
           else if (e.name === 'collection_filter') what = 'Filtro: ' + e.props.filter;
           else if (e.name === 'faq_open') what = 'FAQ: ' + e.props.question;
           else if (e.name === 'social_click') what = 'Instagram';
+          else if (e.name === 'store_click') what = 'Loja online';
           else if (e.name === 'cookie_consent') what = 'Cookies: ' + e.props.consent_choice;
           return '<div class="ev"><time>' + new Date(e.ts).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) + '</time><span>' + esc(what) + '</span><span class="muted">' + esc([CH[s.channel] || s.channel, s.device, s.city].filter(Boolean).join(' · ')) + '</span></div>';
         }).join('');

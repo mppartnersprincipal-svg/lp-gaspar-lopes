@@ -200,6 +200,7 @@ function trail(evs) {
     else if (e.name === 'collection_filter') steps.push({ t: e.ts, kind: 'action', text: `Filtro: ${e.props.filter}` });
     else if (e.name === 'faq_open') steps.push({ t: e.ts, kind: 'action', text: `FAQ: ${e.props.question}` });
     else if (e.name === 'social_click') steps.push({ t: e.ts, kind: 'action', text: `Instagram (${e.props.source || ''})` });
+    else if (e.name === 'store_click') steps.push({ t: e.ts, kind: 'action', text: `Loja online (${e.props.source || ''})` });
     else if (e.name === 'cookie_consent') steps.push({ t: e.ts, kind: 'action', text: e.props.consent_choice === 'accepted' ? 'Aceitou cookies' : 'Só o essencial' });
     else if (e.name === 'click' && e.props.text && !/wa\.me/.test(e.props.href || '')) steps.push({ t: e.ts, kind: 'click', text: `${e.props.text}${e.props.section ? ' · ' + e.props.section : ''}` });
     else if (e.name === 'page_leave') steps.push({ t: e.ts, kind: 'leave', text: `Saiu (${Math.round((e.props.duration_ms || 0) / 1000)} s, ${e.props.max_scroll_pct || 0}% da página)` });

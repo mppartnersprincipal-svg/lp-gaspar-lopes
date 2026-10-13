@@ -186,6 +186,7 @@
  * Catálogo de eventos:
  * - whatsapp_click   { source, label, page }   CONVERSÃO PRINCIPAL (qualquer link wa.me)
  * - social_click     { network, source, page } Instagram
+ * - store_click      { source, page }          ícone/link da loja online (loja.gasparlopesalfaiataria.com.br)
  * - collection_filter{ filter }                filtros da Coleção
  * - faq_open         { question }              pergunta aberta no FAQ
  * - section_view     { section }               seção 40% visível, 1x por seção
@@ -238,6 +239,8 @@
       push({ event: 'whatsapp_click', source: sourceOf(a), label: labelOf(a), page: page });
     } else if (/instagram\.com/.test(href)) {
       push({ event: 'social_click', network: 'instagram', source: sourceOf(a), page: page });
+    } else if (/loja\.gasparlopesalfaiataria\.com\.br/.test(href)) {
+      push({ event: 'store_click', source: sourceOf(a), page: page });
     }
   }, true);
 

@@ -54,6 +54,7 @@ Também: título da Coleção passou de "Peças que já saíram do atelier" para
 ## Dados reais já aplicados
 - Endereço: Rua 104, 234, Setor Sul, Goiânia, GO, CEP 74083-300 (footer `<address>`, JSON-LD, llms.txt).
 - Instagram: https://www.instagram.com/gasparlopess/ (footer + `sameAs`).
+- **Loja online (13/10/2026)**: https://loja.gasparlopesalfaiataria.com.br/ → ícone de sacola (pílula de vidro redonda `.btn--icon`) no header ao lado do WhatsApp, item "Loja online" no menu mobile e link no footer. Evento `store_click` {source, page} (main.js, gen-container, dashboard).
 
 ## SEO / GEO (feito)
 Head completo (canonical, robots, OG absoluto, Twitter, preload LCP, theme-color), favicons do monograma GL, `site.webmanifest`, JSON-LD (`LocalBusiness+ClothingStore` + `WebSite` + `WebPage` speakable + `FAQPage`), `robots.txt` (libera GPTBot/ClaudeBot/PerplexityBot etc.), `sitemap.xml`, `llms.txt`.

@@ -215,6 +215,76 @@
         "accountId": "0",
         "containerId": "0",
         "tagId": "4",
+        "name": "GA4 - store_click",
+        "type": "gaawe",
+        "parameter": [
+          {
+            "type": "BOOLEAN",
+            "key": "sendEcommerceData",
+            "value": "false"
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "eventName",
+            "value": "store_click"
+          },
+          {
+            "type": "LIST",
+            "key": "eventSettingsTable",
+            "list": [
+              {
+                "type": "MAP",
+                "map": [
+                  {
+                    "type": "TEMPLATE",
+                    "key": "parameter",
+                    "value": "source"
+                  },
+                  {
+                    "type": "TEMPLATE",
+                    "key": "parameterValue",
+                    "value": "{{DLV - source}}"
+                  }
+                ]
+              },
+              {
+                "type": "MAP",
+                "map": [
+                  {
+                    "type": "TEMPLATE",
+                    "key": "parameter",
+                    "value": "page"
+                  },
+                  {
+                    "type": "TEMPLATE",
+                    "key": "parameterValue",
+                    "value": "{{DLV - page}}"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "TEMPLATE",
+            "key": "measurementIdOverride",
+            "value": "{{CONST - GA4 Measurement ID}}"
+          }
+        ],
+        "firingTriggerId": [
+          "5"
+        ],
+        "tagFiringOption": "ONCE_PER_EVENT",
+        "monitoringMetadata": {
+          "type": "MAP"
+        },
+        "consentSettings": {
+          "consentStatus": "NOT_SET"
+        }
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "tagId": "5",
         "name": "GA4 - collection_filter",
         "type": "gaawe",
         "parameter": [
@@ -256,7 +326,7 @@
           }
         ],
         "firingTriggerId": [
-          "5"
+          "6"
         ],
         "tagFiringOption": "ONCE_PER_EVENT",
         "monitoringMetadata": {
@@ -269,7 +339,7 @@
       {
         "accountId": "0",
         "containerId": "0",
-        "tagId": "5",
+        "tagId": "6",
         "name": "GA4 - faq_open",
         "type": "gaawe",
         "parameter": [
@@ -311,7 +381,7 @@
           }
         ],
         "firingTriggerId": [
-          "6"
+          "7"
         ],
         "tagFiringOption": "ONCE_PER_EVENT",
         "monitoringMetadata": {
@@ -324,7 +394,7 @@
       {
         "accountId": "0",
         "containerId": "0",
-        "tagId": "6",
+        "tagId": "7",
         "name": "GA4 - section_view",
         "type": "gaawe",
         "parameter": [
@@ -366,7 +436,7 @@
           }
         ],
         "firingTriggerId": [
-          "7"
+          "8"
         ],
         "tagFiringOption": "ONCE_PER_EVENT",
         "monitoringMetadata": {
@@ -379,7 +449,7 @@
       {
         "accountId": "0",
         "containerId": "0",
-        "tagId": "7",
+        "tagId": "8",
         "name": "GA4 - cookie_consent",
         "type": "gaawe",
         "parameter": [
@@ -421,7 +491,7 @@
           }
         ],
         "firingTriggerId": [
-          "8"
+          "9"
         ],
         "tagFiringOption": "ONCE_PER_EVENT",
         "monitoringMetadata": {
@@ -434,7 +504,7 @@
       {
         "accountId": "0",
         "containerId": "0",
-        "tagId": "8",
+        "tagId": "9",
         "name": "GA4 - scroll_depth",
         "type": "gaawe",
         "parameter": [
@@ -491,7 +561,7 @@
           }
         ],
         "firingTriggerId": [
-          "9"
+          "10"
         ],
         "tagFiringOption": "ONCE_PER_EVENT",
         "monitoringMetadata": {
@@ -504,7 +574,7 @@
       {
         "accountId": "0",
         "containerId": "0",
-        "tagId": "9",
+        "tagId": "10",
         "name": "GA4 - click_outbound",
         "type": "gaawe",
         "parameter": [
@@ -576,7 +646,7 @@
           }
         ],
         "firingTriggerId": [
-          "10"
+          "11"
         ],
         "tagFiringOption": "ONCE_PER_EVENT",
         "monitoringMetadata": {
@@ -589,7 +659,7 @@
       {
         "accountId": "0",
         "containerId": "0",
-        "tagId": "10",
+        "tagId": "11",
         "name": "Ads - Conversion Linker",
         "type": "gclidw",
         "parameter": [
@@ -623,7 +693,7 @@
       {
         "accountId": "0",
         "containerId": "0",
-        "tagId": "11",
+        "tagId": "12",
         "name": "Ads - Remarketing",
         "type": "sp",
         "parameter": [
@@ -662,7 +732,7 @@
       {
         "accountId": "0",
         "containerId": "0",
-        "tagId": "12",
+        "tagId": "13",
         "name": "Ads - Conversão - WhatsApp Click (principal)",
         "type": "awct",
         "parameter": [
@@ -781,6 +851,30 @@
         "accountId": "0",
         "containerId": "0",
         "triggerId": "5",
+        "name": "CE - store_click",
+        "type": "CUSTOM_EVENT",
+        "customEventFilter": [
+          {
+            "type": "EQUALS",
+            "parameter": [
+              {
+                "type": "TEMPLATE",
+                "key": "arg0",
+                "value": "{{_event}}"
+              },
+              {
+                "type": "TEMPLATE",
+                "key": "arg1",
+                "value": "store_click"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "accountId": "0",
+        "containerId": "0",
+        "triggerId": "6",
         "name": "CE - collection_filter",
         "type": "CUSTOM_EVENT",
         "customEventFilter": [
@@ -804,7 +898,7 @@
       {
         "accountId": "0",
         "containerId": "0",
-        "triggerId": "6",
+        "triggerId": "7",
         "name": "CE - faq_open",
         "type": "CUSTOM_EVENT",
         "customEventFilter": [
@@ -828,7 +922,7 @@
       {
         "accountId": "0",
         "containerId": "0",
-        "triggerId": "7",
+        "triggerId": "8",
         "name": "CE - section_view",
         "type": "CUSTOM_EVENT",
         "customEventFilter": [
@@ -852,7 +946,7 @@
       {
         "accountId": "0",
         "containerId": "0",
-        "triggerId": "8",
+        "triggerId": "9",
         "name": "CE - cookie_consent",
         "type": "CUSTOM_EVENT",
         "customEventFilter": [
@@ -876,7 +970,7 @@
       {
         "accountId": "0",
         "containerId": "0",
-        "triggerId": "9",
+        "triggerId": "10",
         "name": "Scroll - 25/50/75/90",
         "type": "SCROLL_DEPTH",
         "parameter": [
@@ -910,7 +1004,7 @@
       {
         "accountId": "0",
         "containerId": "0",
-        "triggerId": "10",
+        "triggerId": "11",
         "name": "Click - Outbound link",
         "type": "LINK_CLICK",
         "waitForTags": {
