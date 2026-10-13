@@ -508,6 +508,7 @@
       <nav class="nav" aria-label="Navegação principal">
         <a href="#pecas">Peças</a>
         <a href="#colecao">Coleção</a>
+        <a href="#loja">Loja</a>
         <a href="#sob-medida">Sob medida</a>
         <a href="#investimento">Investimento</a>
       </nav>
@@ -795,6 +796,66 @@
             <figcaption>Camiseta polo</figcaption>
           </figure>
         </div>
+      </div>
+    </section>
+
+    <!-- ================= LOJA ONLINE (13/10/2026, pedido do usuário: dar destaque ao e-commerce) =================
+         Copy só com dados publicados na própria loja (loja.gasparlopesalfaiataria.com.br): pronta entrega, Nº 1 ao Nº 5,
+         mesma modelagem do sob medida, algodão egípcio fio 60, tabela de medidas, sai do ateliê em 3 a 5 dias úteis,
+         envio para todo o Brasil. Prints reais da loja em "Fotos - Loja/" (npm run images loja).
+         Cliques → evento store_click com source=loja (main.js). ================= -->
+    <section class="section loja" id="loja">
+      <div class="container loja-grid">
+        <div class="loja-head reveal">
+          <span class="overline overline--left">Loja online</span>
+          <h2 class="section-title">A camisa Gaspar Lopes, <span class="accent">pronta para vestir.</span></h2>
+          <p class="loja-lead">A mesma modelagem do sob medida, cortada na mesma mesa e costurada pelas mesmas mãos, em cinco números prontos para enviar. Compre pelo site e receba em casa.</p>
+        </div>
+        <a class="loja-mock reveal" href="https://loja.gasparlopesalfaiataria.com.br/" target="_blank" rel="noopener" aria-label="Abrir a loja online Gaspar Lopes">
+          <div class="mock-browser">
+            <div class="mock-bar" aria-hidden="true">
+              <span class="mock-dots"><i></i><i></i><i></i></span>
+              <span class="mock-url">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                loja.gasparlopesalfaiataria.com.br
+              </span>
+            </div>
+            <picture>
+              <source type="image/webp" srcset="assets/img/loja-produto-desktop-800.webp 800w, assets/img/loja-produto-desktop-1280.webp 1280w, assets/img/loja-produto-desktop-1800.webp 1800w" sizes="(min-width:1024px) 640px, 92vw">
+              <img src="assets/img/loja-produto-desktop-800.jpg" srcset="assets/img/loja-produto-desktop-800.jpg 800w, assets/img/loja-produto-desktop-1280.jpg 1280w, assets/img/loja-produto-desktop-1800.jpg 1800w" sizes="(min-width:1024px) 640px, 92vw" alt="Página da Camisa Gaspar Lopes na loja online, com escolha de cor e número do Nº 1 ao Nº 5" width="1280" height="800" loading="lazy">
+            </picture>
+          </div>
+          <div class="mock-phone">
+            <picture>
+              <source type="image/webp" srcset="assets/img/loja-home-mobile-300.webp 300w, assets/img/loja-home-mobile-600.webp 600w" sizes="(min-width:1024px) 190px, 32vw">
+              <img src="assets/img/loja-home-mobile-300.jpg" srcset="assets/img/loja-home-mobile-300.jpg 300w, assets/img/loja-home-mobile-600.jpg 600w" sizes="(min-width:1024px) 190px, 32vw" alt="Loja online Gaspar Lopes no celular: Camisas Gaspar Lopes, prontas para vestir" width="300" height="649" loading="lazy">
+            </picture>
+          </div>
+        </a>
+        <div class="loja-body reveal">
+          <ul class="loja-feats">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/></svg>
+              <span><strong>Algodão egípcio, fio 60</strong>100% algodão, colarinho estruturado e punho com botão.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/></svg>
+              <span><strong>Do Nº 1 ao Nº 5</strong>Nove medidas publicadas por número, para você comparar com uma camisa sua antes de comprar.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8 12 3 3 8v8l9 5 9-5Z"/><path d="m3 8 9 5 9-5"/><path d="M12 13v8"/></svg>
+              <span><strong>Envio para todo o Brasil</strong>Sai do ateliê em 3 a 5 dias úteis, com frete calculado no checkout.</span>
+            </li>
+          </ul>
+          <div class="loja-ctas">
+            <a class="btn" href="https://loja.gasparlopesalfaiataria.com.br/" target="_blank" rel="noopener">
+              Visitar a loja online
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+            </a>
+            <a class="loja-alt" href="https://wa.me/5562999981896?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20fazer%20uma%20pe%C3%A7a%20sob%20medida." target="_blank" rel="noopener">Nenhum número serve? Faça sob medida</a>
+          </div>
+        </div>
+
       </div>
     </section>
 

@@ -522,3 +522,94 @@
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
+
+/* ---------- Loja online (e-commerce) ----------
+   Destaque com atmosfera navy e prints reais da loja em molduras de navegador + celular.
+   O conjunto inteiro é um link para a loja (store_click, source=loja). */
+.loja {
+  background:
+    radial-gradient(ellipse 70% 80% at 85% 40%, rgba(22,48,95,0.55), transparent 70%),
+    radial-gradient(ellipse 50% 60% at 0% 100%, rgba(10,36,83,0.35), transparent 70%),
+    var(--bg-0);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  overflow: hidden;
+}
+.loja-grid { display: grid; gap: var(--sp-7); grid-template-areas: "head" "mock" "body"; }
+.loja-head { grid-area: head; }
+.loja-mock { grid-area: mock; }
+.loja-body { grid-area: body; }
+/* Desktop: texto à esquerda, prints à direita. Mobile: título → prints → detalhes e botão (o visitante vê a loja antes do clique) */
+@media (min-width: 1024px) {
+  .loja-grid { grid-template-columns: 5fr 7fr; grid-template-areas: "head mock" "body mock"; column-gap: var(--sp-9); row-gap: 0; align-items: center; }
+  .loja-head { align-self: end; }
+  .loja-body { align-self: start; margin-top: var(--sp-6); }
+}
+
+.overline--left { justify-content: flex-start; text-indent: 0; }
+.overline--left::before { display: none; }
+.loja-head .section-title { font-size: clamp(34px, 4.6vw, 52px); }
+.loja-lead { margin: var(--sp-5) 0 0; color: var(--text-body); max-width: 480px; }
+
+.loja-feats { list-style: none; padding: 0; margin: 0; display: grid; }
+.loja-feats li {
+  display: flex; gap: var(--sp-4); align-items: flex-start;
+  padding: var(--sp-4) 0; border-top: 1px solid var(--border-subtle);
+}
+.loja-feats li:last-child { border-bottom: 1px solid var(--border-subtle); }
+.loja-feats svg { width: 22px; height: 22px; flex: 0 0 auto; color: var(--fg-1); margin-top: 2px; }
+.loja-feats span { color: var(--text-body); font-size: var(--fs-small); line-height: 1.6; }
+.loja-feats strong { display: block; color: var(--fg-0); font-weight: 500; font-size: 15px; letter-spacing: 0.02em; }
+
+.loja-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-5); margin-top: var(--sp-7); }
+.loja-alt {
+  color: var(--fg-2); font-size: var(--fs-small); text-decoration: none;
+  border-bottom: 1px solid var(--border-strong); padding-bottom: 2px;
+  transition: color 300ms var(--ease), border-color 300ms var(--ease);
+}
+.loja-alt:hover { color: var(--fg-0); border-color: var(--fg-0); }
+
+/* Mockup: navegador (página da camisa) + celular sobreposto (home da loja) */
+.loja-mock {
+  position: relative; display: block; text-decoration: none;
+  padding: 0 0 var(--sp-8) 0; margin-right: 8%;
+}
+@media (min-width: 1024px) { .loja-mock { padding-bottom: var(--sp-7); margin-right: 0; margin-left: var(--sp-7); } }
+.mock-browser {
+  border-radius: 12px; overflow: hidden;
+  background: var(--surface-card);
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-card), 0 0 0 1px rgba(0,0,0,0.4);
+  transition: transform 700ms var(--ease-out), box-shadow 700ms var(--ease-out);
+}
+.mock-bar {
+  display: flex; align-items: center; gap: var(--sp-3);
+  padding: 9px var(--sp-3); background: #1A2130; border-bottom: 1px solid var(--border-subtle);
+}
+.mock-dots { display: flex; gap: 6px; }
+.mock-dots i { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.18); }
+.mock-url {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px;
+  min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  font-size: 11px; letter-spacing: 0.02em; color: var(--fg-3);
+  background: rgba(255,255,255,0.05); border-radius: 999px; padding: 4px var(--sp-3);
+}
+.mock-url svg { width: 10px; height: 10px; flex: 0 0 auto; }
+.mock-browser img { display: block; width: 100%; height: auto; }
+.mock-phone {
+  position: absolute; right: -8%; bottom: 0; width: 34%; max-width: 200px;
+  border-radius: 22px; overflow: hidden;
+  border: 5px solid #05070A; outline: 1px solid var(--border-strong);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+  transition: transform 700ms var(--ease-out);
+}
+@media (min-width: 1024px) { .mock-phone { right: auto; left: calc(-1 * var(--sp-7)); width: 30%; } }
+.mock-phone img { display: block; width: 100%; height: auto; }
+@media (hover: hover) {
+  .loja-mock:hover .mock-browser { transform: translateY(-6px); box-shadow: 0 30px 70px rgba(0,0,0,0.55); }
+  .loja-mock:hover .mock-phone { transform: translateY(-12px) rotate(-1.5deg); }
+}
+.loja-mock:focus-visible { outline: 2px solid var(--fg-1); outline-offset: 8px; border-radius: 12px; }
+@media (prefers-reduced-motion: reduce) {
+  .mock-browser, .mock-phone { transition: none; }
+}

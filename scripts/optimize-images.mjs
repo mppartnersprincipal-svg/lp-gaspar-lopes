@@ -40,6 +40,10 @@ const JOBS = [
   // Faixa full-width de detalhe artesanal (lapela com pesponto à mão; 16:9, sem degradê por pedido do cliente)
   // e fundo do CTA final (paletó em fundo escuro)
   { slug: 'banda-detalhe', src: 'Fotos Gaspar/Detalhe - lapela costume azul.jpg', widths: [800, 1600], aspect: 16 / 9, pos: 'centre' },
+  // Seção Loja online (13/10/2026): prints reais da loja (loja.gasparlopesalfaiataria.com.br), tirados em 2x/3x
+  // com o browse headless e o banner de cookies recusado. Sem crop: o navegador é 16:10 e o celular 390×844.
+  { slug: 'loja-produto-desktop', src: 'Fotos - Loja/Loja - produto desktop.png', widths: [800, 1280, 1800] },
+  { slug: 'loja-home-mobile', src: 'Fotos - Loja/Loja - home mobile.png', widths: [300, 600] },
   { slug: 'cta-fundo', src: 'Fotos - Produtos/Paletó/Paletó 2 botões.jpg', widths: [800, 1600], aspect: 16 / 9 },
 ];
 

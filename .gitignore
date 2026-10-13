@@ -3,6 +3,8 @@ node_modules/
 # Fotos brutas da sessão (~518 MB) — ficam fora do repo.
 # As versões otimizadas para o site estão versionadas em assets/img/.
 Fotos Gaspar/
+# Prints da loja online em PNG 2x/3x (~7 MB); as versões otimizadas estão em assets/img/loja-*.
+Fotos - Loja/
 .gstack/
 
 # Segredos locais
